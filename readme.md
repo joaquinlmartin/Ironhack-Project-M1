@@ -2,26 +2,20 @@
 
 Ironhack-Project-M1
 
-## Target:
-Design a simple videogame with html, css and javascript.
-
 ## Description:
-You drive a spaceship through the universe and you must survive as long as you can. You go through obstacules and you must dodge them and when appears and enemy you must to destroy everything you can to survive. Move forward, dodge everything and if you are brave fighting with enemys are your tools to survive as long as you can and through the universe.
+It is a video game designed with JS, Html, Css and Canvas. You drive a spaceship through the universe and you must survive as long as possible. You go through obstacles and you have to dodge them. When an enemy appears you must destroy everything you can to survive. Advance, dodge everything and fight with enemies are your tools to survive as long as possible and cross the universe.
 
 ## MVP:
 
-Main classes:
-
-The MVP includes the following items graphically represented by colors:
-- List item 1
-- List item 2
-- List item 3
+Class Player
+--f. goRight()
+--f. goLeft()
+--f. goUp()
+--f. goDown()
 
 ## Backlog:
 
-- List item 1
-- List item 2
-- List item 3
+Files transitions. Classes and methods definition.
 
 ## Data structure
 
@@ -34,13 +28,12 @@ Methods: goRight, goLeft, goUp, goDown,
 class Game { properties: player, enemies. Methods:
 \_start
 \_update
-\_paint
 }
 
 // Optional
 class Enemy {
 properties: direction.
-Methods: _appear, _move
+Methods: _move, _shoot,
 }
 
 ## States & States Transitions
