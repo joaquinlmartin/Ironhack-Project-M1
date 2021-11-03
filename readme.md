@@ -20,17 +20,17 @@ Files transitions. Classes and methods definition.
 
 ## Data structure
 
-1. class Player {
-properties: life, direction.
-Methods: goRight, goLeft, goUp, goDown,
+1. class Game { properties: player, enemies. Methods:
+\_start
+\_update
 }
 `class Game {
 constructor
 }`
 
-2. class Game { properties: player, enemies. Methods:
-\_start
-\_update
+2. class Player {
+properties: life, direction.
+Methods: goRight, goLeft, goUp, goDown,
 }
 
 // Optional
