@@ -9,10 +9,10 @@ It is a video game designed with JS, Html, Css and Canvas. You drive a spaceship
 
 Class Player
 
-goRight()
-goLeft()
-goUp()
-goDown()
+- goRight()
+- goLeft()
+- goUp()
+- goDown()
 
 ## Backlog:
 
@@ -20,13 +20,15 @@ Files transitions. Classes and methods definition.
 
 ## Data structure
 
-class Player {
+1. class Player {
 properties: life, direction.
 Methods: goRight, goLeft, goUp, goDown,
 }
+`class Game {
+constructor
+}`
 
-
-class Game { properties: player, enemies. Methods:
+2. class Game { properties: player, enemies. Methods:
 \_start
 \_update
 }
