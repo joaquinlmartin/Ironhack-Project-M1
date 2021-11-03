@@ -8,10 +8,11 @@ It is a video game designed with JS, Html, Css and Canvas. You drive a spaceship
 ## MVP:
 
 Class Player
- goRight()
---. goLeft()
---f. goUp()
---f. goDown()
+
+goRight()
+goLeft()
+goUp()
+goDown()
 
 ## Backlog:
 
