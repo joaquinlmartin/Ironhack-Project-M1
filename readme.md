@@ -6,8 +6,7 @@ Ironhack-Project-M1
 Design a simple videogame with html, css and javascript.
 
 ## Description:
-You drive a spaceship through the universe and you must survive as long as you can. You go through obstacules and figting wit enemeys and your objetive is survive as long as you can.
-
+You drive a spaceship through the universe and you must survive as long as you can. You go through obstacules and you must dodge them and when appears and enemy you must to destroy everything you can to survive. Move forward, dodge everything and if you are brave fighting with enemys are your tools to survive as long as you can and through the universe.
 
 ## MVP:
 
@@ -52,7 +51,7 @@ Definition of the different states and their transition (transition functions):
 - gameoverScreen - If you colision you die (start again)
 
 ## Links:
-URL:added link:
+
 ### Trello
 
 ### Git
