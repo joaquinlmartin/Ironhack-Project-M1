@@ -50,10 +50,9 @@ Definition of the different states and their transition (transition functions):
 - splashScreen - Presentation, instructions and start button
 - gameScreen - Game itself
 - gameoverScreen - If you colision you die (start again)
-- winScreen - 
 
 ## Links:
-
+URL:added link:
 ### Trello
 
 ### Git
