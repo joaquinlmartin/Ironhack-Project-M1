@@ -2,7 +2,7 @@
 
 Ironhack-Project-M1
 
-## Description:
+### Description:
 It is a video game designed with JS, Html, Css and Canvas. You drive a spaceship through the universe and you must survive as long as possible. You go through obstacles and you have to dodge them. When an enemy appears you must destroy everything you can to survive. Advance, dodge everything and fight with enemies are your tools to survive as long as possible and cross the universe.
 
 ## MVP:
