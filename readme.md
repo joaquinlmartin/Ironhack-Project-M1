@@ -9,9 +9,9 @@ It is a video game designed with JS, Html, Css and Canvas. You drive a spaceship
 
 Class Player
 
+- goUp()
 - goRight()
 - goLeft()
-- goUp()
 - goDown()
 
 ## Backlog:
