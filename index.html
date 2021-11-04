@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,9 +9,20 @@
 
     <title>Némesis</title>
 </head>
+
 <body>
+    <div id="menu" class="splashscreen">
+        <button id="enter">Enter</button>
+    </div>
+    <div id="game" class="container game hide">
+        <canvas id="nemesis" width="800" height="600"></canvas>
+        <button id="start">START</button>
+    </div>
+    <div id="gameoverscreen" class="hide">Game Over</div>
+    <div id="winscreen" class="hide"></div>
     <script src="/src/main.js"></script>
     <script src="/src/game.js"></script>
     <script src="/src/sounds.js"></script>
 </body>
+
 </html>
