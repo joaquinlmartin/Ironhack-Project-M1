@@ -8,41 +8,45 @@
         this.topHolder = this.getPosition();
     }*/
 
- class Player {
-    constructor(maxRows, maxColumns) {
-        this.initialBody = [
-          { row: 1, column: 1 },
-        ];
-        this.direction = 'right';
-        this.intervalId = undefined;
-        this.maxRows = maxRows;
-        this.maxColumns = maxColumns;
-        this.body = [...this.initialBody];
-      }
+class Player {
+    constructor(posX = 0, posY = 0) {
+        this.pos = { x: 10, y: 10 };
+        this.posX = posX;
+        this.posY = posY;
+        this.direction = 0;
+    }
+    
+    /*goUp(direction, posX, posY) {
+        // +1 down -1 up
+        if (direction === "Up") {
+          this.direction = posY--;
+        }
+        // después de un condicional, si solo hay una línea de codigo, no hace falta poner  {}
+        else if (direction === "ArrowUp") this.direction = this.posY--;
+      }*/
 
-     
-    _moveForward() {
-        let head = this.body[0];
-        switch (this.direction) {
-            case "N":
-                this.dirY++;
-                break;
-            case "E":
-                this.dirX++;
-                break;
-            case "S":
-                this.dirY--;
-                break;
-            case "W":
-                this.dirX--;
-                break;
-            default:
-                break;
+
+    goUp() {
+        {
+            this.posY--;
         }
     }
 
-    
-    move() {
-        this.intervalId = setInterval(this._moveForward.bind(this), 100);
-      }
+    goDown() {
+        {
+            this.posY++;
+        }
+    }
+
+    goLeft() {
+        {
+            this.posX--;
+        }
+    }
+
+    goRight() {
+        {
+            this.posX++;
+        }
+    }
 }
