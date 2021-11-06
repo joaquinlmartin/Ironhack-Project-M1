@@ -41,13 +41,13 @@ class Game {
     this.ctx.clearRect(0, 0, 800, 600);
   }
 
-  _refresh() {
+  _update() {
     this._clean();
     this._drawShip();
     this._drawStones();
     if (this.ship.collidesWith(this.stones)) {
     }
-    window.requestAnimationFrame(this._refresh.bind(this));
+    window.requestAnimationFrame(this._update.bind(this));
   }
 
   _assignControlsToKeys() {
