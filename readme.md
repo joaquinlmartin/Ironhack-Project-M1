@@ -28,7 +28,7 @@ Files transitions. Classes and methods definition.
 constructor
 }`
 
-2. class Player {
+2. class Nemesis {
 properties: life, direction.
 Methods: goRight, goLeft, goUp, goDown,
 }
