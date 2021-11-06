@@ -9,7 +9,7 @@ html {
     box-sizing: inherit;
   }
 
-  body {
+body {
     background-size: cover;
     background-position: center top;
     height: 100%;
@@ -19,7 +19,7 @@ html {
     padding: 0;
   }
 
-  .splashscreen {
+.splashscreen {
     background-size: cover;
     top: 0;
     left: 0;
@@ -27,11 +27,8 @@ html {
     height: 100vh;
     background: black;
     z-index: 200;
-    color: yellow;
     text-align: center;;
     line-height: 90vh;
-    width: 980px;
-    height: 579px;
     background-image: url(/images/photo-1524334228333-0f6db392f8a1.jpeg);
     display: flex;
     justify-content: center;
@@ -42,16 +39,17 @@ html {
     width: 980px;
     height: 579px;
     display: flex;
-    background-image: url(/images/photo-1532793218979-f3365c284b32.jpeg);
     justify-content: center;
     align-items: flex-end;
-  }
-  .container {
-    margin: 0 auto;
-    width: 500px;
+    position: absolute;
   }
 
-  canvas#nemesis {
+.container {
+    margin: 0 auto;
+    width: 200px;
+  }
+
+canvas#nemesis {
     margin: 0 auto;
     border: 1px solid black;
   }
@@ -60,14 +58,15 @@ html {
     display: none;
   }
 
-  .show {
+.show {
     display: block;
   }
 
-  button {
-    background-color: green;
-    color: white;
+button {
+    background-color: rgb(17, 16, 2);
+    color: rgb(231, 210, 16);
     padding: 0.25rem 0.5rem;
-    border: 1px solid greenyellow;
-    text-transform: uppercase;
+    border: 1px solid rgb(221, 135, 23);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-block: 250px;
   }

@@ -26,13 +26,13 @@ function createSplashScreen() {
     game.classList.add('show');
     let canvas = game.querySelector('#nemesis');
     const ctx = canvas.getContext('2d');
-    const snakeGame = new Game(
+    const nemesisGame = new Game(
       {
         ctx: ctx,
         rows: canvas.width / 10,
         columns: canvas.height / 10,
         maxCells: 10,
-        nemesis: new Nemesis(canvas.width / 10, canvas.height / 10),
+        nemesis: new Player(canvas.width / 10, canvas.height / 10),
       },
       printGameOver
     );
