@@ -1,5 +1,5 @@
 class Game {
-  constructor(options, ctx) {
+  constructor(options, ctx,) {
     this.ctx = options.ctx;
     this.Boss = [];
     this.ship = options.ship;
@@ -11,7 +11,7 @@ class Game {
   _drawShip() {
     this.ctx.fillStyle = 'red';
     console.log(this.ship);
-    this.ctx.fillRect(this.ship.pos.x, this.ship.pos.y, 20, 20)
+    this.ctx.fillRect(this.ship.posX, this.ship.posY, 20, 20)
   }
 
   _drawStones() {
@@ -41,20 +41,19 @@ class Game {
     window.requestAnimationFrame(this._update.bind(this));
   }
   _assignControlsToKeys() {
-
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
         case 'ArrowUp':
-          this.Player.goUp();
+          this.ship.posY--;
           break;
         case 'ArrowDown':
-          this.Player.goDown();
+          this.ship.posY++;
           break;
         case 'ArrowRight':
-          this.Player.goRight();
+          this.ship.posX++;
           break;
         case 'ArrowLeft':
-          this.Player.goLeft();
+          this.ship.posX--;
           break;
         default:
           break;
@@ -64,7 +63,7 @@ class Game {
 
   start() {
     this._assignControlsToKeys();
-    // this._generateStones();
+    //this._generateStones();
     window.requestAnimationFrame(this._update.bind(this));
   }
 }
