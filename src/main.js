@@ -1,8 +1,8 @@
-// splashScreen
-document.addEventListener('DOMContentLoaded', () => {
-  let game;
-  //let splashScreen;
+let game;
+let splashScreen;
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Game Over Screen
   function printGameOver() {
     let gameOver = document.getElementById('gameover');
     let canvas = document.querySelector('#nemesis');
@@ -10,11 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     gameOver.style = 'display: block';
   }
 
-
+  // Splash Screen
   function createSplashScreen() {
-
-    //const start = document.getElementById('start');
-
     const startButton = document.querySelector('#start');
     startButton.addEventListener('click', () => {
       menu.classList.add('hide');

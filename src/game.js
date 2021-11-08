@@ -10,7 +10,6 @@ class Game {
 
   _drawShip() {
     this.ctx.fillStyle = 'red';
-    console.log(this.ship);
     this.ctx.fillRect(this.ship.posX, this.ship.posY, 20, 20)
   }
 
@@ -27,8 +26,8 @@ class Game {
   }
 
   _clean() {
-    this.ctx.fillStyle = "white";
-    this.ctx.fillRect(0, 0, 800, 600);
+    this.ctx.fillStyle = "black";
+    this.ctx.fillRect(0, 0, 1280, 720);
   }
 
   _update() {
@@ -55,6 +54,11 @@ class Game {
         case 'ArrowLeft':
           this.ship.posX--;
           break;
+        /*Diagonal/
+        case 'ArrowUp, ArrowRight':
+        this.ship.posY--;
+        this.ship.posX++;  
+          break;*/
         default:
           break;
       }

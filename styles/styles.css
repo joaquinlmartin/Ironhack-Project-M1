@@ -10,7 +10,8 @@ html {
   }
 
 body {
-    background-size: cover;
+  background-color: black;  
+  background-size: cover;
     background-position: center top;
     height: 100%;
     width: auto;
@@ -51,8 +52,10 @@ body {
 
 canvas#nemesis {
     margin: 0 auto;
-    border: 1px solid black;
-  }
+    border: 1px solid rgb(233, 194, 21);
+    position: fixed;
+    background-color: black;
+}
 
 .hide {
     display: none;
