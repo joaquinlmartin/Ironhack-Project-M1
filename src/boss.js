@@ -1,5 +1,6 @@
 class Boss {
-    constructor(ship, space) {
+    constructor(canvas, ship, space) {
+        this.canvas = canvas;
         this.space = space;
         this.ship = ship;
         this.height = 30;
