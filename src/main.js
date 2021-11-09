@@ -1,15 +1,9 @@
 let game;
 let splashScreen;
+let gameScreen;
+let gameOverScreen;
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Game Over Screen
-  function printGameOver() {
-    let gameOver = document.getElementById('gameover');
-    let canvas = document.querySelector('#nemesis');
-    canvas.style = 'display: none';
-    gameOver.style = 'display: block';
-  }
-
   // Splash Screen
   function createSplashScreen() {
     const startButton = document.querySelector('#start');
@@ -31,6 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
       nemesisGame.start();
 
     });
+  }
+  // Game Over Screen
+  function printGameOver() {
+    let gameOver = document.getElementById('gameover');
+    let canvas = document.querySelector('#nemesis');
+    canvas.style = 'display: none';
+    gameOver.style = 'display: block';
   }
 
   createSplashScreen();

@@ -10,8 +10,8 @@ html {
   }
 
 body {
-  background-color: black;  
-  background-size: cover;
+    background-color: black;  
+    background-size: cover;
     background-position: center top;
     height: 100%;
     width: auto;
@@ -36,6 +36,25 @@ body {
     align-items: flex-end;
 }
 
+h1 {
+    font-size: 6em;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(203, 216, 21);
+}
+
+button {
+    position: absolute;
+    background-color: rgb(17, 16, 2);
+    color: rgb(231, 210, 16);
+    padding: 0.25rem 0.5rem;
+    border: 1px solid rgb(221, 135, 23);
+    border-radius: 10px;
+    font-size: 2em;
+    font-weight:700;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-block: 250px;
+    align-items: center;
+}
 .game {
     width: 980px;
     height: 579px;
@@ -43,19 +62,28 @@ body {
     justify-content: center;
     align-items: flex-end;
     position: absolute;
-  }
-
+}
 .container {
     margin: 0 auto;
     width: 200px;
   }
 
 canvas#nemesis {
+    position: absolute;
+    top: 20%;
+    left: 155%;
     margin: 0 auto;
-    border: 1px solid rgb(233, 194, 21);
-    position: fixed;
+    border: 1.5px solid rgb(233, 194, 21);
     background-color: black;
 }
+/*header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 50px 40px;
+    font-size: 1.5em;
+    font-family: 'Poppins', sans-serif;
+}*/
 
 .hide {
     display: none;
@@ -63,13 +91,4 @@ canvas#nemesis {
 
 .show {
     display: block;
-  }
-
-button {
-    background-color: rgb(17, 16, 2);
-    color: rgb(231, 210, 16);
-    padding: 0.25rem 0.5rem;
-    border: 1px solid rgb(221, 135, 23);
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin-block: 250px;
   }

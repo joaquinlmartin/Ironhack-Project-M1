@@ -1,4 +1,4 @@
-class Boss {
+class Enemy {
     constructor(canvas, ship, space) {
         this.canvas = canvas;
         this.space = space;
