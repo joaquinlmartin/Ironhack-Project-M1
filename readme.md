@@ -15,9 +15,9 @@ Class Player
 Files transitions. Classes and methods definition.
 
 ## Data structure
+#### class Game
 
-```class Game {
-  constructor(options, ctx, speed) {
+```
     this.ctx = options.ctx;
     this.Boss = [];
     this.ship = options.ship;
@@ -28,7 +28,7 @@ Files transitions. Classes and methods definition.
     this.posY = options.posY;
     this.stones = undefined;
     this.speed = speed;
-  }```
+  ```
 
 ## States & States Transitions
 ### Definition of the different states and their transition (transition functions):
