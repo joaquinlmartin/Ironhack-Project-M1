@@ -7,12 +7,8 @@ It is a video game designed with JS, Html, Css and Canvas. You drive a spaceship
 
 ## MVP:
 
+Class Game
 Class Player
-
-- goUp()
-- goRight()
-- goLeft()
-- goDown()
 
 ## Backlog:
 
@@ -20,24 +16,19 @@ Files transitions. Classes and methods definition.
 
 ## Data structure
 
-1. class Game { properties: player, enemies. Methods:
-\_start
-\_update
-}
 `class Game {
-constructor
-}`
-
-2. class Nemesis {
-properties: life, direction.
-Methods: goRight, goLeft, goUp, goDown,
-}
-
-// Optional
-class Enemy {
-properties: direction.
-Methods: _move, _shoot,
-}
+  constructor(options, ctx, speed) {
+    this.ctx = options.ctx;
+    this.Boss = [];
+    this.ship = options.ship;
+    this.score = 0;
+    this.livesElement = undefined;
+    this.scoreElement = undefined;
+    this.posX = options.posX;
+    this.posY = options.posY;
+    this.stones = undefined;
+    this.speed = speed;
+  }`
 
 ## States & States Transitions
 ### Definition of the different states and their transition (transition functions):
