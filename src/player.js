@@ -1,8 +1,6 @@
 class Player {
-  constructor(canvas, lives, shipImgSrc, posX = 0, posY = 0, speed = 300, direction = "N") {
-    this.canvas = canvas;
-    /*this.ctx = this.canvas.getContext("2d");*/
-    this.lives = 3;
+  constructor(lives = 3, shipImgSrc, posX = 0, posY = 0, speed = 300, direction = "N") {
+    this.lives = this.lives;
     this.posX = 150;
     this.posY = 275;
     this.direction = 0;
