@@ -1,5 +1,5 @@
 class Player {
-  constructor(lives = 3, shipImgSrc, posX = 0, posY = 0, speed = 300, direction = "N") {
+  constructor(lives = 3, shipImgSrc, posX = 0, posY = 0, speed = 3, direction = "N") {
     this.lives = this.lives;
     this.posX = 150;
     this.posY = 275;
@@ -13,6 +13,7 @@ class Player {
     //this.topHolder = this.getPosition();
     /*this.ship = document.querySelector('.ship');*/
   }
+
   removeLives() {
     this.lives = this.lives - 1;
   }

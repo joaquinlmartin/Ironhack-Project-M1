@@ -1,5 +1,5 @@
 class Enemy {
-    constructor(posX = 0, posY = 0, speed = 75) {
+    constructor(posX = 0, posY = 0, speed = 100) {
         this.posX = posX;
         this.posY = posY;
         this.size = 30;
@@ -12,7 +12,7 @@ class Enemy {
     startMove() {
         setInterval(() => {
             this.move();
-        }, 2000);
+        }, 1000);
     }
     /*this.space = space;
     this.ship = ship;
