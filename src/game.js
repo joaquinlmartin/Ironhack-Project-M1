@@ -77,16 +77,16 @@ class Game {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
         case 'ArrowUp':
-          this.ship.posY-- * this.ship.speed;
+          this.ship.posY -= this.ship.speed;
           break;
         case 'ArrowDown':
-          this.ship.posY++ * this.ship.speed;
+          this.ship.posY += this.ship.speed;
           break;
         case 'ArrowRight':
-          this.ship.posX++ * this.ship.speed;
+          this.ship.posX += this.ship.speed;
           break;
         case 'ArrowLeft':
-          this.ship.posX-- * this.ship.speed;
+          this.ship.posX -= this.ship.speed;
           break;
         /*case 'ArrowUp' && 'ArrowRight':
         this.ship.posY--;

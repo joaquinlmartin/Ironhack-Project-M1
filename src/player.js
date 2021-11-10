@@ -1,5 +1,5 @@
 class Player {
-  constructor(lives = 3, shipImgSrc, posX = 0, posY = 0, speed = 3, direction = "N") {
+  constructor(lives = 3, shipImgSrc, posX = 0, posY = 0, speed = 50, direction = "N") {
     this.lives = this.lives;
     this.posX = 150;
     this.posY = 275;
@@ -8,6 +8,8 @@ class Player {
     this.speed = speed;
     this.image = new Image();
     /*this.image.src = shipImgSrc;*/
+    this.framex = 0;
+    this.framey = 0;
     this.frames = 4;
     this.framesIndex = 0;
     //this.topHolder = this.getPosition();
