@@ -1,5 +1,5 @@
 class Stones {
-    constructor(posX = 0, posY = 0, speed = 100) {
+    constructor(posX = 0, posY = 0, speed = 50) {
         this.posX = posX;
         this.posY = posY;
         this.size = 10;

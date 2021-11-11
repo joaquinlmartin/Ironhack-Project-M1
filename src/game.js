@@ -3,6 +3,7 @@ class Game {
     this.ctx = options.ctx;
     this.enemy = [];
     this.stones = [];
+    this.shoot = [];
     this.ship = options.ship;
     this.score = 0;
     this.livesElement = undefined;
@@ -31,7 +32,12 @@ class Game {
       this.ctx.fillRect(enemy.posX, enemy.posY, 30, 30);
     })
   }
-
+  _drawShoot() {
+    this.shoot.forEach((shoot) => {
+      this.ctx.fillStyle = 'silver';
+      this.ctx.fillRect(shoot.posX, shoot.posY, 5, 5);
+    })
+  }
   _generateStones() {
     this.stones.push(new Stones(1280, 200));
   }
@@ -40,24 +46,28 @@ class Game {
     this.enemy.push(new Enemy(1280, 600));
   }
 
-  _updatePosition() {
-    this.PosX += this.direction * this.speed;
-    this.PosY += this.direction * this.speed;
+  _generateShoot() {
+    this.shoot.push(new Shoot(0, 500));
   }
+  // _updatePosition() {
+  //   this.PosX += this.direction * this.speed;
+  //   this.PosY += this.direction * this.speed;
+  // }
 
-  /*_loopStones = () => {
-    if (this.stones.length < 10) {
-      if (Math.random() > 0.90) {
-        const randomY = Math.floor((this.canvas.width - 20) * Math.random());
-        const newStones = new Stones(this.canvas, randomY, 5);
-        this.stones.push(this.stones);
-      }
-    }
-    this.stones = this.stones.filter((stone) => {
-      stone.updatePosition();
-      return stone.isInsideScreen();
-    });
-  }*/
+  // _loopStones = () => {
+  //   if (this.stones.length < 10) {
+  //     if (Math.random() > 0.90) {
+  //       const randomX = Math.floor((this.fillRect(stones.posX, this.stones.PosY, 10, 10)) * Math.random());
+  //       const newStones = new Stones(10, 10, "N");
+  //       this.stones.push(this.stones);
+  //     }
+  //   }
+  //   this.stones = this.stones.filter((stones) => {
+  //     stones._updatePosition();
+  //     return stone.isInsideScreen();
+  //   });
+  // }
+
   _clean() {
     this.ctx.fillStyle = 'black';
     this.ctx.fillRect(0, 0, 1280, 720);
@@ -67,9 +77,12 @@ class Game {
     this._clean();
     this._drawShip();
     this._drawStones();
-    // va el generate stones
     this._drawEnemy();
-    // va el generate enemy
+    this._drawShoot();
+    this._generateEnemy();
+    this._generateStones();
+    this._checkCollisions();
+    // this._updatePosition();
     window.requestAnimationFrame(this._update.bind(this));
   }
 
@@ -100,24 +113,38 @@ class Game {
       }
     });
   }
-  /*_updatePosition() {
-    this.posY -= this.speed;
-    this.posX -= this.speed;
-  }*/
-  _Shot( x, y, array, img) {
-    this.posX = x;
-    this.posY = y;
-    this.image = img;
-    this.speed = shotSpeed;
-    this.identifier = 0;
-    this.add = function () {
-        array.push(this);
-    };
-    this.deleteShot = function (idendificador) {
-        arrayRemove(array, idendificador);
-    };
-}
+//   _Shot( x, y, array, img) {
+//     this.posX = x;
+//     this.posY = y;
+//     this.image = img;
+//     this.speed = shotSpeed;
+//     this.identifier = 0;
+//     this.add = function () {
+//         array.push(this);
+//     };
+//     this.deleteShot = function (idendificador) {
+//         arrayRemove(array, idendificador);
+//     };
+// }
+  _checkCollisions() {
+  this.enemy.forEach((enemy) => {
+      if (enemy.type === "muerte") {
+          if (this.player.didCollide(enemy)) {
+              this.player.removeLives();
 
+
+            
+              enemy.posX = 0 - enemy.size;
+
+              if (this.player.lives === 0) {
+                  this.gameOver();
+              }
+
+          }
+      }
+     
+  });
+}
 /*function PlayerShot (x, y) {
     Object.getPrototypeOf(PlayerShot.prototype).constructor.call(this, x, y, playerShotsBuffer, playerShotImage);
     this.isHittingEvil = function() {
@@ -143,9 +170,7 @@ EvilShot.prototype.constructor = EvilShot;
 
   start() {
     this._assignControlsToKeys();
-    this._updatePosition();
-    this._generateEnemy();
-    this._generateStones();
+    this._generateShoot();
     /*this._loopStones();*/
     window.requestAnimationFrame(this._update.bind(this));
   }

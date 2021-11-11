@@ -2,8 +2,8 @@ class Enemy {
     constructor(posX = 0, posY = 0, speed = 100) {
         this.posX = posX;
         this.posY = posY;
-        this.size = 30;
         this.speed = speed;
+        this.math
         this.startMove();
     }
     move() {
