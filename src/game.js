@@ -39,12 +39,29 @@ class Game {
     })
   }
   _generateStones() {
-    this.stones.push(new Stones(1280, 200));
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+    this.stones.push(new Stones(getRandomInt(0, 1280),getRandomInt(20, 700)));
   }
+  _generateStonesInterval() {
+    setInterval(() => {
+        this._generateStones();
+    }, 1000);
+}
 
   _generateEnemy() {
-    this.enemy.push(new Enemy(1280, 600));
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+    this.enemy.push(new Enemy(getRandomInt(0, 1280),getRandomInt(20, 600)));
   }
+
+  _generateEnemyInterval() {
+    setInterval(() => {
+        this._generateEnemy();
+    }, 1000);
+}
 
   _generateShoot() {
     this.shoot.push(new Shoot(0, 500));
@@ -55,17 +72,14 @@ class Game {
   // }
 
   // _loopStones = () => {
-  //   if (this.stones.length < 10) {
+  //   if (this.stones.length < 3) {
   //     if (Math.random() > 0.90) {
-  //       const randomX = Math.floor((this.fillRect(stones.posX, this.stones.PosY, 10, 10)) * Math.random());
-  //       const newStones = new Stones(10, 10, "N");
-  //       this.stones.push(this.stones);
+
+  //       const randomY = Math.floor((this.fillRect(stones.PosY, -20)) * Math.random());
+  //       const newStones = new Stones(randomY);
+  //       this.stones.push(newStones);
   //     }
   //   }
-  //   this.stones = this.stones.filter((stones) => {
-  //     stones._updatePosition();
-  //     return stone.isInsideScreen();
-  //   });
   // }
 
   _clean() {
@@ -79,8 +93,8 @@ class Game {
     this._drawStones();
     this._drawEnemy();
     this._drawShoot();
-    this._generateEnemy();
-    this._generateStones();
+    
+    
     this._checkCollisions();
     // this._updatePosition();
     window.requestAnimationFrame(this._update.bind(this));
@@ -89,16 +103,16 @@ class Game {
   _assignControlsToKeys() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
-        case 'ArrowUp':
+        case 'KeyW':
           this.ship.posY -= this.ship.speed;
           break;
-        case 'ArrowDown':
+        case 'KeyS':
           this.ship.posY += this.ship.speed;
           break;
-        case 'ArrowRight':
+        case 'KeyD':
           this.ship.posX += this.ship.speed;
           break;
-        case 'ArrowLeft':
+        case 'KeyA':
           this.ship.posX -= this.ship.speed;
           break;
         /*case 'ArrowUp' && 'ArrowRight':
@@ -171,7 +185,11 @@ EvilShot.prototype.constructor = EvilShot;
   start() {
     this._assignControlsToKeys();
     this._generateShoot();
-    /*this._loopStones();*/
+    this._generateStones();
+    this._generateStonesInterval();
+    // this._generateEnemy();
+    // this._generateEnemyInterval();
+    // this._loopStones();
     window.requestAnimationFrame(this._update.bind(this));
   }
 }

@@ -15,7 +15,7 @@ class Player {
     //this.topHolder = this.getPosition();
     /*this.ship = document.querySelector('.ship');*/
   }
-
+  
   removeLives() {
     this.lives = this.lives - 1;
   }

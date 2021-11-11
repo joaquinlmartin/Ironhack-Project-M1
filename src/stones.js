@@ -12,7 +12,7 @@ class Stones {
     startMove() {
         setInterval(() => {
             this.move();
-        }, 500);
+        }, 700);
     }
     _updatePosition() {
         this.PosX += this.direction * this.speed;

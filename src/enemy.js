@@ -3,7 +3,6 @@ class Enemy {
         this.posX = posX;
         this.posY = posY;
         this.speed = speed;
-        this.math
         this.startMove();
     }
     move() {
@@ -12,7 +11,7 @@ class Enemy {
     startMove() {
         setInterval(() => {
             this.move();
-        }, 1000);
+        }, 2000);
     }
     /*this.space = space;
     this.ship = ship;
