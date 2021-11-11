@@ -15,38 +15,33 @@ class Player {
     //this.topHolder = this.getPosition();
     /*this.ship = document.querySelector('.ship');*/
   }
-
+  
   removeLives() {
     this.lives = this.lives - 1;
   }
 
-  updatePosition() {
-    this.PosX += this.direction * this.speed;//if it would be up and down it would be this.y
-    this.PosY += this.direction * this.speed;
-    this.draw()
-  }
-  draw(framesCounter) {
-    this.ctx.drawImage(
-      this.image,
-      this.framesIndex * Math.floor(this.image.width / this.frames),
-      0,
-      Math.floor(this.image.width / this.frames),
-      this.image.height,
-      this.posX,
-      this.posY,
-      this.width,
-      this.height,
-    );
-    this.animate(framesCounter);
-  }
+  // draw(framesCounter) {
+  //   this.ctx.drawImage(
+  //     this.image,
+  //     this.framesIndex * Math.floor(this.image.width / this.frames),
+  //     0,
+  //     Math.floor(this.image.width / this.frames),
+  //     this.image.height,
+  //     this.posX,
+  //     this.posY,
+  //     this.width,
+  //     this.height,
+  //   );
+  //   this.animate(framesCounter);
+  // }
 
-  animate(framesCounter) {
-    if (framesCounter % 5 === 0) {
-      this.framesIndex++;
+  // animate(framesCounter) {
+  //   if (framesCounter % 5 === 0) {
+  //     this.framesIndex++;
 
-      if (this.framesIndex > 3) this.framesIndex = 0;
-    }
-  }
+  //     if (this.framesIndex > 3) this.framesIndex = 0;
+  //   }
+  // }
   /*handleScreenCollision(){
       const screenLeft = 0;//screenTop
       const screenRight = this.canvas.width;//screenBottom = this.canvas.height

@@ -1,5 +1,5 @@
 class Stones {
-    constructor(posX = 0, posY = 0, speed = 100) {
+    constructor(posX = 0, posY = 0, speed = 50) {
         this.posX = posX;
         this.posY = posY;
         this.size = 10;
@@ -12,7 +12,7 @@ class Stones {
     startMove() {
         setInterval(() => {
             this.move();
-        }, 500);
+        }, 700);
     }
     _updatePosition() {
         this.PosX += this.direction * this.speed;
