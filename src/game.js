@@ -10,7 +10,7 @@ class Game {
     this.scoreElement = undefined;
     this.posX = options.posX;
     this.posY = options.posY;
-    this.player = null;
+    this.player = options.player;
     this.speed = speed;
   }
 
@@ -29,7 +29,7 @@ class Game {
   _drawEnemy() {
     this.enemy.forEach((enemy) => {
       this.ctx.fillStyle = 'gold';
-      this.ctx.fillRect(enemy.posX, enemy.posY, 30, 30);
+      this.ctx.fillRect(enemy.posX, enemy.posY, 25, 25);
     })
   }
   _drawShoot() {
@@ -38,30 +38,32 @@ class Game {
       this.ctx.fillRect(shoot.posX, shoot.posY, 5, 5);
     })
   }
+
   _generateStones() {
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
     }
-    this.stones.push(new Stones(getRandomInt(0, 1280),getRandomInt(20, 700)));
+    this.stones.push(new Stones(getRandomInt(0, 1280), getRandomInt(20, 700)));
   }
+
   _generateStonesInterval() {
     setInterval(() => {
-        this._generateStones();
+      this._generateStones();
     }, 1000);
-}
+  }
 
   _generateEnemy() {
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
     }
-    this.enemy.push(new Enemy(getRandomInt(0, 1280),getRandomInt(20, 600)));
+    this.enemy.push(new Enemy(getRandomInt(0, 1280), getRandomInt(20, 600)));
   }
 
   _generateEnemyInterval() {
     setInterval(() => {
-        this._generateEnemy();
-    }, 1000);
-}
+      this._generateEnemy();
+    }, 2000);
+  }
 
   _generateShoot() {
     this.shoot.push(new Shoot(0, 500));
@@ -72,44 +74,79 @@ class Game {
   //   this.PosY += this.direction * this.speed;
   // }
 
-  _clean() {
-    this.ctx.fillStyle = 'black';
-    this.ctx.fillRect(0, 0, 1280, 720);
-  }
+  //  _canIMoveToNextPosition(nextPositionY, nextPositionX){
+  //   return this.stones[nextPositionY][nextPositionX] !== '';
+  //   }
+    _checkCollisionEnemy(nextPositionY, nextPositionX){
+    return this.enemy.some(function(enemy){
+    return enemy.posY === nextPositionY && enemy.posX === nextPositionX;
+    }) 
+    }
+    _identifyEnemy(nextPositionY, nextPositionX){
+    return this.enemy.findIndex((enemy) => {
+    return enemy.posY === nextPositionY && enemy.posX === nextPositionX
+    }) 
+    } 
 
-  _update() {
-    // if (this._checkCollision() === true) {
-    //   gameOverScreen();
-    // }
-    // if (this.stone.posY > 900) {
-    //   this.stone.posY = 0;
-    // }
-    this._clean();
-    this._drawShip();
-    this._drawStones();
-    this._drawEnemy();
-    this._drawShoot();
-    // this._checkCollision();
-    
-    // this._checkCollisions();
-    // this._updatePosition();
-    window.requestAnimationFrame(this._update.bind(this));
-  }
+  // _checkCollision() {
+  //   if (
+  //     this.player.posX < this.stone.posX + this.stone.width &&
+  //     this.player.posX + this.player.width > this.stone.posX &&
+  //     this.player.posY < this.stone.posY + this.stone.height &&
+  //     this.player.height + this.player.posY > this.stone.posY
+  //     // this.ship.posX < this.enemy.posX + this.enemy.width &&
+  //     // this.ship.posX + this.ship.width > this.enemy.posX &&
+  //     // this.ship.posY < this.enemy.posY + this.enemy.height &&
+  //     // this.ship.height + this.ship.posY > this.enemy.posY
+  //   ) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
+  // _checkCollisions() {
+  //   this.enemy.forEach((enemy) => {
+  //       if (enemy.type === "muerte") {
+  //           if (this.player.didCollide(enemy)) {
+  //               this.player.removeLives();
+
+
+
+  //               enemy.posX = 0 - enemy.size;
+
+  //               if (this.player.lives === 0) {
+  //                   this.gameOver();
+  //               }
+
+  //           }
+  //       }
+
+  //   });
+  // }
 
   _assignControlsToKeys() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
         case 'KeyW':
+          if (this._checkCollisionEnemy(this.ship.posY-1, this.ship.posX) === false) {
           this.ship.posY -= this.ship.speed;
+          }
           break;
         case 'KeyS':
+          if (this._checkCollisionEnemy(this.ship.posY+1, this.ship.posX) === false) {
           this.ship.posY += this.ship.speed;
+          }
           break;
         case 'KeyD':
+          if (this._checkCollisionEnemy(this.ship.posY, this.ship.posX+1) === false) {
           this.ship.posX += this.ship.speed;
+          }
           break;
         case 'KeyA':
+          if (this._checkCollisionEnemy(this.ship.posY, this.ship.posX-1) === false) {
           this.ship.posX -= this.ship.speed;
+          }
           break;
         /*case 'ArrowUp' && 'ArrowRight':
         this.ship.posY--;
@@ -123,87 +160,39 @@ class Game {
       }
     });
   }
-//   _Shot( x, y, array, img) {
-//     this.posX = x;
-//     this.posY = y;
-//     this.image = img;
-//     this.speed = shotSpeed;
-//     this.identifier = 0;
-//     this.add = function () {
-//         array.push(this);
-//     };
-//     this.deleteShot = function (idendificador) {
-//         arrayRemove(array, idendificador);
-//     };
-// }
 
-// _checkCollision() {
-//   if (
-//     this.ship.posX < this.stone.posX + this.stone.width &&
-//     this.ship.posX + this.ship.width > this.stone.posX &&
-//     this.ship.posY < this.stone.posY + this.stone.height &&
-//     this.ship.height + this.ship.posY > this.stone.posY
-//     // this.ship.posX < this.enemy.posX + this.enemy.width &&
-//     // this.ship.posX + this.ship.width > this.enemy.posX &&
-//     // this.ship.posY < this.enemy.posY + this.enemy.height &&
-//     // this.ship.height + this.ship.posY > this.enemy.posY
-//   ) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
+  _clean() {
+    this.ctx.fillStyle = 'black';
+    this.ctx.fillRect(0, 0, 1280, 720);
+  }
 
-// _checkCollisions() {
-//   this.enemy.forEach((enemy) => {
-//       if (enemy.type === "muerte") {
-//           if (this.player.didCollide(enemy)) {
-//               this.player.removeLives();
-
-
-            
-//               enemy.posX = 0 - enemy.size;
-
-//               if (this.player.lives === 0) {
-//                   this.gameOver();
-//               }
-
-//           }
-//       }
-     
-//   });
-// }
-
-/*function PlayerShot (x, y) {
-    Object.getPrototypeOf(PlayerShot.prototype).constructor.call(this, x, y, playerShotsBuffer, playerShotImage);
-    this.isHittingEvil = function() {
-        return (!evil.dead && this.posX >= evil.posX && this.posX <= (evil.posX + evil.image.width) &&
-            this.posY >= evil.posY && this.posY <= (evil.posY + evil.image.height));
-    };
-}
-
-PlayerShot.prototype = Object.create(Shot.prototype);
-PlayerShot.prototype.constructor = PlayerShot;
-
-function EvilShot (x, y) {
-    Object.getPrototypeOf(EvilShot.prototype).constructor.call(this, x, y, evilShotsBuffer, evilShotImage);
-    this.isHittingPlayer = function() {
-        return (this.posX >= player.posX && this.posX <= (player.posX + player.width)
-            && this.posY >= player.posY && this.posY <= (player.posY + player.height));
-    };
-}
-
-EvilShot.prototype = Object.create(Shot.prototype);
-EvilShot.prototype.constructor = EvilShot;
-*/
+  _update() {
+    // if (this._checkCollision() === true) {
+    //   this.player.removeLives();
+    // }
+    // if (this.stone.posY > 900) {
+    //   this.stone.posY = 0;
+    // }
+    this._clean();
+    this._drawShip();
+    this._drawStones();
+    this._drawEnemy();
+    this._identifyEnemy();
+    this._checkCollisionEnemy();
+    this._drawShoot();
+    // this._checkCollision();
+    // this._checkCollisions();
+    // this._updatePosition();
+    window.requestAnimationFrame(this._update.bind(this));
+  }
 
   start() {
     this._assignControlsToKeys();
-    this._generateShoot();
     this._generateStones();
     this._generateStonesInterval();
     this._generateEnemy();
     this._generateEnemyInterval();
+    this._generateShoot();
     window.requestAnimationFrame(this._update.bind(this));
   }
 }

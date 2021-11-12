@@ -13,4 +13,17 @@ class Shoot {
             this.move();
         }, 1000);
     }
+    //   _Shot( x, y, array, img) {
+//     this.posX = x;
+//     this.posY = y;
+//     this.image = img;
+//     this.speed = shotSpeed;
+//     this.identifier = 0;
+//     this.add = function () {
+//         array.push(this);
+//     };
+//     this.deleteShot = function (idendificador) {
+//         arrayRemove(array, idendificador);
+//     };
+// }
 }

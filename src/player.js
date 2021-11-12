@@ -1,8 +1,10 @@
 class Player {
   constructor(lives = 3, shipImgSrc, posX = 0, posY = 0, speed = 50, direction = "N") {
     this.lives = this.lives;
-    this.posX = 150;
-    this.posY = 275;
+    this.posX = 275;
+    this.posY = 125;
+    // this.width = 100;
+    // this.height = 100;
     this.direction = 0;
     this.start = null;
     this.speed = speed;
@@ -52,4 +54,27 @@ class Player {
       if(knightRight >= screenRight) this.setDirection("left");
       else if(knightLeft <= screenLeft) this.setDirection("right");
   }*/
+
+  /*function PlayerShot (x, y) {
+    Object.getPrototypeOf(PlayerShot.prototype).constructor.call(this, x, y, playerShotsBuffer, playerShotImage);
+    this.isHittingEvil = function() {
+        return (!evil.dead && this.posX >= evil.posX && this.posX <= (evil.posX + evil.image.width) &&
+            this.posY >= evil.posY && this.posY <= (evil.posY + evil.image.height));
+    };
+}
+
+PlayerShot.prototype = Object.create(Shot.prototype);
+PlayerShot.prototype.constructor = PlayerShot;
+
+function EvilShot (x, y) {
+    Object.getPrototypeOf(EvilShot.prototype).constructor.call(this, x, y, evilShotsBuffer, evilShotImage);
+    this.isHittingPlayer = function() {
+        return (this.posX >= player.posX && this.posX <= (player.posX + player.width)
+            && this.posY >= player.posY && this.posY <= (player.posY + player.height));
+    };
+}
+
+EvilShot.prototype = Object.create(Shot.prototype);
+EvilShot.prototype.constructor = EvilShot;
+*/
 }
