@@ -9,6 +9,7 @@ It is a video game designed with JS, Html, Css and Canvas. You drive a spaceship
 
 Class Game
 Class Player
+Class Enemy
 
 ## Backlog:
 
