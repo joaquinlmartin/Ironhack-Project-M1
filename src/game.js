@@ -60,7 +60,7 @@ class Game {
   }
 
   _generateEnemyInterval() {
-    setInterval(() => {
+    setInterval(() => { 
       this._generateEnemy();
     }, 2000);
   }
