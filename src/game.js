@@ -66,20 +66,10 @@ class Game {
   _generateShoot() {
     this.shoot.push(new Shoot(0, 500));
   }
+
   // _updatePosition() {
   //   this.PosX += this.direction * this.speed;
   //   this.PosY += this.direction * this.speed;
-  // }
-
-  // _loopStones = () => {
-  //   if (this.stones.length < 3) {
-  //     if (Math.random() > 0.90) {
-
-  //       const randomY = Math.floor((this.fillRect(stones.PosY, -20)) * Math.random());
-  //       const newStones = new Stones(randomY);
-  //       this.stones.push(newStones);
-  //     }
-  //   }
   // }
 
   _clean() {
@@ -88,14 +78,20 @@ class Game {
   }
 
   _update() {
+    // if (this._checkCollision() === true) {
+    //   gameOverScreen();
+    // }
+    // if (this.stone.posY > 900) {
+    //   this.stone.posY = 0;
+    // }
     this._clean();
     this._drawShip();
     this._drawStones();
     this._drawEnemy();
     this._drawShoot();
+    // this._checkCollision();
     
-    
-    this._checkCollisions();
+    // this._checkCollisions();
     // this._updatePosition();
     window.requestAnimationFrame(this._update.bind(this));
   }
@@ -140,25 +136,44 @@ class Game {
 //         arrayRemove(array, idendificador);
 //     };
 // }
-  _checkCollisions() {
-  this.enemy.forEach((enemy) => {
-      if (enemy.type === "muerte") {
-          if (this.player.didCollide(enemy)) {
-              this.player.removeLives();
+
+// _checkCollision() {
+//   if (
+//     this.ship.posX < this.stone.posX + this.stone.width &&
+//     this.ship.posX + this.ship.width > this.stone.posX &&
+//     this.ship.posY < this.stone.posY + this.stone.height &&
+//     this.ship.height + this.ship.posY > this.stone.posY
+//     // this.ship.posX < this.enemy.posX + this.enemy.width &&
+//     // this.ship.posX + this.ship.width > this.enemy.posX &&
+//     // this.ship.posY < this.enemy.posY + this.enemy.height &&
+//     // this.ship.height + this.ship.posY > this.enemy.posY
+//   ) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+
+// _checkCollisions() {
+//   this.enemy.forEach((enemy) => {
+//       if (enemy.type === "muerte") {
+//           if (this.player.didCollide(enemy)) {
+//               this.player.removeLives();
 
 
             
-              enemy.posX = 0 - enemy.size;
+//               enemy.posX = 0 - enemy.size;
 
-              if (this.player.lives === 0) {
-                  this.gameOver();
-              }
+//               if (this.player.lives === 0) {
+//                   this.gameOver();
+//               }
 
-          }
-      }
+//           }
+//       }
      
-  });
-}
+//   });
+// }
+
 /*function PlayerShot (x, y) {
     Object.getPrototypeOf(PlayerShot.prototype).constructor.call(this, x, y, playerShotsBuffer, playerShotImage);
     this.isHittingEvil = function() {
@@ -187,9 +202,8 @@ EvilShot.prototype.constructor = EvilShot;
     this._generateShoot();
     this._generateStones();
     this._generateStonesInterval();
-    // this._generateEnemy();
-    // this._generateEnemyInterval();
-    // this._loopStones();
+    this._generateEnemy();
+    this._generateEnemyInterval();
     window.requestAnimationFrame(this._update.bind(this));
   }
 }
