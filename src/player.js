@@ -1,8 +1,8 @@
 class Player {
-  constructor(lives = 3, shipImgSrc, posX = 0, posY = 0, speed = 50, direction = "N") {
+  constructor(lives = 3, shipImgSrc, posX = 0, posY = 0, speed = 10, direction = "N") {
     this.lives = this.lives;
     this.posX = 275;
-    this.posY = 125;
+    this.posY = 325;
     // this.width = 100;
     // this.height = 100;
     this.direction = 0;

@@ -76,14 +76,6 @@ canvas#nemesis {
     border: 1.5px solid rgb(233, 194, 21);
     background-color: black;
 }
-/*header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 50px 40px;
-    font-size: 1.5em;
-    font-family: 'Poppins', sans-serif;
-}*/
 
 .hide {
     display: none;

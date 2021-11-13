@@ -1,8 +1,11 @@
 class Enemy {
-    constructor(posX = 0, posY = 0, speed = 100) {
+    constructor(posX = 0, posY = 0, speed = 100, lives = 1) {
         this.posX = posX;
         this.posY = posY;
         this.speed = speed;
+        this.lives = lives;
+        // this.enemy = document.createElement('img');
+        // this.enemy.src = "/images/ew-free-sprites-blue-spaceship-sprayt-kosmicheskiy-korabl-11563255232nrdoiuuizj.png";
         this.startMove();
     }
     move() {
@@ -13,16 +16,4 @@ class Enemy {
             this.move();
         }, 2000);
     }
-    /*this.space = space;
-    this.ship = ship;
-    this.height = 30;
-    this.width = 30;
-    this.Boss = document.createElement('img');
-    this.Boss.src = '';
-    this.Boss.className = 'big bad ship';
-    this.step = Math.floor(Math.random() * 2);
-    this.Boss.style.right = '0px';
-    this.Boss.style.top = `${Math.floor(Math.random() * space.offsetHeight)}px`;
-    this.Boss.appendChild(this.Boss);
-    this.move();*/
 }

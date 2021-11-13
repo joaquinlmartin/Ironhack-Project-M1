@@ -17,13 +17,4 @@ class Stones {
     _updatePosition() {
         this.PosX += this.direction * this.speed;
       }
-    /*isInsideScreen(){
-        const stoneRight = this.posX + this.size;
-        const screenLeft = this.canvas.width;
-        const isInside = stoneRight <  screenLeft;
-        return isInside; //return this.x > 0;
-    }*/
-    /*function getRandomNumber(range) {
-        return Math.floor(Math.random() * range);
-    }*/
 }

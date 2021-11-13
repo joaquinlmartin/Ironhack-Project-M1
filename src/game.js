@@ -69,91 +69,23 @@ class Game {
     this.shoot.push(new Shoot(0, 500));
   }
 
-  // _updatePosition() {
-  //   this.PosX += this.direction * this.speed;
-  //   this.PosY += this.direction * this.speed;
-  // }
-
-  //  _canIMoveToNextPosition(nextPositionY, nextPositionX){
-  //   return this.stones[nextPositionY][nextPositionX] !== '';
-  //   }
-    _checkCollisionEnemy(nextPositionY, nextPositionX){
-    return this.enemy.some(function(enemy){
-    return enemy.posY === nextPositionY && enemy.posX === nextPositionX;
-    }) 
-    }
-    _identifyEnemy(nextPositionY, nextPositionX){
-    return this.enemy.findIndex((enemy) => {
-    return enemy.posY === nextPositionY && enemy.posX === nextPositionX
-    }) 
-    } 
-
-  // _checkCollision() {
-  //   if (
-  //     this.player.posX < this.stone.posX + this.stone.width &&
-  //     this.player.posX + this.player.width > this.stone.posX &&
-  //     this.player.posY < this.stone.posY + this.stone.height &&
-  //     this.player.height + this.player.posY > this.stone.posY
-  //     // this.ship.posX < this.enemy.posX + this.enemy.width &&
-  //     // this.ship.posX + this.ship.width > this.enemy.posX &&
-  //     // this.ship.posY < this.enemy.posY + this.enemy.height &&
-  //     // this.ship.height + this.ship.posY > this.enemy.posY
-  //   ) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
-  // _checkCollisions() {
-  //   this.enemy.forEach((enemy) => {
-  //       if (enemy.type === "muerte") {
-  //           if (this.player.didCollide(enemy)) {
-  //               this.player.removeLives();
-
-
-
-  //               enemy.posX = 0 - enemy.size;
-
-  //               if (this.player.lives === 0) {
-  //                   this.gameOver();
-  //               }
-
-  //           }
-  //       }
-
-  //   });
-  // }
-
   _assignControlsToKeys() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
         case 'KeyW':
-          if (this._checkCollisionEnemy(this.ship.posY-1, this.ship.posX) === false) {
           this.ship.posY -= this.ship.speed;
-          }
           break;
         case 'KeyS':
-          if (this._checkCollisionEnemy(this.ship.posY+1, this.ship.posX) === false) {
           this.ship.posY += this.ship.speed;
-          }
           break;
         case 'KeyD':
-          if (this._checkCollisionEnemy(this.ship.posY, this.ship.posX+1) === false) {
           this.ship.posX += this.ship.speed;
-          }
           break;
         case 'KeyA':
-          if (this._checkCollisionEnemy(this.ship.posY, this.ship.posX-1) === false) {
           this.ship.posX -= this.ship.speed;
-          }
           break;
-        /*case 'ArrowUp' && 'ArrowRight':
-        this.ship.posY--;
-        this.ship.posX++;  
-          break;*/
         case 'Space':
-          this.ship.posX++ * this.ship.speed;
+          this.ship.posX += this.ship.speed+20;
           break;
         default:
           break;
@@ -167,22 +99,11 @@ class Game {
   }
 
   _update() {
-    // if (this._checkCollision() === true) {
-    //   this.player.removeLives();
-    // }
-    // if (this.stone.posY > 900) {
-    //   this.stone.posY = 0;
-    // }
     this._clean();
     this._drawShip();
     this._drawStones();
     this._drawEnemy();
-    this._identifyEnemy();
-    this._checkCollisionEnemy();
     this._drawShoot();
-    // this._checkCollision();
-    // this._checkCollisions();
-    // this._updatePosition();
     window.requestAnimationFrame(this._update.bind(this));
   }
 
