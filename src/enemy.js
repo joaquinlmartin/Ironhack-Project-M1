@@ -4,8 +4,6 @@ class Enemy {
         this.posY = posY;
         this.speed = speed;
         this.lives = lives;
-        // this.enemy = document.createElement('img');
-        // this.enemy.src = "/images/ew-free-sprites-blue-spaceship-sprayt-kosmicheskiy-korabl-11563255232nrdoiuuizj.png";
         this.startMove();
     }
     move() {
