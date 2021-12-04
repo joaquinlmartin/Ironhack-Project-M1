@@ -35,7 +35,7 @@ Files transitions. Classes and methods definition.
 ### Definition of the different states and their transition (transition functions):
 
 - splashScreen - Presentation, instructions and start button
-- gameScreen - Game itself
+- gameScreen - Game itself 
 - gameoverScreen - If you colision you die (start again)
 
 ## Links:
