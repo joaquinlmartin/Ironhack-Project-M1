@@ -42,7 +42,7 @@ Files transitions. Classes and methods definition.
 
 https://github.com/joaquinlmartin/Ironhack-Project-M1 
 
-### Trello
+### Trello 
 
 ### Git
 
