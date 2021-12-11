@@ -28,7 +28,7 @@ Files transitions. Classes and methods definition.
     this.posX = options.posX;
     this.posY = options.posY;
     this.stones = undefined;
-    this.speed = speed;
+    this.speed = speed; 
   ```
 
 ## States & States Transitions
