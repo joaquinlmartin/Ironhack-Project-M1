@@ -27,7 +27,7 @@ Files transitions. Classes and methods definition.
     this.scoreElement = undefined;
     this.posX = options.posX;
     this.posY = options.posY;
-    this.stones = undefined;
+    this.stones = undefined; 
     this.speed = speed; 
   ```
 
