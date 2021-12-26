@@ -8,7 +8,7 @@ It is a video game designed with JS, Html, Css and Canvas. You drive a spaceship
 ## MVP:
 
 Class Game
-Class Player
+Class Player 
 Class Enemy
 
 ## Backlog:
