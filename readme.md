@@ -3,19 +3,26 @@
 *Ironhack-Project-M1*
 
 ## Description:
-It is a video game designed with JS, Html, Css and Canvas. You drive a spaceship through the universe and you must survive as long as possible. You go through obstacles and you have to dodge them. When an enemy appears you must destroy everything you can to survive. Advance, dodge everything and fight with enemies are your tools to survive as long as possible and cross the universe.
+It is a game designed with JS, Html, Css and Canvas. You drive a spaceship through the universe and you must survive as long as possible. You go through obstacles and you have to dodge or destroy them. When an enemy appears you must destroy everything you can to survive. Advance, dodge everything and fight with enemies are your tools to survive as long as possible and cross the universe to survie to this journey.
 
 ## MVP:
 
 Class Game
 Class Player
 Class Enemy
+Class Stones
+Class Shoot
+Class Sounds
 
 ## Backlog:
 
-Files transitions. Classes and methods definition.
+- Animations
+- Styles
+- Scores
 
 ## Data structure
+
+- None
 #### class Game
 
 ```
@@ -32,18 +39,14 @@ Files transitions. Classes and methods definition.
   ```
 
 ## States & States Transitions
+
+-None
 ### Definition of the different states and their transition (transition functions):
 
-- splashScreen - Presentation, instructions and start button
-- gameScreen - Game itself
-- gameoverScreen - If you colision you die (start again)
+- SplashScreen - Presentation, instructions and start button
+- GameScreen - Game itself
+- GameoverScreen - If you colision you die (start again)
 
 ## Links:
 
-https://github.com/joaquinlmartin/Ironhack-Project-M1
-
-### Trello
-
-### Git
-
-### Slides 
+Github: https://github.com/joaquinlmartin/Ironhack-Project-M1

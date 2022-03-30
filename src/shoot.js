@@ -1,16 +1,21 @@
 class Shoot {
     constructor(posX = 0, posY = 0, speed = 100) {
-        this.posX = posX;
-        this.posY = posY;
+        this.posX = 275;
+        this.posY = 325;
         this.speed = speed;
-        this.startMove();   
+        this.move();   
+        this.goAttack();
     }
     move() {
         this.posX = this.posX + this.speed;
     }
-    startMove() {
-        setInterval(() => {
-            this.move();
-        }, 1000);
+    goAttack(){
+        const id = setInterval(() => {      
+            if (this.posX <= 0) {   
+                this.posX = 610;
+                clearInterval(id)
+            }
+            this.move();   
+        }, 100);  
     }
 }
