@@ -8,7 +8,7 @@ It is a game designed with JS, Html, Css and Canvas. You drive a spaceship throu
 ## MVP:
 
 Class Game
-Class Player
+Class Player 
 Class Enemy
 Class Stones
 Class Shoot
@@ -34,8 +34,8 @@ Class Sounds
     this.scoreElement = undefined;
     this.posX = options.posX;
     this.posY = options.posY;
-    this.stones = undefined;
-    this.speed = speed;
+    this.stones = undefined; 
+    this.speed = speed; 
   ```
 
 ## States & States Transitions
