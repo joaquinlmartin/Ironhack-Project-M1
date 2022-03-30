@@ -17,4 +17,7 @@ class Stones {
     _updatePosition() {
         this.PosX += this.direction * this.speed;
       }
+      _updatePositionnuevo() {
+        this.PosX += this.direction * this.speed;
+      }
 }
