@@ -1,5 +1,5 @@
 class Player {
-  constructor(lives = 3, shipImgSrc, posX = 0, posY = 0, speed = 10, direction = "N") {
+  constructor(lives = 3, posX = 0, posY = 0, speed = 10, direction = "N") {
     this.lives = this.lives;
     this.posX = 275;
     this.posY = 325;
@@ -11,7 +11,6 @@ class Player {
     this.framey = 0;
     this.frames = 4;
     this.framesIndex = 0;
-    
   }
   
   removeLives() {
