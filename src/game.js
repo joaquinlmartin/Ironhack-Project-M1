@@ -11,8 +11,8 @@ class Game {
     this.scoreElement = undefined;
     this.posX = options.posX;
     this.posY = options.posY;
-    this.player.posX = posX;
-    this.player.posY = posY;
+    // this.player.posX = posX;
+    // this.player.posY = posY;
     this.player = options.player;
     this.speed = speed;
   }
@@ -69,23 +69,23 @@ class Game {
     this.shoot.push(new Shoot(0, 500));
   }
 
-  _checkCollision() {
-    for (let i = 0; i < this.stones.length; i++) {
-        if (
-            this.player.posX <= this.stones[i].posX + this.stones[i].width &&
-            this.player.posX + this.player.width >= this.stones[i].posX &&
-            this.player.posY <= this.stones[i].posY + this.stones[i].height &&
-            this.player.height + this.player.posY >= this.stones[i].posY
-        ) {
-            clearInterval(this.generateStonesInterval);
-            clearInterval(this.drawShip);
-            // clear interval de puntos
-            if (this._checkCollision = true) {
+  // _checkCollision() {
+  //   for (let i = 0; i < this.stones.length; i++) {
+  //       if (
+  //           this.player.posX <= this.stones[i].posX + this.stones[i].width &&
+  //           this.player.posX + this.player.width >= this.stones[i].posX &&
+  //           this.player.posY <= this.stones[i].posY + this.stones[i].height &&
+  //           this.player.height + this.player.posY >= this.stones[i].posY
+  //       ) {
+  //           clearInterval(this.generateStonesInterval);
+  //           clearInterval(this.drawShip);
+  //           // clear interval de puntos
+  //           if (this._checkCollision = true) {
             
-            }
-        } 
-    }
-  }
+  //           }
+  //       } 
+  //   }
+  // }
 
   _assignControlsToKeys() {
     document.addEventListener('keydown', (event) => {
@@ -135,7 +135,7 @@ class Game {
     this._generateEnemy();
     this._generateEnemyInterval();
     this._generateShoot();
-    this._checkCollision();
+    // this._checkCollision();
     window.requestAnimationFrame(this._update.bind(this));
   }
 }
