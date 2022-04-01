@@ -38,11 +38,11 @@ class Game {
       this.ctx.fillRect(shoot.posX, shoot.posY, 5, 5);
     })
   }
-  _setPositionX() {
-    console.log("soy el setpositionX sexy");
+  //_setPositionX() {
+  //  console.log("soy el setpositionX sexy");
     // this.ctx.fillRect(shoot.posX, shoot.posY) = this.ctx.fillRect(ship.posX, ship.posY);
         // this.shoot.posX = this.ship.posX;
-  }
+  //}
   _generateStones() {
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
@@ -105,12 +105,12 @@ class Game {
         case 'Space':
           this.ship.posX += this.ship.speed + 20;
           break;
-        case 'Enter':
-          console.log("soy el boton enter");
-          this.shoot.setPositionX();
-          console.log("ya me han pulsado hostia");
-          this.shoot.goAttack();
-          break;
+        //case 'Enter':
+        //  console.log("soy el boton enter");
+        //  this.shoot.setPositionX();
+        //  console.log("ya me han pulsado hostia");
+        //  this.shoot.goAttack();
+        //  break;
         default:
           break;
       }
