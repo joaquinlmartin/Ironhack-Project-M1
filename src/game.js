@@ -101,7 +101,7 @@ class Game {
           break;
         case 'Enter':
           console.log("Enter pulsado")
-          this.shoots.push(new Shoot(shoot => {shoot.move(), shoot.goattack()}));
+          this.shoots.push(new Shoot(shoot => {shoot.goAttack()}));
           break;
         default:
           break;

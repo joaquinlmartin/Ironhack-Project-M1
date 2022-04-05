@@ -5,7 +5,6 @@ class Shoot {
         this.posX = posX;
         this.posY = posY;
         this.speed = speed;
-        this.move();
         this.goAttack();
     }
     move() {
