@@ -4,8 +4,9 @@ class Game {
     this.ctx = options.ctx;
     this.enemy = [];
     this.stones = [];
-    this.shoot = [];
+    this.shoots = [];
     this.ship = options.ship;
+    this.canvas = options.canvas;
     this.score = 0;
     this.livesElement = undefined;
     this.scoreElement = undefined;
@@ -33,15 +34,13 @@ class Game {
     })
   }
   _drawShoot() {
-    this.shoot.forEach((shoot) => {
-      this.ctx.fillStyle = 'silver';
-      this.ctx.fillRect(shoot.posX, shoot.posY, 5, 5);
-    })
-  }
-  _setPositionX(log) {
-    console.log("soy el setpositionX sexy");
-   log =  this.ctx.fillRect(shoot.posX, shoot.posY) = this.ctx.fillRect(ship.posX, ship.posY);
-        // this.shoot.posX = this.ship.posX;
+    console.log("drawshoot entrado")
+      this.shoots.forEach((shoot) => {
+        this.ctx.fillStyle = 'silver';
+        this.ctx.fillRect(shoot.posX, shoot.posY, 5, 5);
+        shoot.move();
+        shoot.goAttack();
+      }); 
   }
   _generateStones() {
     function getRandomInt(min, max) {
@@ -101,10 +100,8 @@ class Game {
           this.ship.posX += this.ship.speed + 20;
           break;
         case 'Enter':
-          console.log("soy el boton enter");
-          this.shoot.setPositionX();
-          console.log("ya me han pulsado hostia");
-          this.shoot.goAttack();
+          console.log("Enter pulsado")
+          this.shoots.push(new Shoot(shoot => {shoot.move(), shoot.goattack()}));
           break;
         default:
           break;

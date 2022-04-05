@@ -1,9 +1,11 @@
 class Shoot {
-    constructor(posX = 0, posY = 0, speed = 100) {
+    constructor(posX, posY, speed = 100) {
         this.posX = 275;
         this.posY = 325;
+        this.posX = posX;
+        this.posY = posY;
         this.speed = speed;
-        this.move();   
+        this.move();
         this.goAttack();
     }
     move() {
