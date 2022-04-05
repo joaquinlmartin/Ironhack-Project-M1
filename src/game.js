@@ -12,8 +12,6 @@ class Game {
     this.scoreElement = undefined;
     this.posX = options.posX;
     this.posY = options.posY;
-    // this.player.posX = posX;
-    // this.player.posY = posY;
     this.player = options.player;
     this.speed = speed;
   }
@@ -63,23 +61,23 @@ class Game {
       this._generateEnemy();
     }, 2000);
   }
-  // _checkCollision() {
-  //   for (let i = 0; i < this.stones.length; i++) {
-  //       if (
-  //           this.player.posX <= this.stones[i].posX + this.stones[i].width &&
-  //           this.player.posX + this.player.width >= this.stones[i].posX &&
-  //           this.player.posY <= this.stones[i].posY + this.stones[i].height &&
-  //           this.player.height + this.player.posY >= this.stones[i].posY
-  //       ) {
-  //           clearInterval(this.generateStonesInterval);
-  //           clearInterval(this.drawShip);
-  //           // clear interval de puntos
-  //           if (this._checkCollision = true) {
-            
-  //           }
-  //       } 
-  //   }
-  // }
+  _checkCollision() {
+    for (let i = 0; i < this.stones.length; i++) {
+        if (
+            this.ship.posX <= this.stones[i].posX + this.stones[i].width &&
+            this.ship.posX + this.ship.width >= this.stones[i].posX &&
+            this.ship.posY <= this.stones[i].posY + this.stones[i].height &&
+            this.ship.height + this.ship.posY >= this.stones[i].posY
+        ) {
+            clearInterval(this.generateStonesInterval);
+            clearInterval(this.drawShip);
+            // clear interval de puntos
+            if (this._checkCollision = true) {
+            console.log("hay colision");
+            }
+        } 
+    }
+  }
   _assignControlsToKeys() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
@@ -124,7 +122,7 @@ class Game {
     this._generateStonesInterval();
     this._generateEnemy();
     this._generateEnemyInterval();
-    // this._checkCollision();
+    this._checkCollision();
     window.requestAnimationFrame(this._update.bind(this));
   }
 }
