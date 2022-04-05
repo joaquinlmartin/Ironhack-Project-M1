@@ -38,11 +38,11 @@ class Game {
       this.ctx.fillRect(shoot.posX, shoot.posY, 5, 5);
     })
   }
-  //_setPositionX() {
-  //  console.log("soy el setpositionX sexy");
-    // this.ctx.fillRect(shoot.posX, shoot.posY) = this.ctx.fillRect(ship.posX, ship.posY);
+  _setPositionX(log) {
+    console.log("soy el setpositionX sexy");
+   log =  this.ctx.fillRect(shoot.posX, shoot.posY) = this.ctx.fillRect(ship.posX, ship.posY);
         // this.shoot.posX = this.ship.posX;
-  //}
+  }
   _generateStones() {
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
@@ -65,10 +65,6 @@ class Game {
       this._generateEnemy();
     }, 2000);
   }
-  _generateShoot() {
-    this.shoot.push(new Shoot(0, 500));
-  }
-
   // _checkCollision() {
   //   for (let i = 0; i < this.stones.length; i++) {
   //       if (
@@ -86,7 +82,6 @@ class Game {
   //       } 
   //   }
   // }
-
   _assignControlsToKeys() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
@@ -105,12 +100,12 @@ class Game {
         case 'Space':
           this.ship.posX += this.ship.speed + 20;
           break;
-        //case 'Enter':
-        //  console.log("soy el boton enter");
-        //  this.shoot.setPositionX();
-        //  console.log("ya me han pulsado hostia");
-        //  this.shoot.goAttack();
-        //  break;
+        case 'Enter':
+          console.log("soy el boton enter");
+          this.shoot.setPositionX();
+          console.log("ya me han pulsado hostia");
+          this.shoot.goAttack();
+          break;
         default:
           break;
       }
@@ -134,7 +129,6 @@ class Game {
     this._generateStonesInterval();
     this._generateEnemy();
     this._generateEnemyInterval();
-    this._generateShoot();
     // this._checkCollision();
     window.requestAnimationFrame(this._update.bind(this));
   }
