@@ -17,11 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const nemesisGame = new Game(
         {
           ctx: ctx,
-          ship: new Player(10, 10, "N"),
+          ship: new Ship (10, 10, "N"),
         },
         printGameOver
       );
-
+ 
       nemesisGame.start();
 
     });
