@@ -1,11 +1,8 @@
 class Shoot {
-    constructor(posX, posY, speed = 100) {
-        this.posX = 275;
-        this.posY = 325;
+    constructor(posX, posY, speed = 20) {
         this.posX = posX;
         this.posY = posY;
         this.speed = speed;
-        this.goAttack();
     }
     move() {
         this.posX = this.posX + this.speed;
@@ -17,6 +14,6 @@ class Shoot {
                 clearInterval(id)
             }
             this.move();   
-        }, 100);  
+        }, 500);  
     }
 }

@@ -34,7 +34,6 @@ class Game {
     })
   }
   _drawShoot() {
-    console.log("drawshoot entrado")
       this.shoots.forEach((shoot) => {
         this.ctx.fillStyle = 'silver';
         this.ctx.fillRect(shoot.posX, shoot.posY, 5, 5);
@@ -100,8 +99,7 @@ class Game {
           this.ship.posX += this.ship.speed + 20;
           break;
         case 'Enter':
-          console.log("Enter pulsado")
-          this.shoots.push(new Shoot(shoot => {shoot.goAttack()}));
+          this.shoots.push(new Shoot(this.ship.posX +8, this.ship.posY +8));
           break;
         default:
           break;
