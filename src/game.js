@@ -60,6 +60,13 @@ class Game {
       this._generateEnemy();
     }, 2000);
   }
+  _CheckColision() {
+    this.stones.forEach((obstacle) => {
+    if(obstacle.collisionWithShip(this.stones)) {
+      console.log("colision");
+    }
+  })
+}
   // _checkCollision() {
   //       if (
   //           this.ship.posX <= this.stones.posX + 10 &&
@@ -121,15 +128,16 @@ class Game {
     this.ctx.fillRect(0, 0, 1280, 720);
   }
   _update() {
-    // if (this._checkCollision() === true) {
-    //   this._clean();
-    //   console.log("check ocurrio")
-    // }
+    if (this._CheckColision() === true) {
+      this._clean();
+      console.log("check ocurrio")
+    }
     this._clean();
     this._drawShip();
     this._drawStones();
     this._drawEnemy();
     this._drawShoot();
+    this._CheckColision();
     window.requestAnimationFrame(this._update.bind(this));
   }
   start() {
@@ -138,6 +146,7 @@ class Game {
     this._generateStonesInterval();
     this._generateEnemy();
     this._generateEnemyInterval();
+    this._CheckColision();
     // this._checkCollision();
     window.requestAnimationFrame(this._update.bind(this));
   }
