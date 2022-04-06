@@ -4,7 +4,7 @@ let gameScreen;
 let gameOverScreen;
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Splash Screen
+  // Splash Screen & Game Screen
   function createSplashScreen() {
     const startButton = document.querySelector('#start');
     startButton.addEventListener('click', () => {
