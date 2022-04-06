@@ -1,4 +1,3 @@
-
 class Game {
   constructor(options, ctx, speed) {
     this.ctx = options.ctx;
@@ -61,23 +60,36 @@ class Game {
       this._generateEnemy();
     }, 2000);
   }
-  _checkCollision() {
-    for (let i = 0; i < this.stones.length; i++) {
-        if (
-            this.ship.posX <= this.stones[i].posX + this.stones[i].width &&
-            this.ship.posX + this.ship.width >= this.stones[i].posX &&
-            this.ship.posY <= this.stones[i].posY + this.stones[i].height &&
-            this.ship.height + this.ship.posY >= this.stones[i].posY
-        ) {
-            clearInterval(this.generateStonesInterval);
-            clearInterval(this.drawShip);
-            // clear interval de puntos
-            if (this._checkCollision = true) {
-            console.log("hay colision");
-            }
-        } 
-    }
-  }
+  // _checkCollision() {
+  //       if (
+  //           this.ship.posX <= this.stones.posX + 10 &&
+  //           this.ship.posX + 20 >= this.stones.posX &&
+  //           this.ship.posY <= this.stones.posY + 10 &&
+  //           this.ship.posY + 20 >= this.stones.posY
+  //       ) { 
+  //         return true;
+  //       }  else {
+  //         return false;
+  //       }
+  //   console.log("colision working");
+  // }
+  // _checkCollision() {
+  //   for (let i = 0; i < this.stones.length; i++) {
+  //       if (
+  //           this.ship.posX <= this.stones[i].posX + this.stones[i].width &&
+  //           this.ship.posX + this.ship.width >= this.stones[i].posX &&
+  //           this.ship.posY <= this.stones[i].posY + this.stones[i].height &&
+  //           this.ship.height + this.ship.posY >= this.stones[i].posY
+  //       ) {
+  //           clearInterval(this.generateStonesInterval);
+  //           clearInterval(this.drawShip);
+  //           // clear interval de puntos
+  //           if (this._checkCollision = true) {
+  //           console.log("hay colision");
+  //           }
+  //       } 
+  //   }
+  // }
   _assignControlsToKeys() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
@@ -109,6 +121,10 @@ class Game {
     this.ctx.fillRect(0, 0, 1280, 720);
   }
   _update() {
+    // if (this._checkCollision() === true) {
+    //   this._clean();
+    //   console.log("check ocurrio")
+    // }
     this._clean();
     this._drawShip();
     this._drawStones();
@@ -122,7 +138,7 @@ class Game {
     this._generateStonesInterval();
     this._generateEnemy();
     this._generateEnemyInterval();
-    this._checkCollision();
+    // this._checkCollision();
     window.requestAnimationFrame(this._update.bind(this));
   }
 }
