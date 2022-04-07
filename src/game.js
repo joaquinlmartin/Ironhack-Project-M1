@@ -1,11 +1,13 @@
 class Game {
-  constructor(options, ctx, speed) {
+  constructor(gameScreen, options, ctx, speed) {
+    this.gameScreen = gameScreen;
+    this.gameIsOver = false;
     this.ctx = options.ctx;
     this.enemy = [];
     this.stones = [];
     this.shoots = [];
     this.ship = options.ship;
-    this.canvas = options.canvas;
+    this.canvas = null;
     this.score = 0;
     this.livesElement = undefined;
     this.scoreElement = undefined;
@@ -60,13 +62,37 @@ class Game {
       this._generateEnemy();
     }, 2000);
   }
-  _CheckColision() {
-    this.stones.forEach((obstacle) => {
-    if(obstacle.collisionWithShip(this.stones)) {
-      console.log("colision");
-    }
-  })
-}
+  _checkCollisions() {
+    this.enemy.forEach((enemies) => {
+      if (this.ship.didCollide(enemies)) {
+        this.ship.removeLife();
+        console.log("lives", this.ship.lives);
+
+        //Mover el enemigo fuera de la pantalla
+        enemy.posX = 0 - 25;
+
+        if (this.ship.lives === 0) {
+          this.gameOver();
+        }
+      }
+    });
+  }
+ _gameOver() {
+  this.gameIsOver = true;
+  endGame(this.score);
+ }
+ _updateGameStats() {
+   this.score += 10;
+   this.livesElement.innerHTML = this.ship.lives;
+   this.scoreElement.innerHTML = this.score;
+ }
+//   _CheckColision() {
+//     this.stones.forEach((obstacle) => {
+//     if(obstacle.collisionWithShip(this.stones)) {
+//       console.log("colision");
+//     }
+//   })
+// }
   // _checkCollision() {
   //       if (
   //           this.ship.posX <= this.stones.posX + 10 &&
@@ -128,25 +154,33 @@ class Game {
     this.ctx.fillRect(0, 0, 1280, 720);
   }
   _update() {
-    if (this._CheckColision() === true) {
-      this._clean();
-      console.log("check ocurrio")
-    }
+    // if (this._CheckColision() === true) {
+    //   this._clean();
+    //   console.log("checkcol ocurrio")
+    // }
     this._clean();
     this._drawShip();
     this._drawStones();
     this._drawEnemy();
     this._drawShoot();
-    this._CheckColision();
+
+    // Check if the player collision with anything
+    this._checkCollisions();git 
+    // this._CheckColision();
     window.requestAnimationFrame(this._update.bind(this));
   }
   start() {
+    // Save references to the score and lives elements
+    this.livesElement = this.gameScreen.querySelector(".lives .value");
+    this.scoreElement = this.gameScreen.querySelector(".score .value");
+
+    //Controls of the game
     this._assignControlsToKeys();
     this._generateStones();
     this._generateStonesInterval();
     this._generateEnemy();
     this._generateEnemyInterval();
-    this._CheckColision();
+    // this._CheckColision();
     // this._checkCollision();
     window.requestAnimationFrame(this._update.bind(this));
   }
