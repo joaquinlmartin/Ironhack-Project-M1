@@ -1,18 +1,10 @@
 class Ship {
-  constructor(lives = 0, posX = 0, posY = 0, speed = 10, direction = "N") {
-    this.lives = lives;
-    this.width = 20;
-    this.height = 20;
+  constructor() {
+    this.lives = 15;
     this.posX = 275;
     this.posY = 325;
-    this.direction = 0;
-    this.start = null;
-    this.speed = speed;
+    this.speed = 54;
     this.image = new Image()
-    this.framex = 0;
-    this.framey = 0;
-    this.frames = 4;
-    this.framesIndex = 0;
   }
   removeLife() {
     console.log("lives bajando")
