@@ -7,10 +7,11 @@ class Game {
     this.stones = [];
     this.shoots = [];
     this.ship = options.ship;
+    this.shoot = options.shoot;
     this.canvas = options.canvas;
     this.score = 0;
-    // this.livesElement = undefined;
-    // this.scoreElement = undefined;
+    this.livesElement = undefined;
+    this.scoreElement = undefined;
     this.posX = options.posX;
     this.posY = options.posY;
     this.player = options.player;
@@ -68,18 +69,38 @@ class Game {
     this.enemy.forEach((enemies) => {
       if (this.ship.didCollide(enemies)) {
         console.log("Puto colisions funcionando!")
-        // this.ship.removeLife();
-        // console.log("lives", this.ship.lives);
+        this.ship.removeLife();
+        console.log("lives", this.ship.lives);
 
         //Mover el enemigo fuera de la pantalla
             enemies.posX = -25;
+            // this.ship.posX = -20;
 
-        // if (this.ship.lives === 0) {
-        //   this.gameOver();
-        // }
+        if (this.ship.lives === 0) {
+          this.ship.posX = -20;
+          // this.gameOver();
+        }
       }
     });
   }
+  // _checkShootCollisions() {
+  //   this.enemy.forEach((enemies) => {
+  //     if (this.shoots.didShootCollide(enemies)) {
+  //       console.log("Puto colisions shoot funcionando!")
+  //       // this.ship.removeLife();
+  //       // console.log("lives", this.ship.lives);
+
+  //       //Mover el enemigo fuera de la pantalla
+  //           enemies.posX = -25;
+  //           // this.ship.posX = -20;
+
+  //       // if (this.ship.lives === 0) {
+  //       //   this.ship.posX = -20;
+  //       //   // this.gameOver();
+  //       // }
+  //     }
+  //   });
+  // }
 //  _gameOver() {
 //   this.gameIsOver = true;
 //   endGame(this.score);
@@ -169,6 +190,7 @@ class Game {
 
     // Check if the player collision with anything
     this._checkCollisions();
+    // this._checkShootCollisions();
     // this._CheckColision();
     window.requestAnimationFrame(this._update.bind(this));
   }

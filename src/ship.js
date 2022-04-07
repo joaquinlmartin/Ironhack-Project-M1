@@ -1,6 +1,6 @@
 class Ship {
-  constructor(lives = 3, posX = 0, posY = 0, speed = 10, direction = "N") {
-    this.lives = this.lives;
+  constructor(lives = 0, posX = 0, posY = 0, speed = 10, direction = "N") {
+    this.lives = lives;
     this.width = 20;
     this.height = 20;
     this.posX = 275;
@@ -14,8 +14,9 @@ class Ship {
     this.frames = 4;
     this.framesIndex = 0;
   }
-  removeLives() {
-    this.lives = this.lives - 1;
+  removeLife() {
+    console.log("lives bajando")
+    this.lives -= 1;
   }
   didCollide(enemy) {
     //Seleccionamos los 4 laterales del jugador
