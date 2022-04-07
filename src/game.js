@@ -1,21 +1,22 @@
 class Game {
-  constructor(gameScreen, options, ctx, speed) {
-    this.gameScreen = gameScreen;
-    this.gameIsOver = false;
+  constructor(options, ctx, speed) {
+    // this.gameScreen = gameScreen;
+    // this.gameIsOver = false;
     this.ctx = options.ctx;
     this.enemy = [];
     this.stones = [];
     this.shoots = [];
     this.ship = options.ship;
-    this.canvas = null;
+    this.canvas = options.canvas;
     this.score = 0;
-    this.livesElement = undefined;
-    this.scoreElement = undefined;
+    // this.livesElement = undefined;
+    // this.scoreElement = undefined;
     this.posX = options.posX;
     this.posY = options.posY;
     this.player = options.player;
     this.speed = speed;
   }
+  //Draw the figures ship, enemy, stones and shoot
   _drawShip() {
     this.ctx.fillStyle = 'blue';
     this.ctx.fillRect(this.ship.posX, this.ship.posY, 20, 20);
@@ -40,6 +41,7 @@ class Game {
         shoot.goAttack();
       }); 
   }
+  //Generate figures
   _generateStones() {
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
@@ -65,27 +67,28 @@ class Game {
   _checkCollisions() {
     this.enemy.forEach((enemies) => {
       if (this.ship.didCollide(enemies)) {
-        this.ship.removeLife();
-        console.log("lives", this.ship.lives);
+        console.log("Puto colisions funcionando!")
+        // this.ship.removeLife();
+        // console.log("lives", this.ship.lives);
 
         //Mover el enemigo fuera de la pantalla
-        enemy.posX = 0 - 25;
+            enemies.posX = -25;
 
-        if (this.ship.lives === 0) {
-          this.gameOver();
-        }
+        // if (this.ship.lives === 0) {
+        //   this.gameOver();
+        // }
       }
     });
   }
- _gameOver() {
-  this.gameIsOver = true;
-  endGame(this.score);
- }
- _updateGameStats() {
-   this.score += 10;
-   this.livesElement.innerHTML = this.ship.lives;
-   this.scoreElement.innerHTML = this.score;
- }
+//  _gameOver() {
+//   this.gameIsOver = true;
+//   endGame(this.score);
+//  }
+//  _updateGameStats() {
+//    this.score += 10;
+//    this.livesElement.innerHTML = this.ship.lives;
+//    this.scoreElement.innerHTML = this.score;
+//  }
 //   _CheckColision() {
 //     this.stones.forEach((obstacle) => {
 //     if(obstacle.collisionWithShip(this.stones)) {
@@ -165,23 +168,22 @@ class Game {
     this._drawShoot();
 
     // Check if the player collision with anything
-    this._checkCollisions();git 
+    this._checkCollisions();
     // this._CheckColision();
     window.requestAnimationFrame(this._update.bind(this));
   }
   start() {
     // Save references to the score and lives elements
-    this.livesElement = this.gameScreen.querySelector(".lives .value");
-    this.scoreElement = this.gameScreen.querySelector(".score .value");
+    // this.livesElement = this.gameScreen.querySelector(".lives .value");
+    // this.scoreElement = this.gameScreen.querySelector(".score .value");
 
     //Controls of the game
     this._assignControlsToKeys();
+
     this._generateStones();
     this._generateStonesInterval();
     this._generateEnemy();
     this._generateEnemyInterval();
-    // this._CheckColision();
-    // this._checkCollision();
     window.requestAnimationFrame(this._update.bind(this));
   }
 }
