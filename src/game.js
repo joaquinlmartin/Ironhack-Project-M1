@@ -23,8 +23,7 @@ class Game {
   }
   //Draw the figures ship, enemy, stones and shoot
   _drawShip() {
-    this.ctx.fillStyle = 'blue';
-    this.ctx.fillRect(this.ship.posX, this.ship.posY, 20, 20);
+    this.ctx.drawImage(shipSprite.sprite, shipSprite.posX, shipSprite.posY, shipSprite.w, shipSprite.h, this.ship.posX, this.ship.posY, 20, 20);
   }
   _drawStones() {
     this.stones.forEach((stone) => {
@@ -34,8 +33,7 @@ class Game {
   }
   _drawEnemy() {
     this.enemy.forEach((enemy) => {
-      this.ctx.fillStyle = 'gold';
-      this.ctx.fillRect(enemy.posX, enemy.posY, 25, 25);
+      this.ctx.drawImage(shipSprite.sprite, shipSprite.posX, shipSprite.posY, shipSprite.w, shipSprite.h, enemy.posX, enemy.posY, 25, 25);
     })
   }
   _drawShoot() {

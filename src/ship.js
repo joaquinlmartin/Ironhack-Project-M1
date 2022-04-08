@@ -4,8 +4,6 @@ class Ship {
     this.posX = 275;
     this.posY = 325;
     this.speed = 20;
-    this.image = new Image();
-    this.image.src = "./images/ew-free-sprites-blue-spaceship-sprayt-kosmicheskiy-korabl-11563255232nrdoiuuizj.png";
   }
   removeLife() {
     this.lives -= 1;
