@@ -1,5 +1,5 @@
 class Game {
-  constructor(options, gameScreen, speed) {
+  constructor(options, ctx, gameScreen, speed) {
     this.gameScreen = gameScreen;
     this.gameIsOver = false;
     this.ctx = options.ctx;
@@ -16,6 +16,11 @@ class Game {
     this.posY = options.posY;
     this.player = options.player;
     this.speed = speed;
+    this.scoreText = new Score(ctx, 25, 25);
+    this.soundGame = new Audio ("./audio/Terra’s Theme (Final Fantasy VI) (320 kbps).ogx");
+    this.soundShoot = new Audio ("./audio/audio_diablo_2_skull_gem_sound.mp3");
+    // this.sound = new Audio("./audio/Cargo Plane Cabin Ambiance-SoundBible.com-589803489.mp3");
+    // this._stopGame();
   }
   //Draw the figures ship, enemy, stones and shoot
   _drawShip() {
@@ -160,6 +165,7 @@ class Game {
           break;
         case 'Enter':
           this.shoots.push(new Shoot(this.ship.posX +8, this.ship.posY +8));
+          this.soundShoot.play();
           break;
         default:
           break;
@@ -190,10 +196,6 @@ class Game {
      this.scoreElement.innerHTML = this.score;
    }
   _update() {
-    // if (this._CheckColision() === true) {
-    //   this._clean();
-    //   console.log("checkcol ocurrio")
-    // }
     this._clean();
     this._drawShip();
     this._drawStones();
@@ -204,6 +206,19 @@ class Game {
     this._checkCollisions();
     // this._checkShootCollisions();
     // this._CheckColision();
+    if (this.ship.lives === 0) {
+      // this.ship.posX = -20;
+      // this.gameOver();
+      this.soundGame.pause();
+      this._stopGame();
+      this.scoreText.score++;
+      this.scoreText.draw();
+      return;
+    }
+    // if (this._CheckColision() === true) {
+    //   this._clean();
+    //   console.log("checkcol ocurrio")
+    // }
     window.requestAnimationFrame(this._update.bind(this));
     // if (!this.gameIsOver) {
     //   window.requestAnimationFrame(loop);
@@ -214,6 +229,7 @@ class Game {
     // this.livesElement = this.gameScreen.querySelector(".lives .value");
     // this.scoreElement = this.gameScreen.querySelector(".score .value");
 
+    this.soundGame.play();
     //Controls of the game
     this._assignControlsToKeys();
 
