@@ -3,7 +3,7 @@ class Ship {
     this.lives = 1;
     this.posX = 275;
     this.posY = 325;
-    this.speed = 54;
+    this.speed = 20;
     this.image = new Image()
   }
   removeLife() {
