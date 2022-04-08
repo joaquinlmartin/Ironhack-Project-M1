@@ -8,7 +8,6 @@ class Ship {
     this.image.src = "./images/ew-free-sprites-blue-spaceship-sprayt-kosmicheskiy-korabl-11563255232nrdoiuuizj.png";
   }
   removeLife() {
-    console.log("lives bajando")
     this.lives -= 1;
   }
   didCollide(enemy) {

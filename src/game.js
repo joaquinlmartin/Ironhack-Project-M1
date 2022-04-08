@@ -16,11 +16,10 @@ class Game {
     this.posY = options.posY;
     this.player = options.player;
     this.speed = speed;
-    this.scoreText = new Score(ctx, 25, 25);
+    this.scoreText = new Score(ctx, 10, 10);
     this.soundGame = new Audio ("./audio/Terra’s Theme (Final Fantasy VI) (320 kbps).ogx");
     this.soundShoot = new Audio ("./audio/audio_diablo_2_skull_gem_sound.mp3");
     // this.sound = new Audio("./audio/Cargo Plane Cabin Ambiance-SoundBible.com-589803489.mp3");
-    // this._stopGame();
   }
   //Draw the figures ship, enemy, stones and shoot
   _drawShip() {
@@ -74,7 +73,6 @@ class Game {
   _checkCollisions() {
     this.enemy.forEach((enemies) => {
       if (this.ship.didCollide(enemies)) {
-        console.log("Puto colisions funcionando!")
         this.ship.removeLife();
         console.log("lives", this.ship.lives);
 
@@ -85,66 +83,29 @@ class Game {
         if (this.ship.lives === 0) {
           // this.ship.posX = -20;
           // this.gameOver();
+          clearInterval(this.generateStonesInterval);
+          clearInterval(this.generateEnemyInterval);
           this._stopGame();
         }
       }
     });
+    // this.enemy.forEach((enemiis) => {
+    //   if (this.shoots.didShootCollide(enemiis)) {
+    //     console.log("Puto colisions shoot funcionando!")
+    //     // this.ship.removeLife();
+    //     // console.log("lives", this.ship.lives);
+
+    //     //Mover el enemigo fuera de la pantalla
+    //         enemies.posX = -25;
+    //         // this.ship.posX = -20;
+
+    //     // if (this.ship.lives === 0) {
+    //     //   this.ship.posX = -20;
+    //     //   // this.gameOver();
+    //     // }
+    //   }
+    // });
   }
-  // _checkShootCollisions() {
-  //   this.enemy.forEach((enemies) => {
-  //     if (this.shoots.didShootCollide(enemies)) {
-  //       console.log("Puto colisions shoot funcionando!")
-  //       // this.ship.removeLife();
-  //       // console.log("lives", this.ship.lives);
-
-  //       //Mover el enemigo fuera de la pantalla
-  //           enemies.posX = -25;
-  //           // this.ship.posX = -20;
-
-  //       // if (this.ship.lives === 0) {
-  //       //   this.ship.posX = -20;
-  //       //   // this.gameOver();
-  //       // }
-  //     }
-  //   });
-  // }
-//   _CheckColision() {
-//     this.stones.forEach((obstacle) => {
-//     if(obstacle.collisionWithShip(this.stones)) {
-//       console.log("colision");
-//     }
-//   })
-// }
-  // _checkCollision() {
-  //       if (
-  //           this.ship.posX <= this.stones.posX + 10 &&
-  //           this.ship.posX + 20 >= this.stones.posX &&
-  //           this.ship.posY <= this.stones.posY + 10 &&
-  //           this.ship.posY + 20 >= this.stones.posY
-  //       ) { 
-  //         return true;
-  //       }  else {
-  //         return false;
-  //       }
-  //   console.log("colision working");
-  // }
-  // _checkCollision() {
-  //   for (let i = 0; i < this.stones.length; i++) {
-  //       if (
-  //           this.ship.posX <= this.stones[i].posX + this.stones[i].width &&
-  //           this.ship.posX + this.ship.width >= this.stones[i].posX &&
-  //           this.ship.posY <= this.stones[i].posY + this.stones[i].height &&
-  //           this.ship.height + this.ship.posY >= this.stones[i].posY
-  //       ) {
-  //           clearInterval(this.generateStonesInterval);
-  //           clearInterval(this.drawShip);
-  //           // clear interval de puntos
-  //           if (this._checkCollision = true) {
-  //           console.log("hay colision");
-  //           }
-  //       } 
-  //   }
-  // }
   _assignControlsToKeys() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
@@ -176,10 +137,6 @@ class Game {
     this.ctx.fillStyle = 'black';
     this.ctx.fillRect(0, 0, 1280, 720);
   }
-  // _gameOver() {
-  //   this.gameIsOver = true;
-  //   // endGame(this.score);
-  //  }
   _stopGame(){
     console.log("gameover");
     clearInterval(this.interval);
@@ -188,12 +145,11 @@ class Game {
     this.shoots.forEach((shootss) => clearInterval(shootss.interval));
     document.getElementById("gameover").style = "display: block;";
     document.getElementById("gameover").style = "display: absolute; position: absolute; z-index: 5px';"; 
-    console.log("gameover terminado");
 }
    _updateGameStats() {
      this.score += 10;
-     this.livesElement.innerHTML = this.ship.lives;
-     this.scoreElement.innerHTML = this.score;
+    //  this.livesElement.innerHTML = this.ship.lives;
+    //  this.scoreElement.innerHTML = this.score;
    }
   _update() {
     this._clean();
@@ -201,11 +157,8 @@ class Game {
     this._drawStones();
     this._drawEnemy();
     this._drawShoot();
-    // this._gameOver();
-    // Check if the player collision with anything
     this._checkCollisions();
-    // this._checkShootCollisions();
-    // this._CheckColision();
+    this._updateGameStats();
     if (this.ship.lives === 0) {
       // this.ship.posX = -20;
       // this.gameOver();
@@ -215,24 +168,14 @@ class Game {
       this.scoreText.draw();
       return;
     }
-    // if (this._CheckColision() === true) {
-    //   this._clean();
-    //   console.log("checkcol ocurrio")
-    // }
     window.requestAnimationFrame(this._update.bind(this));
-    // if (!this.gameIsOver) {
-    //   window.requestAnimationFrame(loop);
-    // }
   }
   start() {
     // Save references to the score and lives elements
     // this.livesElement = this.gameScreen.querySelector(".lives .value");
     // this.scoreElement = this.gameScreen.querySelector(".score .value");
-
     this.soundGame.play();
-    //Controls of the game
     this._assignControlsToKeys();
-
     this._generateStones();
     this._generateStonesInterval();
     this._generateEnemy();

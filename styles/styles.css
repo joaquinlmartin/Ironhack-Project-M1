@@ -38,13 +38,27 @@ body {
 
 h1 {
     position: absolute;
-    font-size: 6em;
+    font-size: 8em;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: rgb(203, 216, 21);
-    margin-bottom: 200px;
+    margin-bottom: 250px;
+}
+
+h2 {
+  display: block;
+  font-size: 3rem;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: rgb(191, 82, 14);
 }
 
 h3 {
+  display: block;
+  font-size: 2em;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: rgb(203, 216, 21);
+}
+
+h3 p {
   display: block;
   font-size: 2em;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -94,7 +108,7 @@ canvas#nemesis {
     display: block;
   }
 
-  #gameover {
+.gameover {
     font-size: 1.7em;
     text-align: center;
     border: 2px solid #eee;
