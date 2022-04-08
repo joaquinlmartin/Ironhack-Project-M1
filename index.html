@@ -4,20 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/styles.css">
-
     <title>Nemesis</title>
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
     <div id="menu" class="splashscreen">
         <h1> NEMESIS </h1>
+        <h3>Key "W": Up</h3>
+        <h3>Key "S": Down</h3>
+        <h3>Key "A": Left</h3>
+        <h3>Key "D": Right</h3>
+        <h3>Key "Enter": Shoot</h3>
+        <h3>Key "Spacebar": Boost</h3>
         <button id="start">START</button>
     </div>
     <div id="game" class="container game hide">
         <canvas id="nemesis" width="1280" height="720"></canvas>
     </div>
-
-    <div id="gameoverscreen" class="hide">Game Over</div>
+    <div id="gameover" class="hide">
+        <h1> GAME OVER </h1>
+        <button id="retry">Try Again, if you dare</button>
+    </div>
     <script src="/src/shoot.js"></script>
     <script src="/src/enemy.js"></script>
     <script src="/src/stones.js"></script>

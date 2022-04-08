@@ -37,9 +37,18 @@ body {
 }
 
 h1 {
+    position: absolute;
     font-size: 6em;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: rgb(203, 216, 21);
+    margin-bottom: 200px;
+}
+
+h3 {
+  display: block;
+  font-size: 2em;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: rgb(203, 216, 21);
 }
 
 button {
@@ -84,3 +93,18 @@ canvas#nemesis {
 .show {
     display: block;
   }
+
+  #gameover {
+    font-size: 1.7em;
+    text-align: center;
+    border: 2px solid #eee;
+    border-radius: 20px;
+    box-sizing: border-box;
+    background-color: whitesmoke;
+    box-shadow: 2px 2px 10px 0 rgb(2, 2, 2);
+    margin: 0 auto;
+    padding: 20px; 
+    width: 40%;
+    top: 25%;
+    left: 30%;
+}

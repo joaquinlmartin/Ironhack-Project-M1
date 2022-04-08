@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx: ctx,
           ship: new Ship (10, 10, "N"),
         },
-        printGameOver
+        gameOver, victory
       );
  
       nemesisGame.start();
@@ -27,13 +27,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   // Game Over Screen
-  function printGameOver() {
+  function gameOver() {
     let gameOver = document.getElementById('gameover');
     let canvas = document.querySelector('#nemesis');
-    canvas.style = 'display: none';
-    gameOver.style = 'display: block';
+    canvas.classList.remove('show');
+    canvas.classList.add('hide');
+    gameOver.classList.remove('hide');
+    tryAgain();
+    // canvas.style = 'display: none';
+    // gameOver.style = 'display: block';
   }
+  
+  //Retry game
+  function tryAgain() {
+    const tryAgain = document.querySelector('#retry');
+    tryAgain.addEventListener('click', function(){
+        let gameOver = document.querySelector('#gameover');
+        gameOver.classList.remove('show');
+        gameOver.classList.add('hide');
+        nemesisGame();
+      })
+}
 
+  //Win the game
+  function victory(){
+    let win = document.querySelector('#win');
+    let canvas = document.querySelector('#nemesis');
+    canvas.classList.remove('show');
+    canvas.classList.add('hide');
+    win.classList.remove('hide');
+}
   createSplashScreen();
 });
 

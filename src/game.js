@@ -1,7 +1,7 @@
 class Game {
-  constructor(options, ctx, speed) {
-    // this.gameScreen = gameScreen;
-    // this.gameIsOver = false;
+  constructor(options, gameScreen, speed) {
+    this.gameScreen = gameScreen;
+    this.gameIsOver = false;
     this.ctx = options.ctx;
     this.enemy = [];
     this.stones = [];
@@ -65,6 +65,7 @@ class Game {
       this._generateEnemy();
     }, 2000);
   }
+  //Collisions
   _checkCollisions() {
     this.enemy.forEach((enemies) => {
       if (this.ship.didCollide(enemies)) {
@@ -77,8 +78,9 @@ class Game {
             // this.ship.posX = -20;
 
         if (this.ship.lives === 0) {
-          this.ship.posX = -20;
+          // this.ship.posX = -20;
           // this.gameOver();
+          this._stopGame();
         }
       }
     });
@@ -101,15 +103,6 @@ class Game {
   //     }
   //   });
   // }
-//  _gameOver() {
-//   this.gameIsOver = true;
-//   endGame(this.score);
-//  }
-//  _updateGameStats() {
-//    this.score += 10;
-//    this.livesElement.innerHTML = this.ship.lives;
-//    this.scoreElement.innerHTML = this.score;
-//  }
 //   _CheckColision() {
 //     this.stones.forEach((obstacle) => {
 //     if(obstacle.collisionWithShip(this.stones)) {
@@ -177,6 +170,25 @@ class Game {
     this.ctx.fillStyle = 'black';
     this.ctx.fillRect(0, 0, 1280, 720);
   }
+  // _gameOver() {
+  //   this.gameIsOver = true;
+  //   // endGame(this.score);
+  //  }
+  _stopGame(){
+    console.log("gameover");
+    clearInterval(this.interval);
+    this.enemy.forEach((enemies) => clearInterval(enemies.interval));
+    this.stones.forEach((stoness) => clearInterval(stoness.interval));
+    this.shoots.forEach((shootss) => clearInterval(shootss.interval));
+    document.getElementById("gameover").style = "display: block;";
+    document.getElementById("gameover").style = "display: absolute; position: absolute; z-index: 5px';"; 
+    console.log("gameover terminado");
+}
+   _updateGameStats() {
+     this.score += 10;
+     this.livesElement.innerHTML = this.ship.lives;
+     this.scoreElement.innerHTML = this.score;
+   }
   _update() {
     // if (this._CheckColision() === true) {
     //   this._clean();
@@ -187,12 +199,15 @@ class Game {
     this._drawStones();
     this._drawEnemy();
     this._drawShoot();
-
+    // this._gameOver();
     // Check if the player collision with anything
     this._checkCollisions();
     // this._checkShootCollisions();
     // this._CheckColision();
     window.requestAnimationFrame(this._update.bind(this));
+    // if (!this.gameIsOver) {
+    //   window.requestAnimationFrame(loop);
+    // }
   }
   start() {
     // Save references to the score and lives elements
