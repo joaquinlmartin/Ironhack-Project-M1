@@ -33,7 +33,7 @@ class Game {
   }
   _drawEnemy() {
     this.enemy.forEach((enemy) => {
-      this.ctx.drawImage(shipSprite.sprite, shipSprite.posX, shipSprite.posY, shipSprite.w, shipSprite.h, enemy.posX, enemy.posY, 25, 25);
+      this.ctx.drawImage(enemySprite.sprite, enemySprite.posX, enemySprite.posY, enemySprite.w, enemySprite.h, enemy.posX, enemy.posY, 25, 25);
     })
   }
   _drawShoot() {

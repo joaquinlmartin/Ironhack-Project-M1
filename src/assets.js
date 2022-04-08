@@ -14,4 +14,4 @@ const shipSprite = {
     posX: 0, // En qué x del archivo tiene que empezar a coger personaje
     posY: 0 // En qué y del archivo tiene que empezar a coger personaje
   };
-  shipSprite.sprite.src = "./images/ew-free-sprites-blue-spaceship-sprayt-kosmicheskiy-korabl-11563255232nrdoiuuizj.png";  
+  enemySprite.sprite.src = "./images/ew-free-sprites-blue-spaceship-sprayt-kosmicheskiy-korabl-11563255232nrdoiuuizj.png";  
