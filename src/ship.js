@@ -4,6 +4,7 @@ class Ship {
     this.posX = 275;
     this.posY = 325;
     this.speed = 20;
+    this.size = 20;
   }
   removeLife() {
     this.lives -= 1;
@@ -11,9 +12,9 @@ class Ship {
   didCollide(enemy) {
     //Seleccionamos los 4 laterales del jugador
     const playerLeft = this.posX;
-    const playerRight = this.posX + 20;
+    const playerRight = this.posX + this.size;
     const playerTop = this.posY;
-    const playerBottom = this.posY + 20;
+    const playerBottom = this.posY + this.size;
 
     //Seleccionamos los 4 laterales del enemigo
     const enemyLeft = enemy.posX;

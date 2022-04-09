@@ -6,6 +6,7 @@ class Game {
     this.enemy = [];
     this.stones = [];
     this.shoots = [];
+    this.shootsEnemy = [];
     this.ship = options.ship;
     this.shoot = options.shoot;
     this.canvas = options.canvas;
@@ -37,12 +38,16 @@ class Game {
   }
   _drawShoot() {
       this.shoots.forEach((shoot) => {
-        this.ctx.fillStyle = 'silver';
-        this.ctx.fillRect(shoot.posX, shoot.posY, 5, 5);
+        this.ctx.drawImage(shootSprite.sprite, shootSprite.posX, shootSprite.posY, shootSprite.w, shootSprite.h, shoot.posX, shoot.posY, 55, 55);
         shoot.move();
         shoot.goAttack();
       }); 
   }
+  _drawshootEnemy() {
+    this.shootsEnemy.forEach((shootEnemy) => {
+      this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.sprite.posX, shootEnemySprite.sprite.posY, shootEnemySprite.sprite.w, shootEnemySprite.sprite.h, shootEnemy.posX, shootEnemy.posY, 55, 55);
+    }); 
+}
   //Generate figures
   _generateStones() {
     function getRandomInt(min, max) {
@@ -64,6 +69,18 @@ class Game {
   _generateEnemyInterval() {
     setInterval(() => {
       this._generateEnemy();
+    }, 2000);
+  }
+  _generateShootEnemy() {
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+    this.shootsEnemy.push(new shootEnemy(getRandomInt(0, 1280), getRandomInt(20, 600)));
+    // this.shootsEnemy.push(new shootEnemy(this.enemy.posX -20, this.enemy.posY -20));
+  }
+  _generateShootEnemyInterval() {
+    setInterval(() => {
+      this._generateShootEnemy();
     }, 2000);
   }
   //Collisions
@@ -122,7 +139,7 @@ class Game {
           this.ship.posX += this.ship.speed + 20;
           break;
         case 'Enter':
-          this.shoots.push(new Shoot(this.ship.posX +8, this.ship.posY +8));
+          this.shoots.push(new Shoot(this.ship.posX -20, this.ship.posY -20));
           this.soundShoot.play();
           break;
         default:
@@ -154,6 +171,7 @@ class Game {
     this._drawStones();
     this._drawEnemy();
     this._drawShoot();
+    this._drawshootEnemy();
     this._checkCollisions();
     this._updateGameStats();
     if (this.ship.lives === 0) {
@@ -172,11 +190,13 @@ class Game {
     // this.livesElement = this.gameScreen.querySelector(".lives .value");
     // this.scoreElement = this.gameScreen.querySelector(".score .value");
     this.soundGame.play();
-    this._assignControlsToKeys();
+    this._assignControlsToKeys(0);
     this._generateStones();
     this._generateStonesInterval();
     this._generateEnemy();
     this._generateEnemyInterval();
+    this._generateShootEnemy();
+    this._generateShootEnemyInterval();
     window.requestAnimationFrame(this._update.bind(this));
   }
 }
