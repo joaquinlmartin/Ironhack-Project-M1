@@ -120,6 +120,25 @@ class Game {
     //   }
     // });
   }
+  _checkCollisionss() {
+    this.stones.forEach((stonies) => {
+      if (this.ship.didCollides(stonies)) {
+        this.ship.removeLife();
+        console.log("lives", this.ship.lives);
+
+        //Mover el enemigo fuera de la pantalla
+            stonies.posX = -40;
+            // this.ship.posX = -20;
+
+        if (this.ship.lives === 0) {
+          // this.ship.posX = -20;
+          // this.gameOver();
+          clearInterval(this.generateStonesInterval);
+          this._stopGame();
+        }
+      }
+    });
+  }
   _assignControlsToKeys() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
@@ -173,6 +192,7 @@ class Game {
     this._drawShoot();
     this._drawshootEnemy();
     this._checkCollisions();
+    this._checkCollisionss();
     this._updateGameStats();
     if (this.ship.lives === 0) {
       // this.ship.posX = -20;
