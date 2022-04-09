@@ -27,8 +27,7 @@ class Game {
   }
   _drawStones() {
     this.stones.forEach((stone) => {
-      this.ctx.fillStyle = 'brown';
-      this.ctx.fillRect(stone.posX, stone.posY, 10, 10);
+      this.ctx.drawImage(stonesSprite.sprite, stonesSprite.posX, stonesSprite.posY, stonesSprite.w, stonesSprite.h,stone.posX, stone.posY, 40, 40);
     })
   }
   _drawEnemy() {
