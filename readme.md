@@ -13,6 +13,7 @@ Class Enemy
 Class Stones
 Class Shoot
 Class Sounds
+Class Score
 
 ## Backlog:
 
