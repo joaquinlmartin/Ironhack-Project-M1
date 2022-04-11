@@ -1,8 +1,3 @@
-let game;
-let splashScreen;
-let gameScreen;
-let gameOverScreen;
-
 document.addEventListener('DOMContentLoaded', () => {
   // Splash Screen & Game Screen
   function createSplashScreen() {
@@ -28,14 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   // Game Over Screen
   function gameOver() {
-    let gameOver = document.getElementById('gameover');
+    // let gameOver = document.getElementById('#gameover');
+    let gameover = document.querySelector('#gameover');
     let canvas = document.querySelector('#nemesis');
     canvas.classList.remove('show');
     canvas.classList.add('hide');
-    gameOver.classList.remove('hide');
+    gameover.classList.remove('hide');
+    gameover.classList.add('show');
     tryAgain();
-    // canvas.style = 'display: none';
-    // gameOver.style = 'display: block';
   }
   
   //Retry game

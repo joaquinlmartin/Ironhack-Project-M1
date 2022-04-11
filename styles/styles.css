@@ -23,7 +23,6 @@ body {
   left: 0;
   width: 100%;
   height: 100vh;
-  background: black;
   z-index: 200;
   text-align: center;
   line-height: 90vh;
@@ -32,22 +31,16 @@ body {
   justify-content: center;
   align-items: flex-end;
 }
-h1 {
+.title-splashscreen {
   position: absolute;
   font-size: 8em;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: rgb(203, 216, 21);
   margin-bottom: 250px;
 }
-h2 {
+.controls-splashscreen {
   display: block;
-  font-size: 3rem;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  color: rgb(191, 82, 14);
-}
-h3 {
-  display: block;
-  font-size: 2em;
+  font-size: 1.5em;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: rgb(203, 216, 21);
 }
@@ -64,7 +57,7 @@ button {
   margin-block: 250px;
   align-items: center;
 }
-.game {
+.game{
   width: 980px;
   height: 579px;
   display: flex;
@@ -78,10 +71,16 @@ button {
 }
 canvas#nemesis {
   position: absolute;
-  top: 20%;
-  left: 155%;
+  font-size: 2em;
+  text-decoration-color: antiquewhite;
+  top: 18%;
+  left: 120%;
   margin: 0 auto;
-  border: 1.5px solid rgb(233, 194, 21);
+  border: 3px solid rgb(155, 142, 6);
+  border-radius: 20px;
+  border-style: double;
+  /* box-sizing: border-box;
+  box-shadow: 2px 2px 10px 0 rgb(2, 2, 2); */
   /* background-image: url(images/wallpaper-mania.com_High_resolution_wallpaper_background_ID_77701908641.jpg); */
 }
 .hide {
@@ -91,6 +90,16 @@ canvas#nemesis {
   display: block;
 }
 .gameover {
+  border: 3px solid rgb(155, 142, 6);
+  border-radius: 20px;
+  background-color: rgb(9, 19, 77);
+
+  margin-left: 165px;
+  font-size: 1.2em;
+  width: 400px;
+  padding-left: 5px;
+}
+/* #gameover {
   font-size: 1.7em;
   text-align: center;
   border: 2px solid rgb(155, 142, 6);
@@ -103,4 +112,4 @@ canvas#nemesis {
   width: 40%;
   top: 25%;
   left: 30%;
-}
+} */

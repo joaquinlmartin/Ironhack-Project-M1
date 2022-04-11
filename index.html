@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,15 +10,19 @@
     <link rel="shortcut icon" href="/images/nave.png">
     <link rel="icon" type="image/gif" href="/images/nave.png">
 </head>
+
 <body>
     <div id="menu" class="splashscreen">
-        <h1> NEMESIS </h1>
-        <h3>Key "W": Up</h3>
-        <h3>Key "S": Down</h3>
-        <h3>Key "A": Left</h3>
-        <h3>Key "D": Right</h3>
-        <h3>Key "Enter": Shoot</h3>
-        <h3>Key "Spacebar": Boost</h3>
+        <h1 class="title-splashscreen"> NEMESIS </h1>
+        <div class="controls-splashscreen">
+            <h3>Key "W": Up,
+                Key "S": Down,
+                Key "A": Left,
+                Key "D": Right,
+                Key "Enter": Shoot,
+                Key "Spacebar":Boost
+            </h3>
+        </div>
         <button id="start">START</button>
     </div>
     <div id="game" class="container game hide">
@@ -25,7 +30,10 @@
     </div>
     <div id="gameover" class="hide">
         <h1> GAME OVER </h1>
-        <button id="retry">Try Again, if you dare</button>
+        <button id="retry">Try again... if you dare!</button>
+    </div>
+    <div id="win" class="hide">
+        <h1> VICTORY! </h1>
     </div>
     <script src="/src/sounds.js"></script>
     <script src="/src/assets.js"></script>
@@ -37,4 +45,5 @@
     <script src="/src/game.js"></script>
     <script src="/src/main.js"></script>
 </body>
+
 </html>

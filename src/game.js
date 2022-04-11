@@ -1,5 +1,5 @@
 class Game {
-  constructor(options, ctx, gameScreen, speed) {
+  constructor(options, ctx, gameScreen, gameover, speed) {
     this.gameScreen = gameScreen;
     this.gameIsOver = false;
     this.ctx = options.ctx;
@@ -7,6 +7,7 @@ class Game {
     this.stones = [];
     this.shoots = [];
     this.shootsEnemy = [];
+    this.gameover = gameover;
     this.ship = options.ship;
     this.shoot = options.shoot;
     this.canvas = options.canvas;
@@ -47,6 +48,13 @@ class Game {
     this.shootsEnemy.forEach((shootEnemy) => {
       this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.sprite.posX, shootEnemySprite.sprite.posY, shootEnemySprite.sprite.w, shootEnemySprite.sprite.h, shootEnemy.posX, shootEnemy.posY, 55, 55);
     }); 
+}
+  _drawScore() {
+  this.ctx.beginPath();
+  this.ctx.font = "30px verdana";
+  this.ctx.fillStyle = 'white';
+  this.ctx.fillText("Score: " + this.score, this.score.posX, this.score.posY, 5, 30);
+  this.ctx.closePath();
 }
   //Generate figures
   _generateStones() {
@@ -130,12 +138,12 @@ class Game {
             stonies.posX = -40;
             // this.ship.posX = -20;
 
-        if (this.ship.lives === 0) {
-          // this.ship.posX = -20;
-          // this.gameOver();
-          clearInterval(this.generateStonesInterval);
-          this._stopGame();
-        }
+        // if (this.ship.lives === 0) {
+        //   // this._stopGame();
+        //   // this.ship.posX = -20;
+        //   // this.gameOver();
+        //   // clearInterval(this.generateStonesInterval);
+        // }
       }
     });
   }
@@ -156,7 +164,7 @@ class Game {
           break;
         case 'Space':
           this.ship.posX += this.ship.speed + 20;
-          this.ctx.drawImage(boostSprite.sprite, boostSprite.posX, boostSprite.posY, boostSprite.w, boostSprite.h, this.ship.posX - 30, this.ship.posY, 20, 20)
+          this.ctx.drawImage(boostSprite.sprite, boostSprite.posX, boostSprite.posY, boostSprite.w, boostSprite.h, this.ship.posX -20, this.ship.posY, 50, 10)
           break;
         case 'Enter':
           this.shoots.push(new Shoot(this.ship.posX -20, this.ship.posY -20));
@@ -172,13 +180,11 @@ class Game {
     this.ctx.fillRect(0, 0, 1280, 720);
   }
   _stopGame(){
-    console.log("gameover");
+    console.log("game stopped");
     clearInterval(this.interval);
-    this.enemy.forEach((enemies) => clearInterval(enemies.interval));
-    this.stones.forEach((stoness) => clearInterval(stoness.interval));
-    this.shoots.forEach((shootss) => clearInterval(shootss.interval));
-    document.getElementById("gameover").style = "display: block;";
-    document.getElementById("gameover").style = "display: absolute; position: absolute; z-index: 5px';"; 
+    // this.enemy.forEach((enemies) => clearInterval(enemies.interval));
+    // this.stones.forEach((stoness) => clearInterval(stoness.interval));
+    // this.shoots.forEach((shootss) => clearInterval(shootss.interval));
 }
    _updateGameStats() {
      this.score += 10;
@@ -192,14 +198,15 @@ class Game {
     this._drawEnemy();
     this._drawShoot();
     this._drawshootEnemy();
+    this._drawScore();
     this._checkCollisions();
     this._checkCollisionss();
     this._updateGameStats();
     if (this.ship.lives === 0) {
       // this.ship.posX = -20;
-      // this.gameOver();
       this.soundGame.pause();
       this._stopGame();
+      this.gameover();
       this.scoreText.score++;
       this.scoreText.draw();
       return;
