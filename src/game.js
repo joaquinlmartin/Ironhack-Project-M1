@@ -34,7 +34,7 @@ class Game {
   }
   _drawEnemy() {
     this.enemy.forEach((enemy) => {
-      this.ctx.drawImage(enemySprite.sprite, enemySprite.posX, enemySprite.posY, enemySprite.w, enemySprite.h, enemy.posX, enemy.posY, 25, 25);
+      this.ctx.drawImage(enemySprite.sprite, enemySprite.posX, enemySprite.posY, enemySprite.w, enemySprite.h, enemy.posX, enemy.posY, 50, 50);
     })
   }
   _drawShoot() {

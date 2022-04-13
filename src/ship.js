@@ -18,9 +18,9 @@ class Ship {
 
     //Seleccionamos los 4 laterales del enemigo
     const enemyLeft = enemy.posX;
-    const enemyRight = enemy.posX + 25;
+    const enemyRight = enemy.posX + 50;
     const enemyTop = enemy.posY;
-    const enemyBottom = enemy.posY + 25;
+    const enemyBottom = enemy.posY + 50;
 
     //Comprobamos si el enemigo ha entrado dentro del jugador por cualquiera de los 4 costados
     const crossLeft = enemyLeft <= playerRight && enemyLeft >= playerLeft;
