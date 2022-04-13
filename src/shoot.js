@@ -18,15 +18,15 @@ class Shoot {
     }
     didShootCollide(enemy) {
         //Seleccionamos los 4 laterales del disparo
-        const shootLeft = this.posX;
-        const shootRight = this.posX + 5;
-        const shootTop = this.posY;
-        const shootBottom = this.posY + 5;
+        const shootLeft = this.posX +55;
+        const shootRight = this.posX + 55;
+        const shootTop = this.posY + 55;
+        const shootBottom = this.posY + 55;
     
         //Seleccionamos los 4 laterales del enemigo
-        const enemyLeft1 = enemy.posX;
+        const enemyLeft1 = enemy.posX + 25;
         const enemyRight1 = enemy.posX + 25;
-        const enemyTop1 = enemy.posY;
+        const enemyTop1 = enemy.posY + 25;
         const enemyBottom1 = enemy.posY + 25;
     
         //Comprobamos si el enemigo ha entrado dentro del disparo por cualquiera de los 4 costados
@@ -36,7 +36,7 @@ class Shoot {
         const crossTop1 = enemyTop1 <= shootBottom && enemyTop1 >= shootTop;
     
         //Solo cuando 1 condición de verticalidad y 1 de horizontalidad se cumplen, podemos considerar que nnuestros cuadrados han  colisionado
-        if ((crossLeft1 || crossRight1) && (crossTop1 || crossBottom1)) {
+        if ((crossLeft1 || crossRight1 || crossTop1 || crossBottom1)) {
           return true;
         } else {
           return false;
