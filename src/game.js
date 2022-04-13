@@ -177,7 +177,7 @@ class Game {
   }
   _clean() {
     this.ctx.fillStyle = 'black';
-    this.ctx.fillRect(0, 0, 1280, 720);
+    this.ctx.drawImage(canvasSprite.sprite, canvasSprite.posX, canvasSprite.posY, canvasSprite.w, canvasSprite.h,0, 0, 1280, 720);
   }
   _stopGame(){
     console.log("game stopped");
