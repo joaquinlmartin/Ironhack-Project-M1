@@ -9,23 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
       game.classList.add('show');
       let canvas = game.querySelector('#nemesis');
       const ctx = canvas.getContext('2d');
-      const nemesisGame = new Game(
-        {
-          ctx: ctx,
-          ship: new Ship (10, 10, "N"),
-        },
-        gameOver, victory
-      );
- 
+      const nemesisGame = new Game({ctx: ctx, ship: new Ship (10, 10, "N"),}, gameover, victory);
       nemesisGame.start();
-
     });
   }
   // Game Over Screen
-  function gameOver() {
-    // let gameOver = document.getElementById('#gameover');
-    let gameover = document.querySelector('#gameover');
-    let canvas = document.querySelector('#nemesis');
+  function gameover() {
+    let gameover = document.getElementById('gameover');
+    // let gameover = document.querySelector('#gameover');
+    let canvas = document.getElementById('nemesis');
     canvas.classList.remove('show');
     canvas.classList.add('hide');
     gameover.classList.remove('hide');

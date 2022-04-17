@@ -1,23 +1,24 @@
 class Game {
-  constructor(options, ctx, gameScreen, gameover, speed) {
-    this.gameScreen = gameScreen;
-    this.gameIsOver = false;
+  constructor(options, ctx, gameScreen, gameover, speed, callback) {
+    // this.gameScreen = gameScreen;
+    // this.gameIsOver = false;
     this.ctx = options.ctx;
     this.enemy = [];
     this.stones = [];
     this.shoots = [];
     this.shootsEnemy = [];
-    this.gameover = gameover;
+    // this.gameover = gameover;
     this.ship = options.ship;
     this.shoot = options.shoot;
     this.canvas = options.canvas;
     this.score = 0;
-    this.livesElement = undefined;
-    this.scoreElement = undefined;
+    // this.livesElement = undefined;
+    // this.scoreElement = undefined;
     this.posX = options.posX;
     this.posY = options.posY;
     this.player = options.player;
     this.speed = speed;
+    // this.gameover = callback;
     this.scoreText = new Score(ctx, 10, 10);
     this.soundGame = new Audio ("./audio/Terra’s Theme (Final Fantasy VI) (320 kbps).ogx");
     this.soundShoot = new Audio ("./audio/audio_diablo_2_skull_gem_sound.mp3");
@@ -30,6 +31,11 @@ class Game {
   _drawStones() {
     this.stones.forEach((stone) => {
       this.ctx.drawImage(stonesSprite.sprite, stonesSprite.posX, stonesSprite.posY, stonesSprite.w, stonesSprite.h,stone.posX, stone.posY, 40, 40);
+      // this.ctx.arc(160, 200, 50, 0, 2 * Math.PI);
+      // this.ctx.save();
+      // this.ctx.translate(200, 80);
+      // // this.ctx.rotate((Math.PI / 180) * 25);
+      // this.ctx.translate(-200, -80);
     })
   }
   _drawEnemy() {
@@ -190,7 +196,12 @@ class Game {
      this.score += 10;
     //  this.livesElement.innerHTML = this.ship.lives;
     //  this.scoreElement.innerHTML = this.score;
-   }
+}
+   _gameover() {
+    document.getElementById("gameover").style = "show; display: block;";
+    document.getElementById("gameover").style = "position: absolute;";
+}
+
   _update() {
     this._clean();
     this._drawShip();
@@ -206,9 +217,10 @@ class Game {
       // this.ship.posX = -20;
       this.soundGame.pause();
       this._stopGame();
-      this.gameover();
-      this.scoreText.score++;
-      this.scoreText.draw();
+      this._gameover();
+      // this._drawScore();
+      // this.scoreText.score++;
+      // this.scoreText.draw();
       return;
     }
     window.requestAnimationFrame(this._update.bind(this));
