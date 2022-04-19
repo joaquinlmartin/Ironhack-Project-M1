@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   // Game Over Screen
   function gameover() {
-    let gameover = document.getElementById('gameover');
-    // let gameover = document.querySelector('#gameover');
-    let canvas = document.getElementById('nemesis');
+    // let gameover = document.getElementById('gameover');
+    let gameover = document.querySelector('#gameover');
+    const canvas = document.getElementById('nemesis');
     canvas.classList.remove('show');
     canvas.classList.add('hide');
     gameover.classList.remove('hide');

@@ -1,13 +1,13 @@
 class Game {
   constructor(options, ctx, gameScreen, gameover, speed, callback) {
     // this.gameScreen = gameScreen;
-    // this.gameIsOver = false;
     this.ctx = options.ctx;
     this.enemy = [];
     this.stones = [];
     this.shoots = [];
     this.shootsEnemy = [];
-    // this.gameover = gameover;
+    // this.printGameOver = printGameOver;
+    this.gameover = gameover;
     this.ship = options.ship;
     this.shoot = options.shoot;
     this.canvas = options.canvas;
@@ -18,7 +18,7 @@ class Game {
     this.posY = options.posY;
     this.player = options.player;
     this.speed = speed;
-    // this.gameover = callback;
+    this.gameover = callback;
     this.scoreText = new Score(ctx, 10, 10);
     this.soundGame = new Audio ("./audio/Terra’s Theme (Final Fantasy VI) (320 kbps).ogx");
     this.soundShoot = new Audio ("./audio/audio_diablo_2_skull_gem_sound.mp3");
@@ -218,6 +218,7 @@ class Game {
       this.soundGame.pause();
       this._stopGame();
       this._gameover();
+      // this.printGameOver();
       // this._drawScore();
       // this.scoreText.score++;
       // this.scoreText.draw();
