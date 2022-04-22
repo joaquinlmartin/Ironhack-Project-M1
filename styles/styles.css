@@ -99,7 +99,7 @@ canvas#nemesis {
   width: 400px;
   padding-left: 5px;
 }
-/* #gameover {
+#gameover {
   font-size: 1.7em;
   text-align: center;
   border: 2px solid rgb(155, 142, 6);
@@ -112,4 +112,4 @@ canvas#nemesis {
   width: 40%;
   top: 25%;
   left: 30%;
-} */
+}
