@@ -7,7 +7,7 @@ class Game {
     this.shoots = [];
     this.shootsEnemy = [];
     // this.printGameOver = printGameOver;
-    this.gameover = gameover;
+    // this.gameover = gameover;
     this.ship = options.ship;
     this.shoot = options.shoot;
     this.canvas = options.canvas;
@@ -197,10 +197,10 @@ class Game {
     //  this.livesElement.innerHTML = this.ship.lives;
     //  this.scoreElement.innerHTML = this.score;
 }
-   _gameover() {
-    document.getElementById("gameover").style = "show; display: block;";
-    document.getElementById("gameover").style = "position: absolute;";
-}
+//    _gameover() {
+//     // document.getElementById("gameover").style = "show; display: block;";
+//     // document.getElementById("gameover").style = "position: absolute;";
+// }
 
   _update() {
     this._clean();
@@ -217,7 +217,7 @@ class Game {
       // this.ship.posX = -20;
       this.soundGame.pause();
       this._stopGame();
-      this._gameover();
+      // this._gameover();
       // this.printGameOver();
       // this._drawScore();
       // this.scoreText.score++;

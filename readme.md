@@ -28,14 +28,13 @@ Class Score
 
 ```
     this.ctx = options.ctx;
-    this.Boss = [];
     this.ship = options.ship;
-    this.score = 0;
-    this.livesElement = undefined;
-    this.scoreElement = undefined;
+    this.enemy = [];
+    this.stones = [];
+    this.shoots = [];
+    this.shootsEnemy = [];
     this.posX = options.posX;
     this.posY = options.posY;
-    this.stones = undefined; 
     this.speed = speed; 
   ```
 
@@ -45,7 +44,7 @@ Class Score
 ### Definition of the different states and their transition (transition functions):
 
 - SplashScreen - Presentation, instructions and start button
-- GameScreen - Game itself
+- GameScreen - Game
 - GameoverScreen - If you colision you die (start again)
 
 ## Links:
