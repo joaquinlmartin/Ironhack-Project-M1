@@ -1,19 +1,18 @@
 class Stones {
-    constructor(posX = 0, posY = 0, speed = 0) {
+    constructor(posX, posY, size) {
         this.posX = posX;
         this.posY = posY;
-        this.size = 10;
+        this.size = size;
+        this.size = 40;
         this.speed = 20;
-        this.width = 10;
-        this.height = 10;
         this.startMove();
-    }
-    move() {
-        this.posX = this.posX - this.speed;
     }
     startMove() {
         setInterval(() => {
             this.move();
         }, 700);
+    }
+    move() {
+        this.posX = this.posX - this.speed;
     }
 }
