@@ -47,10 +47,10 @@ const shipSprite = {
 
   const boostSprite = {
     sprite: new Image(), // Creo un nuevo objeto imagen
-    w: 2, // Le digo cuántos píxeles ocupa de width el personaje en el archivo
-    h: 2, // Le digo cuántos píxeles tiene que coger de height
-    posX: 130, // En qué x del archivo tiene que empezar a coger personaje
-    posY: 130 // En qué y del archivo tiene que empezar a coger personaje
+    w: 270, // Le digo cuántos píxeles ocupa de width el personaje en el archivo
+    h: 280, // Le digo cuántos píxeles tiene que coger de height
+    posX: 1, // En qué x del archivo tiene que empezar a coger personaje
+    posY: 1 // En qué y del archivo tiene que empezar a coger personaje
   };
   // let randomStones = Math.floor(Math.random() * this.shootSprites.length);
   boostSprite.sprite.src = "./images/22.png";

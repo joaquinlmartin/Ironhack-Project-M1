@@ -170,7 +170,7 @@ class Game {
           break;
         case 'Space':
           this.ship.posX += this.ship.speed + 20;
-          this.ctx.drawImage(boostSprite.sprite, boostSprite.posX, boostSprite.posY, boostSprite.w, boostSprite.h, this.ship.posX -20, this.ship.posY, 50, 10)
+          this.ctx.drawImage(boostSprite.sprite, boostSprite.posX, boostSprite.posY, boostSprite.w, boostSprite.h, this.ship.posX -20, this.ship.posY, 150, 20)
           break;
         case 'Enter':
           this.shoots.push(new Shoot(this.ship.posX -20, this.ship.posY -20));
