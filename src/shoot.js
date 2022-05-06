@@ -1,11 +1,9 @@
 class Shoot {
-    constructor(posX, posY, speed = 20) {
+    constructor(posX, posY, speed) {
         this.posX = posX;
         this.posY = posY;
-        this.speed = speed;
-    }
-    move() {
-        this.posX = this.posX + this.speed;
+        this.speed = speed = 20;
+        this.size = 55;
     }
     goAttack(){
         const id = setInterval(() => {      
@@ -16,18 +14,21 @@ class Shoot {
             this.move(); 
         }, 500);  
     }
+    move() {
+        this.posX = this.posX + this.speed;
+    }
     didShootCollide(enemy) {
         //Seleccionamos los 4 laterales del disparo
-        const shootLeft = this.posX +55;
-        const shootRight = this.posX + 55;
-        const shootTop = this.posY + 55;
-        const shootBottom = this.posY + 55;
+        const shootLeft = this.posX;
+        const shootRight = this.posX + this.size;
+        const shootTop = this.posY;
+        const shootBottom = this.posY + this.size;
     
         //Seleccionamos los 4 laterales del enemigo
-        const enemyLeft1 = enemy.posX + 25;
-        const enemyRight1 = enemy.posX + 25;
-        const enemyTop1 = enemy.posY + 25;
-        const enemyBottom1 = enemy.posY + 25;
+        const enemyLeft1 = enemy.posX;
+        const enemyRight1 = enemy.posX + 50;
+        const enemyTop1 = enemy.posY;
+        const enemyBottom1 = enemy.posY + 50;
     
         //Comprobamos si el enemigo ha entrado dentro del disparo por cualquiera de los 4 costados
         const crossLeft1 = enemyLeft1 <= shootRight && enemyLeft1 >= shootLeft;

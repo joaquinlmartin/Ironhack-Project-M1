@@ -2,8 +2,7 @@ class Stones {
     constructor(posX, posY, size) {
         this.posX = posX;
         this.posY = posY;
-        this.size = size;
-        this.size = 40;
+        this.size = size = 40;
         this.speed = 20;
         this.startMove();
     }

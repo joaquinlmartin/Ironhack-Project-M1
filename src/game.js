@@ -105,7 +105,7 @@ class Game {
         console.log("lives", this.ship.lives);
 
         //Mover el enemigo fuera de la pantalla
-            enemies.posX = -25;
+            this.enemy.posX = -25;
             // this.ship.posX = -20;
 
         if (this.ship.lives === 0) {
