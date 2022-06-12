@@ -21,10 +21,7 @@ Class Score
 - Styles
 - Scores
 
-## Data structure
-
-- None
-#### class Game
+## Class Game
 
 ```
     this.ctx = options.ctx;
@@ -38,10 +35,7 @@ Class Score
     this.speed = speed; 
   ```
 
-## States & States Transitions
-
--None
-### Definition of the different states and their transition (transition functions):
+## States transitions:
 
 - SplashScreen - Presentation, instructions and start button
 - GameScreen - Game
