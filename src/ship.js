@@ -1,6 +1,6 @@
 class Ship {
   constructor() {
-    this.lives = 1;
+    this.lives = 10;
     this.posX = 275;
     this.posY = 325;
     this.speed = 20;

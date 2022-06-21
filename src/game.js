@@ -5,6 +5,7 @@ class Game {
     this.enemy = [];
     this.stones = [];
     this.shoots = [];
+    // this.shoots = options.shoots;
     this.shootsEnemy = [];
     // this.printGameOver = printGameOver;
     // this.gameover = gameover;
@@ -104,12 +105,12 @@ class Game {
         this.ship.removeLife();
         console.log("lives", this.ship.lives);
 
-        //Mover el enemigo fuera de la pantalla
+        //Mover el enemigo y el jugador fuera de la pantalla
             this.enemy.posX = -25;
-            // this.ship.posX = -20;
+            this.ship.posX = -20;
 
         if (this.ship.lives === 0) {
-          // this.ship.posX = -20;
+          // this.ship.posX = -200;
           // this.gameOver();
           clearInterval(this.generateStonesInterval);
           clearInterval(this.generateEnemyInterval);
@@ -117,24 +118,8 @@ class Game {
         }
       }
     });
-    // this.enemy.forEach((enemiis) => {
-    //   if (this.shoots.didShootCollide(enemiis)) {
-    //     console.log("Puto colisions shoot funcionando!")
-    //     // this.ship.removeLife();
-    //     // console.log("lives", this.ship.lives);
-
-    //     //Mover el enemigo fuera de la pantalla
-    //         enemies.posX = -25;
-    //         // this.ship.posX = -20;
-
-    //     // if (this.ship.lives === 0) {
-    //     //   this.ship.posX = -20;
-    //     //   // this.gameOver();
-    //     // }
-    //   }
-    // });
   }
-  _checkCollisionss() {
+  _checkCollisionsStones() {
     this.stones.forEach((stonies) => {
       if (this.ship.didCollides(stonies)) {
         this.ship.removeLife();
@@ -153,6 +138,22 @@ class Game {
       }
     });
   }
+  // _checkCollisionsShoot() {
+  //   this.enemy.forEach((enemiis) => {
+  //     if (this.shoots.didShootCollide(enemiis)) {
+  //       this.shoots.removeLife();
+  //       console.log("Puto colisions shoot funcionando!")
+
+  //       //Mover el enemigo fuera de la pantalla
+  //           enemies.posX = -25;
+
+  //       // if (this.ship.lives === 0) {
+  //       //   this.ship.posX = -20;
+  //       //   // this.gameOver();
+  //       // }
+  //     }
+  //   });
+  // }
   _assignControlsToKeys() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
@@ -211,7 +212,8 @@ class Game {
     this._drawshootEnemy();
     this._drawScore();
     this._checkCollisions();
-    this._checkCollisionss();
+    this._checkCollisionsShoot();
+    this._checkCollisionsStones();
     this._updateGameStats();
     if (this.ship.lives === 0) {
       // this.ship.posX = -20;
