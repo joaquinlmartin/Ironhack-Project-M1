@@ -9,6 +9,9 @@ class Ship {
   removeLife() {
     this.lives -= 1;
   }
+  // drawBoost() {
+  //   this.ctx.drawImage(boostSprite.sprite, boostSprite.posX, boostSprite.posY, boostSprite.w, boostSprite.h, this.ship.posX - 200, this.ship.posY, 150, 20);
+  // };
   didCollide(enemy) {
     //Seleccionamos los 4 laterales del jugador
     const playerLeft = this.posX;

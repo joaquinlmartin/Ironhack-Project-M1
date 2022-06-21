@@ -21,8 +21,9 @@ class Game {
     this.speed = speed;
     this.gameover = callback;
     this.scoreText = new Score(ctx, 10, 10);
-    this.soundGame = new Audio ("./audio/Terra’s Theme (Final Fantasy VI) (320 kbps).ogx");
-    this.soundShoot = new Audio ("./audio/audio_diablo_2_skull_gem_sound.mp3");
+    this.soundGame = new Audio("./audio/Terra’s Theme (Final Fantasy VI) (320 kbps).ogx");
+    this.soundShoot = new Audio("./audio/audio_diablo_2_skull_gem_sound.mp3");
+    this.soundBoost = new Audio("./audio/Power-Up-KP-1879176533.mp3");
     // this.sound = new Audio("./audio/Cargo Plane Cabin Ambiance-SoundBible.com-589803489.mp3");
   }
   //Draw the figures ship, enemy, stones and shoot
@@ -31,7 +32,7 @@ class Game {
   }
   _drawStones() {
     this.stones.forEach((stone) => {
-      this.ctx.drawImage(stonesSprite.sprite, stonesSprite.posX, stonesSprite.posY, stonesSprite.w, stonesSprite.h,stone.posX, stone.posY, 40, 40);
+      this.ctx.drawImage(stonesSprite.sprite, stonesSprite.posX, stonesSprite.posY, stonesSprite.w, stonesSprite.h, stone.posX, stone.posY, 40, 40);
       // this.ctx.arc(160, 200, 50, 0, 2 * Math.PI);
       // this.ctx.save();
       // this.ctx.translate(200, 80);
@@ -45,24 +46,24 @@ class Game {
     })
   }
   _drawShoot() {
-      this.shoots.forEach((shoot) => {
-        this.ctx.drawImage(shootSprite.sprite, shootSprite.posX, shootSprite.posY, shootSprite.w, shootSprite.h, shoot.posX, shoot.posY, 55, 55);
-        shoot.move();
-        shoot.goAttack();
-      }); 
+    this.shoots.forEach((shoot) => {
+      this.ctx.drawImage(shootSprite.sprite, shootSprite.posX, shootSprite.posY, shootSprite.w, shootSprite.h, shoot.posX, shoot.posY, 55, 55);
+      shoot.move();
+      shoot.goAttack();
+    });
   }
   _drawshootEnemy() {
     this.shootsEnemy.forEach((shootEnemy) => {
       this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.sprite.posX, shootEnemySprite.sprite.posY, shootEnemySprite.sprite.w, shootEnemySprite.sprite.h, shootEnemy.posX, shootEnemy.posY, 55, 55);
-    }); 
-}
+    });
+  }
   _drawScore() {
-  this.ctx.beginPath();
-  this.ctx.font = "30px verdana";
-  this.ctx.fillStyle = 'white';
-  this.ctx.fillText("Score: " + this.score, this.score.posX, this.score.posY, 5, 30);
-  this.ctx.closePath();
-}
+    this.ctx.beginPath();
+    this.ctx.font = "30px verdana";
+    this.ctx.fillStyle = 'white';
+    this.ctx.fillText("Score: " + this.score, this.score.posX, this.score.posY, 5, 30);
+    this.ctx.closePath();
+  }
   //Generate figures
   _generateStones() {
     function getRandomInt(min, max) {
@@ -106,8 +107,8 @@ class Game {
         console.log("lives", this.ship.lives);
 
         //Mover el enemigo y el jugador fuera de la pantalla
-            this.enemy.posX = -25;
-            this.ship.posX = -20;
+        this.enemy.posX = -25;
+        this.ship.posX = -20;
 
         if (this.ship.lives === 0) {
           // this.ship.posX = -200;
@@ -126,8 +127,8 @@ class Game {
         console.log("lives", this.ship.lives);
 
         //Mover el enemigo fuera de la pantalla
-            stonies.posX = -40;
-            // this.ship.posX = -20;
+        stonies.posX = -40;
+        // this.ship.posX = -20;
 
         // if (this.ship.lives === 0) {
         //   // this._stopGame();
@@ -171,10 +172,11 @@ class Game {
           break;
         case 'Space':
           this.ship.posX += this.ship.speed + 20;
-          this.ctx.drawImage(boostSprite.sprite, boostSprite.posX, boostSprite.posY, boostSprite.w, boostSprite.h, this.ship.posX -20, this.ship.posY, 150, 20)
+          this.soundBoost.play();
+          // this.drawBoost();
           break;
         case 'Enter':
-          this.shoots.push(new Shoot(this.ship.posX -20, this.ship.posY -20));
+          this.shoots.push(new Shoot(this.ship.posX - 20, this.ship.posY - 20));
           this.soundShoot.play();
           break;
         default:
@@ -184,24 +186,24 @@ class Game {
   }
   _clean() {
     this.ctx.fillStyle = 'black';
-    this.ctx.drawImage(canvasSprite.sprite, canvasSprite.posX, canvasSprite.posY, canvasSprite.w, canvasSprite.h,0, 0, 1280, 720);
+    this.ctx.drawImage(canvasSprite.sprite, canvasSprite.posX, canvasSprite.posY, canvasSprite.w, canvasSprite.h, 0, 0, 1280, 720);
   }
-  _stopGame(){
+  _stopGame() {
     console.log("game stopped");
     clearInterval(this.interval);
     // this.enemy.forEach((enemies) => clearInterval(enemies.interval));
     // this.stones.forEach((stoness) => clearInterval(stoness.interval));
     // this.shoots.forEach((shootss) => clearInterval(shootss.interval));
-}
-   _updateGameStats() {
-     this.score += 10;
+  }
+  _updateGameStats() {
+    this.score += 10;
     //  this.livesElement.innerHTML = this.ship.lives;
     //  this.scoreElement.innerHTML = this.score;
-}
-//    _gameover() {
-//     // document.getElementById("gameover").style = "show; display: block;";
-//     // document.getElementById("gameover").style = "position: absolute;";
-// }
+  }
+  //    _gameover() {
+  //     // document.getElementById("gameover").style = "show; display: block;";
+  //     // document.getElementById("gameover").style = "position: absolute;";
+  // }
 
   _update() {
     this._clean();
@@ -212,8 +214,8 @@ class Game {
     this._drawshootEnemy();
     this._drawScore();
     this._checkCollisions();
-    this._checkCollisionsShoot();
     this._checkCollisionsStones();
+    // this._checkCollisionsShoot();
     this._updateGameStats();
     if (this.ship.lives === 0) {
       // this.ship.posX = -20;

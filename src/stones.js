@@ -9,9 +9,13 @@ class Stones {
     startMove() {
         setInterval(() => {
             this.move();
+            // this.rotate();
         }, 700);
     }
     move() {
         this.posX = this.posX - this.speed;
     }
+    // rotate() {
+    //     this.posX + this.posY == this.posX & this.posY - this.speed;
+    // }
 }
