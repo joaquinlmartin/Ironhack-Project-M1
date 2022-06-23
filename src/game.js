@@ -33,6 +33,12 @@ class Game {
   _drawStones() {
     this.stones.forEach((stone) => {
       this.ctx.drawImage(stonesSprite.sprite, stonesSprite.posX, stonesSprite.posY, stonesSprite.w, stonesSprite.h, stone.posX, stone.posY, 40, 40);
+      // function getRandomInt(stonesSprite, stonesSprite2) {
+      //   return Math.floor(Math.random() * (stonesSprite2 - stonesSprite)) + stonesSprite;
+      // }
+      // this.ctx.drawImage(getRandomInt(stonesSprite.sprite, stonesSprite.posX, stonesSprite.posY, stonesSprite.w, stonesSprite.h, stone.posX, stone.posY, 40, 40), getRandomInt(stonesSprite2.sprite, stonesSprite2.posX, stonesSprite2.posY, stonesSprite2.w, stonesSprite2.h, stone.posX, stone.posY, 40, 40));
+
+      // this.ctx.drawImage(stonesSprite2.sprite, stonesSprite2.posX, stonesSprite2.posY, stonesSprite2.w, stonesSprite2.h, stone.posX, stone.posY, 40, 40);
       // this.ctx.arc(160, 200, 50, 0, 2 * Math.PI);
       // this.ctx.save();
       // this.ctx.translate(200, 80);
