@@ -21,9 +21,9 @@ class Game {
     this.speed = speed;
     this.gameover = callback;
     this.scoreText = new Score(ctx, 10, 10);
-    this.soundGame = new Audio("./audio/Terra’s Theme (Final Fantasy VI) (320 kbps).ogx");
-    this.soundShoot = new Audio("./audio/audio_diablo_2_skull_gem_sound.mp3");
-    this.soundBoost = new Audio("./audio/Power-Up-KP-1879176533.mp3");
+    this.soundGame = new Audio("./audio/Terra’s Theme (Final Fantasy VI).mp3");
+    this.soundShoot = new Audio("./audio/Diablo 2 Skull.mp3");
+    this.soundBoost = new Audio("./audio/Power Up Estridente.mp3");
     // this.sound = new Audio("./audio/Cargo Plane Cabin Ambiance-SoundBible.com-589803489.mp3");
   }
   //Draw the figures ship, enemy, stones and shoot
@@ -234,6 +234,7 @@ class Game {
     // Save references to the score and lives elements
     // this.livesElement = this.gameScreen.querySelector(".lives .value");
     // this.scoreElement = this.gameScreen.querySelector(".score .value");
+    // this.soundSplash.stop();
     this.soundGame.play();
     this._assignControlsToKeys(0);
     this._generateStones();

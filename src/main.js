@@ -45,5 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     win.classList.remove('hide');
 }
   createSplashScreen();
+  this.soundSplash = new Audio("./audio/Rocket.mp3");
+  this.soundSplash.play();
 });
-
