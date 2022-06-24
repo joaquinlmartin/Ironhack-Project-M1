@@ -1,11 +1,11 @@
 class Game {
-  constructor(options, ctx, gameScreen, gameOver, speed, callback) {
+  constructor(options, ctx, gameScreen, gameover, speed, callback) {
     this.gameScreen = gameScreen;
     this.ctx = options.ctx;
     this.enemy = [];
     this.stones = [];
     this.shoots = [];
-    this.powerup = [];
+    this.powerups = [];
     // this.shoots = options.shoots;
     this.shootsEnemy = [];
     // this.printGameOver = printGameOver;
@@ -64,9 +64,9 @@ class Game {
       this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.sprite.posX, shootEnemySprite.sprite.posY, shootEnemySprite.sprite.w, shootEnemySprite.sprite.h, shootEnemy.posX, shootEnemy.posY, 55, 55);
     });
   }
-  _drawPowerup() {
-    this.powerup.forEach((powerup) => {
-      this.ctx.drawImage(powerupSprite.sprite, powerupSprite.sprite.posX, powerupSprite.sprite.posY, powerupSprite.sprite.w, powerupSprite.sprite.h, powerup.posX, powerup.posY, 50, 50);
+  _drawPowerups() {
+    this.powerups.forEach((powerup) => {
+      this.ctx.drawImage(powerupsSprite.sprite, powerupsSprite.sprite.posX, powerupsSprite.sprite.posY, powerupsSprite.sprite.w, powerupsSprite.sprite.h, powerup.posX, powerup.posY, 40, 40);
     })
   }
   _drawScore() {
@@ -99,16 +99,16 @@ class Game {
       this._generateEnemy();
     }, 2000);
   }
-  _generatePowerup() {
+  _generatePowerups() {
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
     }
-    this.powerup.push(new Powerup(getRandomInt(0, 1280), getRandomInt(20, 400)));
+    this.powerups.push(new Powerups(getRandomInt(0, 1280), getRandomInt(20, 700)));
   }
-  _generatePowerupInterval() {
+  _generatePowerupsInterval() {
     setInterval(() => {
-      this._generatePowerup();
-    }, 2000);
+      this._generatePowerups();
+    }, 1000);
   }
   _generateShootEnemy() {
     function getRandomInt(min, max) {
@@ -208,7 +208,6 @@ class Game {
     });
   }
   _clean() {
-    this.ctx.fillStyle = 'black';
     this.ctx.drawImage(canvasSprite.sprite, canvasSprite.posX, canvasSprite.posY, canvasSprite.w, canvasSprite.h, 0, 0, 1280, 720);
   }
   _stopGame() {
@@ -223,9 +222,9 @@ class Game {
     //  this.livesElement.innerHTML = this.ship.lives;
     //  this.scoreElement.innerHTML = this.score;
   }
-  //    _gameover() {
-  //     // document.getElementById("gameover").style = "show; display: block;";
-  //     // document.getElementById("gameover").style = "position: absolute;";
+  // _gameover() {
+  //   document.getElementById("gameover").style = "show; display: block;";
+  //   document.getElementById("gameover").style = "position: absolute;";
   // }
 
   _update() {
@@ -234,7 +233,7 @@ class Game {
     this._drawStones();
     this._drawEnemy();
     this._drawShoot();
-    this._drawPowerup();
+    this._drawPowerups();
     this._drawshootEnemy();
     this._drawScore();
     this._checkCollisions();
@@ -245,7 +244,7 @@ class Game {
       // this.ship.posX = -20;
       this.soundGame.pause();
       this._stopGame();
-      this._gameOver();
+      this._gameover();
       // this.printGameOver();
       // this._drawScore();
       // this.scoreText.score++;
@@ -265,8 +264,8 @@ class Game {
     this._generateStonesInterval();
     this._generateEnemy();
     this._generateEnemyInterval();
-    this._generatePowerup();
-    this._generatePowerupInterval();
+    this._generatePowerups();
+    this._generatePowerupsInterval();
     this._generateShootEnemy();
     this._generateShootEnemyInterval();
     window.requestAnimationFrame(this._update.bind(this));
