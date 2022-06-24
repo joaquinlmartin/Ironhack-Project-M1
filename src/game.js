@@ -1,14 +1,15 @@
 class Game {
-  constructor(options, ctx, gameScreen, gameover, speed, callback) {
-    // this.gameScreen = gameScreen;
+  constructor(options, ctx, gameScreen, gameOver, speed, callback) {
+    this.gameScreen = gameScreen;
     this.ctx = options.ctx;
     this.enemy = [];
     this.stones = [];
     this.shoots = [];
+    this.powerup = [];
     // this.shoots = options.shoots;
     this.shootsEnemy = [];
     // this.printGameOver = printGameOver;
-    // this.gameover = gameover;
+    this.gameover = gameover;
     this.ship = options.ship;
     this.shoot = options.shoot;
     this.canvas = options.canvas;
@@ -19,7 +20,7 @@ class Game {
     this.posY = options.posY;
     this.player = options.player;
     this.speed = speed;
-    this.gameover = callback;
+    // this.gameover = callback;
     this.scoreText = new Score(ctx, 10, 10);
     this.soundGame = new Audio("./audio/Terra’s Theme (Final Fantasy VI).mp3");
     this.soundShoot = new Audio("./audio/Diablo 2 Skull.mp3");
@@ -63,6 +64,11 @@ class Game {
       this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.sprite.posX, shootEnemySprite.sprite.posY, shootEnemySprite.sprite.w, shootEnemySprite.sprite.h, shootEnemy.posX, shootEnemy.posY, 55, 55);
     });
   }
+  _drawPowerup() {
+    this.powerup.forEach((powerup) => {
+      this.ctx.drawImage(powerupSprite.sprite, powerupSprite.sprite.posX, powerupSprite.sprite.posY, powerupSprite.sprite.w, powerupSprite.sprite.h, powerup.posX, powerup.posY, 50, 50);
+    })
+  }
   _drawScore() {
     this.ctx.beginPath();
     this.ctx.font = "30px verdana";
@@ -91,6 +97,17 @@ class Game {
   _generateEnemyInterval() {
     setInterval(() => {
       this._generateEnemy();
+    }, 2000);
+  }
+  _generatePowerup() {
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+    this.powerup.push(new Powerup(getRandomInt(0, 1280), getRandomInt(20, 400)));
+  }
+  _generatePowerupInterval() {
+    setInterval(() => {
+      this._generatePowerup();
     }, 2000);
   }
   _generateShootEnemy() {
@@ -217,6 +234,7 @@ class Game {
     this._drawStones();
     this._drawEnemy();
     this._drawShoot();
+    this._drawPowerup();
     this._drawshootEnemy();
     this._drawScore();
     this._checkCollisions();
@@ -227,7 +245,7 @@ class Game {
       // this.ship.posX = -20;
       this.soundGame.pause();
       this._stopGame();
-      // this._gameover();
+      this._gameOver();
       // this.printGameOver();
       // this._drawScore();
       // this.scoreText.score++;
@@ -247,6 +265,8 @@ class Game {
     this._generateStonesInterval();
     this._generateEnemy();
     this._generateEnemyInterval();
+    this._generatePowerup();
+    this._generatePowerupInterval();
     this._generateShootEnemy();
     this._generateShootEnemyInterval();
     window.requestAnimationFrame(this._update.bind(this));

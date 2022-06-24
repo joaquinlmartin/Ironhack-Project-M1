@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const startButton = document.querySelector('#start');
     startButton.addEventListener('click', () => {
       menu.classList.add('hide');
-      const game = document.getElementById('game');
+      let game = document.getElementById('game');
       game.classList.remove('hide');
       game.classList.add('show');
       let canvas = game.querySelector('#nemesis');
@@ -29,9 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function tryAgain() {
     const tryAgain = document.querySelector('#retry');
     tryAgain.addEventListener('click', function(){
-        let gameOver = document.querySelector('#gameover');
-        gameOver.classList.remove('show');
-        gameOver.classList.add('hide');
+        let gameover = document.querySelector('#gameover');
+        gameover.classList.remove('show');
+        gameover.classList.add('hide');
         nemesisGame();
       })
 }
