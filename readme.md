@@ -14,6 +14,7 @@ Class Stones
 Class Shoot
 Class Sounds
 Class Score
+Class Powerups
 Main
 Assets
 
