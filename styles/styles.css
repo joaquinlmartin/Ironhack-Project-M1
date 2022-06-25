@@ -109,6 +109,7 @@ canvas#nemesis {
   margin: 0 auto;
   padding: 20px;
   width: 40%;
+  height: 200;
   top: 25%;
   left: 30%;
 }
