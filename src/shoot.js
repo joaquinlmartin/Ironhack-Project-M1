@@ -1,9 +1,9 @@
 class Shoot {
-    constructor(posX, posY, speed) {
+    constructor(posX, posY) {
         this.lives = 1;
         this.posX = posX;
         this.posY = posY;
-        this.speed = speed = 20;
+        this.speed = 20;
         this.size = 55;
     }
     removeLife() {
@@ -48,12 +48,13 @@ class Shoot {
     //     }
     //   }
 }
-class shootEnemy extends Shoot {
-    constructor (posX, posY, speed= 20) {
-        super(posX, posY, speed= 20)
+class ShootEnemy extends Shoot {
+    constructor (posX, posY, rotate) {
+        super(posX, posY)
         this.posX = posX;
         this.posY = posY;
         this.speed = speed;
+        this.rotate = rotate;
     }
     move() {
         this.posX = this.posX - this.speed;
