@@ -31,13 +31,13 @@ class Game {
   _drawShip() {
     this.ctx.drawImage(shipSprite.sprite, shipSprite.posX, shipSprite.posY, shipSprite.w, shipSprite.h, this.ship.posX, this.ship.posY, 20, 20);
   }
-  _drawStones(width= 40, height = 40, deg = 15) {
+  _drawStones(width= 40, height = 40, deg) {
     this.stones.forEach((stone) => {
       this.ctx.save();
       var rad = deg * Math.PI / 180;
       this.ctx.translate(this.posX + this.width / 2, this.poxY + this.height / 2);
       this.ctx.rotate(rad);
-      this.ctx.drawImage(stonesSprite.sprite, stonesSprite.posX, stonesSprite.posY, stonesSprite.w, stonesSprite.h, stone.posX, stone.posY, width, height);
+      this.ctx.drawImage(stonesSprite.sprite, stonesSprite.posX, stonesSprite.posY, stonesSprite.w, stonesSprite.h, stone.posX, stone.posY, width, height, 40, 40);
       this.ctx.restore();
       // function getRandomInt(stonesSprite, stonesSprite2) {
       //   return Math.floor(Math.random() * (stonesSprite2 - stonesSprite)) + stonesSprite;
@@ -119,7 +119,7 @@ class Game {
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
     }
-    this.shootsEnemy.push(new shootEnemy(getRandomInt(0, 1280), getRandomInt(20, 600)));
+    //this.shootsEnemy.push(new shootEnemy(getRandomInt(0, 1280), getRandomInt(20, 600)));
     // this.shootsEnemy.push(new shootEnemy(this.enemy.posX -20, this.enemy.posY -20));
   }
   _generateShootEnemyInterval() {
