@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
       game.classList.add('show');
       let canvas = game.querySelector('#nemesis');
       const ctx = canvas.getContext('2d');
-      const nemesisGame = new Game({ctx: ctx, ship: new Ship (10, 10, "N"),}, gameover, victory);
+      const nemesisGame = new Game({ ctx: ctx, ship: new Ship(10, 10, "N"), }, gameover, victory);
       nemesisGame.start();
     });
   }
@@ -24,26 +24,26 @@ document.addEventListener('DOMContentLoaded', () => {
     gameover.classList.add('show');
     tryAgain();
   }
-  
+
   //Retry game
   function tryAgain() {
     const tryAgain = document.querySelector('#retry');
-    tryAgain.addEventListener('click', function(){
-        let gameover = document.querySelector('#gameover');
-        gameover.classList.remove('show');
-        gameover.classList.add('hide');
-        nemesisGame();
-      })
-}
+    tryAgain.addEventListener('click', function () {
+      let gameover = document.querySelector('#gameover');
+      gameover.classList.remove('show');
+      gameover.classList.add('hide');
+      nemesisGame();
+    })
+  }
 
   //Win the game
-  function victory(){
+  function victory() {
     let win = document.querySelector('#win');
     let canvas = document.querySelector('#nemesis');
     canvas.classList.remove('show');
     canvas.classList.add('hide');
     win.classList.remove('hide');
-}
+  }
   createSplashScreen();
   this.soundSplash = new Audio("./audio/Rocket.mp3");
   this.soundSplash.play();

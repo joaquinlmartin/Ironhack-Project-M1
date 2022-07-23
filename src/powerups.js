@@ -1,5 +1,5 @@
 class Powerups {
-    constructor (posX, posY, size) {
+    constructor(posX, posY, size) {
         this.posX = posX;
         this.posY = posY;
         this.size = size = 40;
