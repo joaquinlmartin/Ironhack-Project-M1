@@ -2,7 +2,7 @@ class Stones {
     constructor(posX, posY, ctx) {
         this.posX = posX;
         this.posY = posY;
-        this.size  = 40;
+        this.size = 40;
         this.speed = 20;
         this.startMove();
     }
@@ -15,8 +15,8 @@ class Stones {
     move() {
         this.posX = this.posX - this.speed;
     }
-     //rotate() {
-        //this.ctx.translate(posX, posY);
-        //this.ctx.rotate(45 * Math.PI / 180);
-     //}
+    //rotate() {
+    //this.ctx.translate(posX, posY);
+    //this.ctx.rotate(45 * Math.PI / 180);
+    //}
 }

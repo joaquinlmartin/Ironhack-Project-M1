@@ -15,8 +15,8 @@ class Enemy {
     }
     _drawShoot() {
         this.shoots.forEach((shoot) => {
-          this.ctx.drawImage(shootSprite.sprite, shootSprite.posX, shootSprite.posY, shootSprite.w, shootSprite.h, shoot.posX, shoot.posY, 55, 55);
-        }); 
+            this.ctx.drawImage(shootSprite.sprite, shootSprite.posX, shootSprite.posY, shootSprite.w, shootSprite.h, shoot.posX, shoot.posY, 55, 55);
+        });
     }
     startMove() {
         setInterval(() => {

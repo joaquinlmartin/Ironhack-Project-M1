@@ -2,11 +2,13 @@ html {
   box-sizing: border-box;
   height: 100%;
 }
+
 *,
 *:before,
 *:after {
   box-sizing: inherit;
 }
+
 body {
   background-color: black;
   background-size: cover;
@@ -17,6 +19,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
 .splashscreen {
   background-size: cover;
   top: 0;
@@ -31,6 +34,7 @@ body {
   justify-content: center;
   align-items: flex-end;
 }
+
 .title-splashscreen {
   position: absolute;
   font-size: 8em;
@@ -38,12 +42,14 @@ body {
   color: rgb(203, 216, 21);
   margin-bottom: 250px;
 }
+
 .controls-splashscreen {
   display: block;
   font-size: 1.5em;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: rgb(203, 216, 21);
 }
+
 button {
   position: absolute;
   background-color: rgb(17, 16, 2);
@@ -57,7 +63,8 @@ button {
   margin-block: 250px;
   align-items: center;
 }
-.game{
+
+.game {
   width: 980px;
   height: 579px;
   display: flex;
@@ -65,6 +72,7 @@ button {
   align-items: flex-end;
   position: absolute;
 }
+
 canvas#nemesis {
   position: absolute;
   font-size: 2em;
@@ -76,17 +84,21 @@ canvas#nemesis {
   border-radius: 20px;
   border-style: double;
 }
+
 .container {
   margin: 0 auto;
   width: 200px;
 }
+
 .hide {
   display: none;
 }
+
 .show {
   display: block;
-  
+
 }
+
 .gameover {
   border: 3px solid rgb(155, 142, 6);
   border-radius: 20px;

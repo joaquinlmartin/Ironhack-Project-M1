@@ -31,7 +31,7 @@ class Game {
   _drawShip() {
     this.ctx.drawImage(shipSprite.sprite, shipSprite.posX, shipSprite.posY, shipSprite.w, shipSprite.h, this.ship.posX, this.ship.posY, 20, 20);
   }
-  _drawStones(width= 40, height = 40, deg) {
+  _drawStones(width = 40, height = 40, deg) {
     this.stones.forEach((stone) => {
       this.ctx.save();
       var rad = deg * Math.PI / 180;
@@ -45,7 +45,7 @@ class Game {
       // this.ctx.drawImage(getRandomInt(stonesSprite.sprite, stonesSprite.posX, stonesSprite.posY, stonesSprite.w, stonesSprite.h, stone.posX, stone.posY, 40, 40), getRandomInt(stonesSprite2.sprite, stonesSprite2.posX, stonesSprite2.posY, stonesSprite2.w, stonesSprite2.h, stone.posX, stone.posY, 40, 40));
 
       // this.ctx.drawImage(stonesSprite2.sprite, stonesSprite2.posX, stonesSprite2.posY, stonesSprite2.w, stonesSprite2.h, stone.posX, stone.posY, 40, 40);
-       //this.ctx.arc(160, 200, 50, 0, 2 * Math.PI);
+      //this.ctx.arc(160, 200, 50, 0, 2 * Math.PI);
       // this.ctx.save();
       // this.ctx.translate(200, 80);
       // this.ctx.rotate((Math.PI / 180) * 360);
