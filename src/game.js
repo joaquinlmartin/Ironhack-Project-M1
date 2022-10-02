@@ -15,6 +15,7 @@ class Game {
     this.soundGame = new Audio("./audio/Terra’s Theme (Final Fantasy VI).mp3");
     this.soundShoot = new Audio("./audio/Diablo 2 Skull.mp3");
     this.soundBoost = new Audio("./audio/Power Up Estridente.mp3");
+    this.soundGameOver = new Audio("./audio/Dark Souls Death.mp3");
   }
   //Draw the figures ship, enemy, stones and shoot
   _drawShip() {
@@ -204,6 +205,7 @@ class Game {
     canvas.classList.add('hide');
     gameover.classList.remove('hide');
     gameover.classList.add('show');
+    this.soundGameOver.play();
   }
 
   _update() {
