@@ -87,29 +87,18 @@ canvas#nemesis {
   display: block;
   
 }
-.gameover {
-  border: 3px solid rgb(155, 142, 6);
-  border-radius: 20px;
-  background-color: rgb(9, 19, 77);
-
-  margin-left: 165px;
-  font-size: 1.2em;
-  width: 400px;
-  padding-left: 5px;
-}
 
 #gameover {
-  font-size: 1.7em;
-  text-align: center;
-  border: 2px solid rgb(155, 142, 6);
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 10px solid rgb(155, 142, 6);
   border-radius: 20px;
-  box-sizing: border-box;
+  border-style: double;
   background-color: rgb(239, 11, 11);
-  box-shadow: 2px 2px 10px 0 rgb(2, 2, 2);
-  margin: 0 auto;
+  text-align: center;
+  font-size: 2em;
   padding: 20px;
-  width: 40%;
-  height: 200;
-  top: 25%;
-  left: 30%;
+  width: 50%;
 }

@@ -3,26 +3,24 @@ document.addEventListener('DOMContentLoaded', () => {
   function createSplashScreen() {
     const startButton = document.querySelector('#start');
     startButton.addEventListener('click', () => {
-      menu.classList.add('hide');
+      splashcreen.classList.add('hide');
       let game = document.getElementById('game');
       game.classList.remove('hide');
       game.classList.add('show');
       let canvas = game.querySelector('#nemesis');
       const ctx = canvas.getContext('2d');
-      const nemesisGame = new Game({ctx: ctx, ship: new Ship (10, 10, "N"),}, gameover, victory);
+      const nemesisGame = new Game({ctx: ctx, ship: new Ship (10, 10, "N"),}, createGameover, createVictory);
       nemesisGame.start();
     });
   }
   // Game Over Screen
-  function gameover() {
-    let gameover = document.getElementById('gameover');
-    // let gameover = document.querySelector('#gameOver');
-    const canvas = document.getElementById('nemesis');
+  function createGameover() {
+    let gameover = document.querySelector('#gameover');
+    const canvas = document.querySelector('#nemesis');
     canvas.classList.remove('show');
     canvas.classList.add('hide');
-    gameover.classList.remove('hide');
+    gameover.classList.remove('hide');/*  */
     gameover.classList.add('show');
-    tryAgain();
   }
   
   //Retry game
@@ -37,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
   //Win the game
-  function victory(){
+  function createVictory(){
     let win = document.querySelector('#win');
     let canvas = document.querySelector('#nemesis');
     canvas.classList.remove('show');
@@ -45,6 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
     win.classList.remove('hide');
 }
   createSplashScreen();
-  this.soundSplash = new Audio("./audio/Rocket.mp3");
+  /* this.soundSplash = new Audio("./audio/Rocket.mp3"); */
   this.soundSplash.play();
 });

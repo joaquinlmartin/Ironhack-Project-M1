@@ -1,31 +1,20 @@
 class Game {
-  constructor(options, ctx, gameScreen, gameover, speed, callback) {
-    this.gameScreen = gameScreen;
+  constructor(options, ctx) {
     this.ctx = options.ctx;
     this.enemy = [];
     this.stones = [];
     this.shoots = [];
     this.powerups = [];
-    // this.shoots = options.shoots;
     this.shootsEnemy = [];
-    // this.printGameOver = printGameOver;
-    this.gameover = gameover;
     this.ship = options.ship;
     this.shoot = options.shoot;
-    this.canvas = options.canvas;
-    this.score = 0;
-    // this.livesElement = undefined;
-    // this.scoreElement = undefined;
     this.posX = options.posX;
     this.posY = options.posY;
-    this.player = options.player;
-    this.speed = speed;
-    // this.gameover = callback;
+    this.score = 0;
     this.scoreText = new Score(ctx, 10, 10);
     this.soundGame = new Audio("./audio/Terra’s Theme (Final Fantasy VI).mp3");
     this.soundShoot = new Audio("./audio/Diablo 2 Skull.mp3");
     this.soundBoost = new Audio("./audio/Power Up Estridente.mp3");
-    // this.sound = new Audio("./audio/Cargo Plane Cabin Ambiance-SoundBible.com-589803489.mp3");
   }
   //Draw the figures ship, enemy, stones and shoot
   _drawShip() {
@@ -81,6 +70,7 @@ class Game {
     this.ctx.fillText("Score: " + this.score, this.score.posX, this.score.posY, 5, 30);
     this.ctx.closePath();
   }
+
   //Generate figures
   _generateStones() {
     function getRandomInt(min, max) {
@@ -127,6 +117,7 @@ class Game {
       this._generateShootEnemy();
     }, 2000);
   }
+
   //Collisions
   _checkCollisions() {
     this.enemy.forEach((enemies) => {
@@ -137,14 +128,6 @@ class Game {
         //Mover el enemigo y el jugador fuera de la pantalla
         this.enemy.posX = -25;
         this.ship.posX = -20;
-
-        if (this.ship.lives === 0) {
-          // this.ship.posX = -200;
-          // this.gameOver();
-          clearInterval(this.generateStonesInterval);
-          clearInterval(this.generateEnemyInterval);
-          this._stopGame();
-        }
       }
     });
   }
@@ -156,14 +139,6 @@ class Game {
 
         //Mover el enemigo fuera de la pantalla
         stonies.posX = -40;
-        // this.ship.posX = -20;
-
-        // if (this.ship.lives === 0) {
-        //   // this._stopGame();
-        //   // this.ship.posX = -20;
-        //   // this.gameOver();
-        //   // clearInterval(this.generateStonesInterval);
-        // }
       }
     });
   }
@@ -175,11 +150,6 @@ class Game {
 
   //       //Mover el enemigo fuera de la pantalla
   //           enemies.posX = -25;
-
-  //       // if (this.ship.lives === 0) {
-  //       //   this.ship.posX = -20;
-  //       //   // this.gameOver();
-  //       // }
   //     }
   //   });
   // }
@@ -225,12 +195,16 @@ class Game {
   _updateGameStats() {
     this.score += 10;
     //  this.livesElement.innerHTML = this.ship.lives;
-    //  this.scoreElement.innerHTML = this.score;
+    //  this.scoreElement.innerHTML = this.score
   }
-  // _gameover() {
-  //   document.getElementById("gameover").style = "show; display: block;";
-  //   document.getElementById("gameover").style = "position: absolute;";
-  // }
+  _gameOver() {
+    let gameover = document.querySelector('#gameover');
+    const canvas = document.querySelector('#nemesis');
+    canvas.classList.remove('show');
+    canvas.classList.add('hide');
+    gameover.classList.remove('hide');
+    gameover.classList.add('show');
+  }
 
   _update() {
     this._clean();
@@ -246,11 +220,9 @@ class Game {
     // this._checkCollisionsShoot();
     this._updateGameStats();
     if (this.ship.lives === 0) {
-      // this.ship.posX = -20;
       this.soundGame.pause();
       this._stopGame();
-      this._gameover();
-      // this.printGameOver();
+      this._gameOver();
       // this._drawScore();
       // this.scoreText.score++;
       // this.scoreText.draw();
