@@ -39,8 +39,8 @@ body {
   margin-bottom: 250px;
 }
 .controls-splashscreen {
-  display: block;
-  font-size: 1.5em;
+  display: flex;
+  font-size : 30px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: rgb(203, 216, 21);
 }
