@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.classList.add('hide');
     win.classList.remove('hide');
 }
+
   createSplashScreen();
   /* this.soundSplash = new Audio("./audio/Rocket.mp3"); */
   this.soundSplash.play();

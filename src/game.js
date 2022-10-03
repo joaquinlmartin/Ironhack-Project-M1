@@ -1,7 +1,6 @@
 class Game {
-  constructor(options, ctx, nemesisGame) {
+  constructor(options, ctx) {
     this.ctx = options.ctx;
-    this.nemesisGame = options.nemesisGame;
     this.enemy = [];
     this.stones = [];
     this.shoots = [];
@@ -126,7 +125,6 @@ class Game {
       if (this.ship.didCollide(enemies)) {
         this.ship.removeLife();
         console.log("lives", this.ship.lives);
-
         //Mover el enemigo y el jugador fuera de la pantalla
         this.enemy.posX = -25;
         this.ship.posX = -20;
@@ -194,6 +192,13 @@ class Game {
     // this.stones.forEach((stoness) => clearInterval(stoness.interval));
     // this.shoots.forEach((shootss) => clearInterval(shootss.interval));
   }
+  _playGame() {
+    console.log("game replay");
+    this._update();
+    // this.enemy.forEach((enemies) => clearInterval(enemies.interval));
+    // this.stones.forEach((stoness) => clearInterval(stoness.interval));
+    // this.shoots.forEach((shootss) => clearInterval(shootss.interval));
+  }
   _updateGameStats() {
     this.score += 10;
     //  this.livesElement.innerHTML = this.ship.lives;
@@ -216,7 +221,6 @@ class Game {
         let gameover = document.querySelector('#gameover');
         gameover.classList.remove('show');
         gameover.classList.add('hide');
-        document.getElementById('nemesis').addEventListener('click', start);
       })}
   _update() {
     this._clean();
