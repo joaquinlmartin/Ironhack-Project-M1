@@ -1,6 +1,7 @@
 class Game {
-  constructor(options, ctx) {
+  constructor(options, ctx, nemesisGame) {
     this.ctx = options.ctx;
+    this.nemesisGame = options.nemesisGame;
     this.enemy = [];
     this.stones = [];
     this.shoots = [];
@@ -206,8 +207,17 @@ class Game {
     gameover.classList.remove('hide');
     gameover.classList.add('show');
     this.soundGameOver.play();
+    this._tryAgain()
   }
-
+  _tryAgain() {
+    const tryAgain = document.querySelector('#try-again');
+    tryAgain.addEventListener('click', function(){
+        console.log('try again funcando');
+        let gameover = document.querySelector('#gameover');
+        gameover.classList.remove('show');
+        gameover.classList.add('hide');
+        document.getElementById('nemesis').addEventListener('click', start);
+      })}
   _update() {
     this._clean();
     this._drawShip();

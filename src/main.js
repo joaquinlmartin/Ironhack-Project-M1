@@ -21,15 +21,20 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.classList.add('hide');
     gameover.classList.remove('hide');/*  */
     gameover.classList.add('show');
+    tryAgain();
   }
   
   //Retry game
   function tryAgain() {
-    const tryAgain = document.querySelector('#retry');
+    const tryAgain = document.querySelector('#try-again');
     tryAgain.addEventListener('click', function(){
+        console.log('me estan pinchando auch');
         let gameover = document.querySelector('#gameover');
+        const canvas = document.querySelector('#nemesis');
         gameover.classList.remove('show');
         gameover.classList.add('hide');
+        canvas.classList.remove('hide');
+        canvas.classList.add('show');
         nemesisGame();
       })
 }
