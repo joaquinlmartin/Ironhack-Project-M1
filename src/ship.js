@@ -1,6 +1,6 @@
 class Ship {
   constructor() {
-    this.lives = 1;
+    this.lives = 11;
     this.posX = 275;
     this.posY = 325;
     this.speed = 20;
@@ -38,7 +38,7 @@ class Ship {
       return false;
     }
   }
-  didCollides(stones) {
+  didCollideStones(stones) {
     //Seleccionamos los 4 laterales del jugador
     const playerLeft = this.posX;
     const playerRight = this.posX + this.size;
@@ -59,7 +59,7 @@ class Ship {
     const crossTopStone = stonesTop <= playerBottom && stonesTop >= playerTop;
 
     //Solo cuando 1 condición de verticalidad y 1 de horizontalidad se cumplen, podemos considerar que nnuestros cuadrados han  colisionado
-    if ((crossLeftStone || crossRightStone) && (crossBottomStone || crossTopStone)) {
+    if ((crossLeftStone || crossRightStone) && (crossTopStone  || crossBottomStone)) {
       return true;
     } else {
       return false;

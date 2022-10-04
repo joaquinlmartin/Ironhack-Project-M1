@@ -21,13 +21,13 @@ class Game {
   _drawShip() {
     this.ctx.drawImage(shipSprite.sprite, shipSprite.posX, shipSprite.posY, shipSprite.w, shipSprite.h, this.ship.posX, this.ship.posY, 20, 20);
   }
-  _drawStones(width= 40, height = 40, deg = 15) {
+  _drawStones(deg = 15) {
     this.stones.forEach((stone) => {
       this.ctx.save();
       var rad = deg * Math.PI / 180;
       this.ctx.translate(this.posX + this.width / 2, this.poxY + this.height / 2);
       this.ctx.rotate(rad);
-      this.ctx.drawImage(stonesSprite.sprite, stonesSprite.posX, stonesSprite.posY, stonesSprite.w, stonesSprite.h, stone.posX, stone.posY, width, height);
+      this.ctx.drawImage(stonesSprite.sprite, stonesSprite.posX, stonesSprite.posY, stonesSprite.w, stonesSprite.h, stone.posX, stone.posY, 40, 40);
       this.ctx.restore();
       // function getRandomInt(stonesSprite, stonesSprite2) {
       //   return Math.floor(Math.random() * (stonesSprite2 - stonesSprite)) + stonesSprite;
@@ -126,19 +126,20 @@ class Game {
         this.ship.removeLife();
         console.log("lives", this.ship.lives);
         //Mover el enemigo y el jugador fuera de la pantalla
-        this.enemy.posX = -25;
+        let kill = this.enemy.posX = -50;
         this.ship.posX = -20;
       }
     });
   }
   _checkCollisionsStones() {
     this.stones.forEach((stonies) => {
-      if (this.ship.didCollides(stonies)) {
+      if (this.ship.didCollideStones(stonies)) {
         this.ship.removeLife();
         console.log("lives", this.ship.lives);
-
+        console.log("¡Collides Stones funcionando!");
         //Mover el enemigo fuera de la pantalla
-        stonies.posX = -40;
+        this.stones.posX = -50;
+        this.ship.posX = -20;
       }
     });
   }
