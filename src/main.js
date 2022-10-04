@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.querySelector('#nemesis');
     canvas.classList.remove('show');
     canvas.classList.add('hide');
-    gameover.classList.remove('hide');/*  */
+    gameover.classList.remove('hide');
     gameover.classList.add('show');
     tryAgain();
   }

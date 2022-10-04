@@ -1,14 +1,14 @@
 class Score {
-    constructor(posX=0, posY=0) {
+    constructor() {
       // this.ctx = ctx;
-      this.posX = posX;
-      this.posY = posY;  
-      this.score = 0;
-      this.align = "left";
+      // this.posX = posX;
+      // this.posY = posY;  
+      // this.score = 0;
+      // this.align = "left";
       // this.color = '#2484E4';
-      this.font = "50";
+      // this.font = "50";
     }
-  
+
     // draw () {
     // //   this.ctx.beginPath();
     //   this.ctx.fillStyle = this.color;

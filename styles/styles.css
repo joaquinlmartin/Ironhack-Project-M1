@@ -65,6 +65,13 @@ body {
   align-items: flex-end;
   position: absolute;
 }
+.scores {
+  display: flex;
+  justify-content: right;
+  font-size : 30px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: rgb(203, 216, 21);
+}
 canvas#nemesis {
   position: absolute;
   font-size: 2em;
@@ -82,7 +89,6 @@ canvas#nemesis {
 }
 .show {
   display: block;
-  
 }
 .hide {
   display: none;

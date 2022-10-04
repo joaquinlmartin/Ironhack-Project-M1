@@ -49,7 +49,7 @@ class Game {
   }
   _drawShoot() {
     this.shoots.forEach((shoot) => {
-      this.ctx.drawImage(shootSprite.sprite, shootSprite.posX, shootSprite.posY, shootSprite.w, shootSprite.h, shoot.posX, shoot.posY, 55, 55);
+      this.ctx.drawImage(shootSprite.sprite, shootSprite.posX, shootSprite.posY, shootSprite.w, shootSprite.h, shoot.posX, shoot.posY, 5, 5);
       shoot.move();
       shoot.goAttack();
     });
@@ -124,9 +124,9 @@ class Game {
     this.enemy.forEach((enemies) => {
       if (this.ship.didCollide(enemies)) {
         this.ship.removeLife();
+        this.enemy.Dead();
         console.log("lives", this.ship.lives);
-        //Mover el enemigo y el jugador fuera de la pantalla
-        let kill = this.enemy.posX = -50;
+        //Mover el jugador fuera de la pantalla
         this.ship.posX = -20;
       }
     });
@@ -135,25 +135,24 @@ class Game {
     this.stones.forEach((stonies) => {
       if (this.ship.didCollideStones(stonies)) {
         this.ship.removeLife();
+        this.stones.Dead();
         console.log("lives", this.ship.lives);
         console.log("¡Collides Stones funcionando!");
-        //Mover el enemigo fuera de la pantalla
-        this.stones.posX = -50;
+        //Mover el jugador fuera de la pantalla
         this.ship.posX = -20;
       }
     });
   }
-  // _checkCollisionsShoot() {
-  //   this.enemy.forEach((enemiis) => {
-  //     if (this.shoots.didShootCollide(enemiis)) {
-  //       this.shoots.removeLife();
-  //       console.log("Puto colisions shoot funcionando!")
-
-  //       //Mover el enemigo fuera de la pantalla
-  //           enemies.posX = -25;
-  //     }
-  //   });
-  // }
+  _checkCollisionsShoot() {
+    this.shoots.forEach((enemiis) => {
+      if (this.enemy.didShootCollide(enemiis)) {
+        this.enemy.Dead();
+        console.log("Puto colisions shoot funcionando!")
+        //Mover el disparo fuera de la pantalla
+            this.shoots.posX = -25;
+      }
+    });
+  }
   _assignControlsToKeys() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
@@ -189,19 +188,15 @@ class Game {
   _stopGame() {
     console.log("game stopped");
     clearInterval(this.interval);
-    // this.enemy.forEach((enemies) => clearInterval(enemies.interval));
-    // this.stones.forEach((stoness) => clearInterval(stoness.interval));
-    // this.shoots.forEach((shootss) => clearInterval(shootss.interval));
   }
   _playGame() {
     console.log("game replay");
     this._update();
-    // this.enemy.forEach((enemies) => clearInterval(enemies.interval));
-    // this.stones.forEach((stoness) => clearInterval(stoness.interval));
-    // this.shoots.forEach((shootss) => clearInterval(shootss.interval));
   }
   _updateGameStats() {
-    this.score += 10;
+    setInterval(() => {
+      this.score += 10;
+    }, 100);
     //  this.livesElement.innerHTML = this.ship.lives;
     //  this.scoreElement.innerHTML = this.score
   }
@@ -222,7 +217,8 @@ class Game {
         let gameover = document.querySelector('#gameover');
         gameover.classList.remove('show');
         gameover.classList.add('hide');
-      })}
+  })}
+
   _update() {
     this._clean();
     this._drawShip();
@@ -234,7 +230,7 @@ class Game {
     this._drawScore();
     this._checkCollisions();
     this._checkCollisionsStones();
-    // this._checkCollisionsShoot();
+    this._checkCollisionsShoot();
     this._updateGameStats();
     if (this.ship.lives === 0) {
       this.soundGame.pause();

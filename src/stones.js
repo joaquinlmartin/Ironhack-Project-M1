@@ -15,6 +15,9 @@ class Stones {
     move() {
         this.posX = this.posX - this.speed;
     }
+    dead() {
+        this.stones.posX = -100;
+    }
      //rotate() {
         //this.ctx.translate(posX, posY);
         //this.ctx.rotate(45 * Math.PI / 180);
