@@ -49,6 +49,5 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
   createSplashScreen();
-  /* this.soundSplash = new Audio("./audio/Rocket.mp3"); */
-  this.soundSplash.play();
+  // this.soundSplash = new Audio("./audio/Rocket.mp3").play(); Funciona pero no lo dejo activo por cansino.
 });

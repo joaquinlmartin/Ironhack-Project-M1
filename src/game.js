@@ -16,6 +16,7 @@ class Game {
     this.soundShoot = new Audio("./audio/Diablo 2 Skull.mp3");
     this.soundBoost = new Audio("./audio/Power Up Estridente.mp3");
     this.soundGameOver = new Audio("./audio/Dark Souls Death.mp3");
+    this.soundSplash = new Audio("./audio/Rocket.mp3");
   }
   //Draw the figures ship, enemy, stones and shoot
   _drawShip() {
@@ -135,7 +136,7 @@ class Game {
     this.stones.forEach((stonies) => {
       if (this.ship.didCollideStones(stonies)) {
         this.ship.removeLife();
-        this.stones.Dead();
+        // this.stones.Dead();
         console.log("lives", this.ship.lives);
         console.log("¡Collides Stones funcionando!");
         //Mover el jugador fuera de la pantalla
@@ -143,16 +144,16 @@ class Game {
       }
     });
   }
-  _checkCollisionsShoot() {
-    this.shoots.forEach((enemiis) => {
-      if (this.enemy.didShootCollide(enemiis)) {
-        this.enemy.Dead();
-        console.log("Puto colisions shoot funcionando!")
-        //Mover el disparo fuera de la pantalla
-            this.shoots.posX = -25;
-      }
-    });
-  }
+  // _checkCollisionsShoot() {
+  //   this.shoots.forEach((enemiis) => {
+  //     if (this.enemy.didShootCollide(enemiis)) {
+  //       this.enemy.Dead();
+  //       console.log("Puto colisions shoot funcionando!")
+  // Mover el disparo fuera de la pantalla
+  //           this.shoots.posX = -25;
+  //     }
+  //   });
+  // }
   _assignControlsToKeys() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
@@ -230,7 +231,7 @@ class Game {
     this._drawScore();
     this._checkCollisions();
     this._checkCollisionsStones();
-    this._checkCollisionsShoot();
+    // this._checkCollisionsShoot();
     this._updateGameStats();
     if (this.ship.lives === 0) {
       this.soundGame.pause();
