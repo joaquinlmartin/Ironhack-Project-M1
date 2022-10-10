@@ -12,7 +12,7 @@ class Game {
     this.posY = options.posY;
     this.score = 0;
     this.scoreText = new Score(ctx, 10, 10);
-    this.soundGame = new Audio("./audio/Terra’s Theme (Final Fantasy VI).mp3");
+    this.soundGame = new Audio("./audio/Nemesis.mp3");
     this.soundShoot = new Audio("./audio/Diablo 2 Skull.mp3");
     this.soundBoost = new Audio("./audio/Power Up Estridente.mp3");
     this.soundGameOver = new Audio("./audio/Dark Souls Death.mp3");
@@ -125,7 +125,7 @@ class Game {
     this.enemy.forEach((enemies) => {
       if (this.ship.didCollide(enemies)) {
         this.ship.removeLife();
-        this.enemy.Dead();
+        // this.enemy.Dead();
         console.log("lives", this.ship.lives);
         //Mover el jugador fuera de la pantalla
         this.ship.posX = -20;
