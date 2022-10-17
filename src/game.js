@@ -12,13 +12,13 @@ class Game {
     this.posY = options.posY;
     this.score = 0;
     this.scoreText = new Score(ctx, 10, 10);
-    this.soundGame = new Audio("./audio/Terra’s Theme (Final Fantasy VI).mp3");
+    this.soundGame = new Audio("./audio/Nemesis.mp3");
     this.soundShoot = new Audio("./audio/Diablo 2 Skull.mp3");
     this.soundBoost = new Audio("./audio/Power Up Estridente.mp3");
     this.soundGameOver = new Audio("./audio/Dark Souls Death.mp3");
     this.soundSplash = new Audio("./audio/Rocket.mp3");
   }
-  //Draw the figures ship, enemy, stones and shoot
+  //Draw the figures
   _drawShip() {
     this.ctx.drawImage(shipSprite.sprite, shipSprite.posX, shipSprite.posY, shipSprite.w, shipSprite.h, this.ship.posX, this.ship.posY, 20, 20);
   }
@@ -62,7 +62,7 @@ class Game {
   }
   _drawPowerups() {
     this.powerups.forEach((powerup) => {
-      this.ctx.drawImage(powerupsSprite.sprite, powerupsSprite.sprite.posX, powerupsSprite.sprite.posY, powerupsSprite.sprite.w, powerupsSprite.sprite.h, powerup.posX, powerup.posY, 40, 40);
+      this.ctx.drawImage(boxSprite.sprite, boxSprite.sprite.posX, boxSprite.sprite.posY, boxSprite.sprite.w, boxSprite.sprite.h, powerup.posX, powerup.posY, 40, 40);
     })
   }
   _drawScore() {
@@ -100,7 +100,7 @@ class Game {
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
     }
-    this.powerups.push(new Powerups(getRandomInt(0, 1280), getRandomInt(20, 700)));
+    this.powerups.push(new Powerups(getRandomInt(0, 1280), getRandomInt(100, 600)));
   }
   _generatePowerupsInterval() {
     setInterval(() => {
@@ -125,7 +125,7 @@ class Game {
     this.enemy.forEach((enemies) => {
       if (this.ship.didCollide(enemies)) {
         this.ship.removeLife();
-        this.enemy.Dead();
+        // this.enemy.Dead();
         console.log("lives", this.ship.lives);
         //Mover el jugador fuera de la pantalla
         this.ship.posX = -20;
@@ -187,7 +187,6 @@ class Game {
     this.ctx.drawImage(canvasSprite.sprite, canvasSprite.posX, canvasSprite.posY, canvasSprite.w, canvasSprite.h, 0, 0, 1280, 720);
   }
   _stopGame() {
-    console.log("game stopped");
     clearInterval(this.interval);
   }
   _playGame() {
