@@ -13,6 +13,7 @@ class Game {
     this.score = 0;
     this.scoreText = new Score(ctx, 10, 10);
     this.soundGame = new Audio("./audio/Nemesis.mp3");
+    this.soundGame = new Audio("./audio/Nemesis.mp3");
     this.soundShoot = new Audio("./audio/Diablo 2 Skull.mp3");
     this.soundBoost = new Audio("./audio/Power Up Estridente.mp3");
     this.soundGameOver = new Audio("./audio/Dark Souls Death.mp3");
@@ -66,11 +67,12 @@ class Game {
     })
   }
   _drawScore() {
-    this.ctx.beginPath();
+    //this.ctx.beginPath();
     this.ctx.font = "30px verdana";
-    this.ctx.fillStyle = 'white';
-    this.ctx.fillText("Score: " + this.score, this.score.posX, this.score.posY, 5, 30);
-    this.ctx.closePath();
+    this.ctx.fillStyle = 'red';
+    // this.ctx.fillText("Score: " + this.score, this.score.posX, this.score.posY, 80, 320);
+    this.ctx.fillText(`Score: ${this.score}`+ this.score, this.score.posX, this.score.posY, 138, 1);
+    //this.ctx.closePath();
   }
 
   //Generate figures
@@ -129,6 +131,8 @@ class Game {
         console.log("lives", this.ship.lives);
         //Mover el jugador fuera de la pantalla
         this.ship.posX = -20;
+      } else {
+        this.score++;
       }
     });
   }
@@ -141,6 +145,8 @@ class Game {
         console.log("¡Collides Stones funcionando!");
         //Mover el jugador fuera de la pantalla
         this.ship.posX = -20;
+      } else {
+        this.score++;
       }
     });
   }
@@ -213,10 +219,10 @@ class Game {
   _tryAgain() {
     const tryAgain = document.querySelector('#try-again');
     tryAgain.addEventListener('click', function(){
-        console.log('try again funcando');
-        let gameover = document.querySelector('#gameover');
-        gameover.classList.remove('show');
-        gameover.classList.add('hide');
+         document.location.reload();
+        // let gameover = document.querySelector('#gameover');
+        // gameover.classList.remove('show');
+        // gameover.classList.add('hide');
   })}
 
   _update() {

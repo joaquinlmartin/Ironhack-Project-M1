@@ -19,7 +19,7 @@ class Enemy {
     removeLife() {
         this.lives -= 1;
       }
-    _drawShoot() {
+    drawShoot() {
         this.shoots.forEach((shoot) => {
           this.ctx.drawImage(shootSprite.sprite, shootSprite.posX, shootSprite.posY, shootSprite.w, shootSprite.h, shoot.posX, shoot.posY, 55, 55);
         }); 

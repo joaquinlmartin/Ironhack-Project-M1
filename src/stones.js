@@ -21,5 +21,6 @@ class Stones {
      //rotate() {
         //this.ctx.translate(posX, posY);
         //this.ctx.rotate(45 * Math.PI / 180);
+        // probar a rotar el draw image
      //}
 }
