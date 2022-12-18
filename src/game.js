@@ -19,13 +19,17 @@ class Game {
     this.soundGameOver = new Audio("./audio/Dark Souls Death.mp3");
     this.soundSplash = new Audio("./audio/Rocket.mp3");
   }
+
   //Draw the figures
   _drawShip() {
     this.ctx.drawImage(shipSprite.sprite, shipSprite.posX, shipSprite.posY, shipSprite.w, shipSprite.h, this.ship.posX, this.ship.posY, 20, 20);
   }
-  _drawStones(deg = 15) {
+  _drawStones(deg) {
     this.stones.forEach((stone) => {
       this.ctx.save();
+      let randomDeg = function getRandomInt(min, max) {
+        return Math.floor(Math.random(rad) * (60 - 0)) + 0;
+      }
       var rad = deg * Math.PI / 180;
       this.ctx.translate(this.posX + this.width / 2, this.poxY + this.height / 2);
       this.ctx.rotate(rad);
