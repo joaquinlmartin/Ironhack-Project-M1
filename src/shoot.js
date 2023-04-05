@@ -67,4 +67,4 @@ class shootEnemy extends Shoot {
             this.move(); 
         }, 500);  
     }
-}
+} 
