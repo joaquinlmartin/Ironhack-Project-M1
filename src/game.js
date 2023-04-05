@@ -55,7 +55,7 @@ class Game {
   }
   _drawShoot() {
     this.shoots.forEach((shoot) => {
-      this.ctx.drawImage(shootSprite.sprite, shootSprite.posX, shootSprite.posY, shootSprite.w, shootSprite.h, shoot.posX, shoot.posY, 5, 5);
+      this.ctx.drawImage(shootSprite.sprite, shootSprite.posX, shootSprite.posY, shootSprite.w, shootSprite.h, shoot.posX, shoot.posY, 50, 50);
       shoot.move();
       shoot.goAttack();
     });
@@ -154,16 +154,16 @@ class Game {
       }
     });
   }
-  // _checkCollisionsShoot() {
-  //   this.shoots.forEach((enemiis) => {
-  //     if (this.enemy.didShootCollide(enemiis)) {
-  //       this.enemy.Dead();
-  //       console.log("Puto colisions shoot funcionando!")
-  // Mover el disparo fuera de la pantalla
-  //           this.shoots.posX = -25;
-  //     }
-  //   });
-  // }
+/*    _checkCollisionsShoot() {
+     this.shoots.forEach((enemiis) => {
+       if (this.enemy.didShootCollide(enemiis)) {
+         //this.enemy.Dead();
+         console.log("Puto colisions shoot funcionando!")
+         //Mover el disparo fuera de la pantalla
+         //this.shoots.posX = -25;
+       }
+     });
+   } */
   _assignControlsToKeys() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
@@ -240,7 +240,7 @@ class Game {
     this._drawScore();
     this._checkCollisions();
     this._checkCollisionsStones();
-    // this._checkCollisionsShoot();
+    /* this._checkCollisionsShoot(); */
     this._updateGameStats();
     if (this.ship.lives === 0) {
       this.soundGame.pause();

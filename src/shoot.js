@@ -1,10 +1,10 @@
 class Shoot {
     constructor(posX, posY, speed) {
         this.lives = 1;
-        this.posX = posX;
-        this.posY = posY;
+        this.posX = posX +25;
+        this.posY = posY +3;
         this.speed = speed = 20;
-        this.size = 5;
+        this.size = 50;
     }
     removeLife() {
         this.lives -= 1;
