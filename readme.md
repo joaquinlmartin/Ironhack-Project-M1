@@ -40,7 +40,7 @@ Assets
 ## States transitions:
 
 - SplashScreen - Presentation, instructions and start button
-- GameScreen - Game
+- GameScreen - Game (One level) 
 - GameoverScreen - If you colision you die (start again)
 
 ## Links:
