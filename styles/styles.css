@@ -8,7 +8,7 @@ html {
   box-sizing: inherit;
 }
 body {
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   background-size: cover;
   background-position: center top;
   height: 100%;
@@ -38,26 +38,33 @@ body {
   color: rgb(203, 216, 21);
   margin-bottom: 250px;
 }
+.creator-splashscreen {
+  position: absolute;
+  font-size: 3em;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: rgb(100, 15, 150);
+  margin-bottom: 123px;
+}
 .controls-splashscreen {
-  display: flex;
   font-size : 30px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  color: rgb(203, 216, 21);
+  color: rgb(204, 24, 33);
+  margin-bottom: 1px;
 }
 #start {
   position: absolute;
-  background-color: rgb(17, 16, 2);
+  background-color:transparent;
   color: rgb(231, 210, 16);
   padding: 0.25rem 0.5rem;
-  border: 1px solid rgb(221, 135, 23);
-  border-radius: 10px;
-  font-size: 2em;
+  font-size: 4em;
   font-weight: 700;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  margin-block: 250px;
+  margin-block: 300px;
   align-items: center;
+  cursor:crosshair;
+  margin-bottom: 200px;
 }
-.game{
+.game {
   width: 980px;
   height: 579px;
   display: flex;
