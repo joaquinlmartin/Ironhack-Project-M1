@@ -13,7 +13,7 @@ class Game {
     this.score = 0;
     this.scoreText = new Score(ctx, 10, 10);
     this.soundGame = new Audio("./audio/Nemesis.mp3");
-    this.soundShoot = new Audio("./audio/Diablo 2 Skull.mp3");
+    this.soundShoot = new Audio("./audio/Power Up Suave.mp3");
     this.soundBoost = new Audio("./audio/Power Up Estridente.mp3");
     this.soundGameOver = new Audio("./audio/Dark Souls Death.mp3");
   }
@@ -53,7 +53,14 @@ class Game {
   }
   _drawShoot() {
     this.shoots.forEach((shoot) => {
-      this.ctx.drawImage(shootSprite.sprite, shootSprite.posX, shootSprite.posY, shootSprite.w, shootSprite.h, shoot.posX, shoot.posY, 5, 5);
+      this.ctx.drawImage(shootSprite.sprite, shootSprite.posX, shootSprite.posY, shootSprite.w, shootSprite.h, shoot.posX, shoot.posY, 58, 58);
+      shoot.move();
+      shoot.goAttack();
+    });
+  }
+  _drawShoot() {
+    this.shoots.forEach((shoot) => {
+      this.ctx.drawImage(shootSprite.sprite, shootSprite.posX, shootSprite.posY, shootSprite.w, shootSprite.h, shoot.posX, shoot.posY, 58, 58);
       shoot.move();
       shoot.goAttack();
     });
@@ -69,12 +76,12 @@ class Game {
     })
   }
   _drawScore() {
-    //this.ctx.beginPath();
+    this.ctx.beginPath();
     this.ctx.font = "30px verdana";
     this.ctx.fillStyle = 'red';
-    // this.ctx.fillText("Score: " + this.score, this.score.posX, this.score.posY, 80, 320);
+    this.ctx.fillText("Score: " + this.score, this.score.posX, this.score.posY, 80, 320);
     this.ctx.fillText(`Score: ${this.score}`+ this.score, this.score.posX, this.score.posY, 138, 1);
-    //this.ctx.closePath();
+    this.ctx.closePath();
   }
 
   //Generate figures
@@ -179,8 +186,8 @@ class Game {
           break;
         case 'Space':
           this.ship.posX += this.ship.speed + 20;
+          this.boosts.push(new Boost(this.ship.posX + 20, this.ship.posY + 20));
           this.soundBoost.play();
-          // this.drawBoost();
           break;
         case 'Enter':
           this.shoots.push(new Shoot(this.ship.posX - 20, this.ship.posY - 20));
@@ -205,8 +212,8 @@ class Game {
     setInterval(() => {
       this.score += 10;
     }, 100);
-    //  this.livesElement.innerHTML = this.ship.lives;
-    //  this.scoreElement.innerHTML = this.score
+    // this.livesElement.innerHTML = this.ship.lives;
+    // this.scoreElement.innerHTML = this.score;
   }
   _gameOver() {
     let gameover = document.querySelector('#gameover');
@@ -226,7 +233,15 @@ class Game {
         // gameover.classList.remove('show');
         // gameover.classList.add('hide');
   })}
-
+  _createVictory(){
+    let win = document.querySelector('#win');
+    let canvas = document.querySelector('#nemesis');
+    canvas.classList.remove('show');
+    canvas.classList.add('hide');
+    win.classList.remove('hide');
+    win.classList.add('show');
+    createVictory();
+}
   _update() {
     this._clean();
     this._drawShip();
@@ -244,16 +259,25 @@ class Game {
       this.soundGame.pause();
       this._stopGame();
       this._gameOver();
-      // this._drawScore();
-      // this.scoreText.score++;
-      // this.scoreText.draw();
+       this._drawScore();
+       this.scoreText.score++;
+       this.scoreText.draw();
+      return;
+    }
+    if (this.ship.scores === 1) {
+      this.soundGame.pause();
+      this._stopGame();
+      this._createVictory();
+       this._drawScore();
+       this.scoreText.score++;
+       this.scoreText.draw();
       return;
     }
     window.requestAnimationFrame(this._update.bind(this));
   }
   start() {
     // Save references to the score and lives elements
-    // this.livesElement = this.gameScreen.querySelector(".lives .value");
+    // this.livesElement = this.game.querySelector(".lives .value");
     // this.scoreElement = this.gameScreen.querySelector(".score .value");
     // this.soundSplash.stop();
     this.soundGame.play();
