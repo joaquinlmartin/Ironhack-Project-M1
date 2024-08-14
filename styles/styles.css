@@ -125,3 +125,14 @@ canvas#nemesis {
   border: 1px solid rgb(221, 135, 23);
   border-radius: 10px;
 }
+#win {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  text-align: center;
+  font-size: 3em;
+  padding: 20px;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(185, 204, 16);
+}

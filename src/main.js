@@ -46,6 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.classList.remove('show');
     canvas.classList.add('hide');
     win.classList.remove('hide');
+    win.classList.add('show');
+    createVictory();
 }
 
   createSplashScreen();

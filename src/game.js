@@ -17,7 +17,6 @@ class Game {
     this.soundShoot = new Audio("./audio/Diablo 2 Skull.mp3");
     this.soundBoost = new Audio("./audio/Power Up Estridente.mp3");
     this.soundGameOver = new Audio("./audio/Dark Souls Death.mp3");
-    this.soundSplash = new Audio("./audio/Rocket.mp3");
   }
 
   //Draw the figures
