@@ -51,6 +51,17 @@ body {
   color: rgb(204, 24, 33);
   margin-bottom: 1px;
 }
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+  }
+  40% {
+      transform: translateY(-30px);
+  }
+  60% {
+      transform: translateY(-15px);
+  }
+}
 #start {
   position: absolute;
   background-color:transparent;
@@ -63,6 +74,7 @@ body {
   align-items: center;
   cursor:crosshair;
   margin-bottom: 200px;
+  animation: bounce 2s infinite;
 }
 .game {
   width: 980px;
