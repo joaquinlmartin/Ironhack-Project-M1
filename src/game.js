@@ -3,9 +3,9 @@ class Game {
     this.ctx = options.ctx;
     this.enemy = [];
     this.stones = [];
+    this.powerups = [];
     this.shoots = [];
     this.boosts = [];
-    this.powerups = [];
     this.shootsEnemy = [];
     this.ship = options.ship;
     this.shoot = options.shoot;
@@ -34,6 +34,7 @@ class Game {
       this.ctx.rotate(rad);
       this.ctx.drawImage(stonesSprite.sprite, stonesSprite.posX, stonesSprite.posY, stonesSprite.w, stonesSprite.h, stone.posX, stone.posY, 40, 40);
       this.ctx.restore();
+      //stone.rotate();
       // function getRandomInt(stonesSprite, stonesSprite2) {
       //   return Math.floor(Math.random() * (stonesSprite2 - stonesSprite)) + stonesSprite;
       // }
@@ -41,9 +42,9 @@ class Game {
 
       // this.ctx.drawImage(stonesSprite2.sprite, stonesSprite2.posX, stonesSprite2.posY, stonesSprite2.w, stonesSprite2.h, stone.posX, stone.posY, 40, 40);
        //this.ctx.arc(160, 200, 50, 0, 2 * Math.PI);
-      // this.ctx.save();
-      // this.ctx.translate(200, 80);
-      // this.ctx.rotate((Math.PI / 180) * 360);
+       //this.ctx.save();
+       //this.ctx.translate(200, 80);
+       //this.ctx.rotate((Math.PI / 180) * 360);
       // this.ctx.translate(-200, -80);
     })
   }
@@ -72,8 +73,8 @@ class Game {
     });
   }
   _drawPowerups() {
-    this.powerups.forEach((powerup) => {
-      this.ctx.drawImage(boxSprite.sprite, boxSprite.sprite.posX, boxSprite.sprite.posY, boxSprite.sprite.w, boxSprite.sprite.h, powerup.posX, powerup.posY, 40, 40);
+    this.powerups.forEach((pu) => {
+      this.ctx.drawImage(powerupSprite.sprite, powerupSprite.sprite.posX, powerupSprite.sprite.posY, powerupSprite.sprite.w, powerupSprite.sprite.h, pu.posX, pu.posY, 100, 100);
     })
   }
   _drawScore() {
@@ -95,7 +96,7 @@ class Game {
   _generateStonesInterval() {
     setInterval(() => {
       this._generateStones();
-    }, 1000);
+    }, 4000);
   }
   _generateEnemy() {
     function getRandomInt(min, max) {
@@ -106,18 +107,18 @@ class Game {
   _generateEnemyInterval() {
     setInterval(() => {
       this._generateEnemy();
-    }, 2000);
+    }, 5000);
   }
   _generatePowerups() {
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
     }
-    this.powerups.push(new Powerups(getRandomInt(0, 1280), getRandomInt(100, 600)));
+    this.powerups.push(new Powerup(getRandomInt(0, 1280), getRandomInt(50, 600)));
   }
   _generatePowerupsInterval() {
     setInterval(() => {
       this._generatePowerups();
-    }, 1000);
+    }, 3000);
   }
   _generateShootEnemy() {
     function getRandomInt(min, max) {

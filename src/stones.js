@@ -4,12 +4,12 @@ class Stones {
         this.posY = posY;
         this.size  = 40;
         this.speed = 20;
+        //this.degrees = 0;
         this.startMove();
     }
     startMove() {
         setInterval(() => {
             this.move();
-            //this.rotate();
         }, 700);
     }
     move() {
@@ -18,9 +18,11 @@ class Stones {
     dead() {
         this.stones.posX = -100;
     }
-     //rotate() {
-        //this.ctx.translate(posX, posY);
-        //this.ctx.rotate(45 * Math.PI / 180);
-        // probar a rotar el draw image
-     //}
+    /*rotate() {
+        this.stones.posX ?
+    }
+     advance() {
+        this.startMove();
+        this.rotate(45 * Math.PI / 180);
+     }*/
 }
