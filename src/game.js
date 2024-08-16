@@ -4,6 +4,7 @@ class Game {
     this.enemy = [];
     this.stones = [];
     this.shoots = [];
+    this.boosts = [];
     this.powerups = [];
     this.shootsEnemy = [];
     this.ship = options.ship;
@@ -58,11 +59,11 @@ class Game {
       shoot.goAttack();
     });
   }
-  _drawShoot() {
-    this.shoots.forEach((shoot) => {
-      this.ctx.drawImage(shootSprite.sprite, shootSprite.posX, shootSprite.posY, shootSprite.w, shootSprite.h, shoot.posX, shoot.posY, 58, 58);
-      shoot.move();
-      shoot.goAttack();
+  _drawBoost() {
+    this.boosts.forEach((boost) => {
+      this.ctx.drawImage(boostSprite.sprite, boostSprite.posX, boostSprite.posY, boostSprite.w, boostSprite.h, boost.posX, boost.posY, 200, 200);
+      boost.move();
+      //boost.goAttack()
     });
   }
   _drawshootEnemy() {
@@ -186,7 +187,7 @@ class Game {
           break;
         case 'Space':
           this.ship.posX += this.ship.speed + 20;
-          this.boosts.push(new Boost(this.ship.posX + 20, this.ship.posY + 20));
+          this.boosts.push(new Boost(this.ship.posX - 60, this.ship.posY - 60));
           this.soundBoost.play();
           break;
         case 'Enter':
@@ -248,6 +249,7 @@ class Game {
     this._drawStones();
     this._drawEnemy();
     this._drawShoot();
+    this._drawBoost();
     this._drawPowerups();
     this._drawshootEnemy();
     this._drawScore();
