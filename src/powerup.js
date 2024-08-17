@@ -1,8 +1,8 @@
 class Powerup {
-    constructor (posX = 0, posY = 0, speed = 20) {
+    constructor (posX, posY) {
         this.posX = posX;
         this.posY = posY;
-        this.speed = speed;
+        this.speed = 15;
         this.startMove();
     }
     move() {
@@ -11,6 +11,6 @@ class Powerup {
     startMove() {
         setInterval(() => {
             this.move();
-        }, 500);
+        }, 700);
     }
 }

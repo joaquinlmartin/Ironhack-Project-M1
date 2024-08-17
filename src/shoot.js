@@ -1,9 +1,9 @@
 class Shoot {
-    constructor(posX, posY, speed) {
+    constructor(posX, posY) {
         this.lives = 1;
         this.posX = posX;
         this.posY = posY;
-        this.speed = speed = 20;
+        this.speed = 20;
         this.size = 5;
     }
     removeLife() {
