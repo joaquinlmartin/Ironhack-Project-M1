@@ -27,13 +27,12 @@ const shipSprite = {
 
   const powerupSprite = {
     sprite: new Image(), // Creo un nuevo objeto imagen
-    w: 444, // Le digo cuántos píxeles ocupa de width el personaje en el archivo
-    h: 444, // Le digo cuántos píxeles tiene que coger de height
+    w: 456, // Le digo cuántos píxeles ocupa de width el personaje en el archivo
+    h: 456, // Le digo cuántos píxeles tiene que coger de height
     posX: 1, // En qué x del archivo tiene que empezar a coger personaje
     posY: 1 // En qué y del archivo tiene que empezar a coger personaje
   };
-  // let randomStones = Math.floor(Math.random() * this.shootSprites.length);
-  powerupSprite.sprite.src = "./images/Powerup.png";
+  powerupSprite.sprite.src = "./images/Box.png";
 
   // const stonesSprite2 = {
   //   sprite: new Image(), // Creo un nuevo objeto imagen
