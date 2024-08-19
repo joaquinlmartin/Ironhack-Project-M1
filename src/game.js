@@ -74,7 +74,7 @@ class Game {
   }
   _drawPowerups() {
     this.powerups.forEach((pu) => {
-      this.ctx.drawImage(powerupSprite.sprite, powerupSprite.sprite.posX, powerupSprite.sprite.posY, powerupSprite.sprite.w, powerupSprite.sprite.h, pu.posX, pu.posY, 50, 50);
+      this.ctx.drawImage(powerupSprite.sprite, powerupSprite.sprite.posX, powerupSprite.sprite.posY, powerupSprite.sprite.w, powerupSprite.sprite.h, pu.posX, pu.posY, 40, 40);
     })
   }
   _drawScore() {
@@ -247,11 +247,11 @@ class Game {
   _update() {
     this._clean();
     this._drawShip();
+    this._drawPowerups();
     this._drawStones();
     this._drawEnemy();
     this._drawShoot();
     this._drawBoost();
-    this._drawPowerups();
     this._drawshootEnemy();
     this._drawScore();
     this._checkCollisions();
@@ -285,12 +285,12 @@ class Game {
     // this.soundSplash.stop();
     this.soundGame.play();
     this._assignControlsToKeys(0);
+    this._generatePowerups();
+    this._generatePowerupsInterval();
     this._generateStones();
     this._generateStonesInterval();
     this._generateEnemy();
     this._generateEnemyInterval();
-    this._generatePowerups();
-    this._generatePowerupsInterval();
     this._generateShootEnemy();
     this._generateShootEnemyInterval();
     window.requestAnimationFrame(this._update.bind(this));
