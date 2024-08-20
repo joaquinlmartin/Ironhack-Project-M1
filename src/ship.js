@@ -1,14 +1,18 @@
 class Ship {
   constructor() {
-    this.lives = 11;
+    this.lives = 10;
     this.posX = 275;
     this.posY = 325;
     this.speed = 20;
-    this.size = 20;
+    this.size = 40;
   }
   removeLife() {
     this.lives -= 1;
   }
+  /* dead() {
+    this.enemies.lives -= 1;
+    this.enemies.posX = -100;
+} */
   // drawBoost() {
   //   this.ctx.drawImage(boostSprite.sprite, boostSprite.posX, boostSprite.posY, boostSprite.w, boostSprite.h, this.ship.posX - 200, this.ship.posY, 150, 20);
   // };
@@ -21,9 +25,9 @@ class Ship {
 
     //Seleccionamos los 4 laterales del enemigo
     const enemyLeft = enemy.posX;
-    const enemyRight = enemy.posX + 50;
+    const enemyRight = enemy.posX + 40;
     const enemyTop = enemy.posY;
-    const enemyBottom = enemy.posY + 50;
+    const enemyBottom = enemy.posY + 40;
 
     //Comprobamos si el enemigo ha entrado dentro del jugador por cualquiera de los 4 costados
     const crossLeft = enemyLeft <= playerRight && enemyLeft >= playerLeft;

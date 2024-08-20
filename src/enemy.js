@@ -13,9 +13,10 @@ class Enemy {
     shoot() {
         this.shoots.posX = this.shoots.posX - this.speed + 20;
     }
-    dead() {
-        this.enemy.posX = -100;
-    }
+    /* dead() {
+        this.enemies.lives -= 1;
+        this.enemies.posX = -100;
+    } */
     removeLife() {
         this.lives -= 1;
       }

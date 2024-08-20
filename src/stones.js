@@ -5,6 +5,7 @@ class Stones {
         this.speed = 10;
         //this.degrees = 0;
         this.startMove();
+        /* this.dead() = dead; */
     }
     startMove() {
         setInterval(() => {
@@ -14,9 +15,9 @@ class Stones {
     move() {
         this.posX = this.posX - this.speed;
     }
-    dead() {
+    /* dead() {
         this.stones.posX = -100;
-    }
+    } */
     /*rotate() {
         this.stones.posX ?
     }

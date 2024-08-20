@@ -21,7 +21,7 @@ class Game {
 
   //Draw the figures
   _drawShip() {
-    this.ctx.drawImage(shipSprite.sprite, shipSprite.posX, shipSprite.posY, shipSprite.w, shipSprite.h, this.ship.posX, this.ship.posY, 20, 20);
+    this.ctx.drawImage(shipSprite.sprite, shipSprite.posX, shipSprite.posY, shipSprite.w, shipSprite.h, this.ship.posX, this.ship.posY, 40, 40);
   }
   _drawStones(deg) {
     this.stones.forEach((stone) => {
@@ -50,7 +50,7 @@ class Game {
   }
   _drawEnemy() {
     this.enemy.forEach((enemy) => {
-      this.ctx.drawImage(enemySprite.sprite, enemySprite.posX, enemySprite.posY, enemySprite.w, enemySprite.h, enemy.posX, enemy.posY, 50, 50);
+      this.ctx.drawImage(enemySprite.sprite, enemySprite.posX, enemySprite.posY, enemySprite.w, enemySprite.h, enemy.posX, enemy.posY, 40, 40);
     })
   }
   _drawShoot() {
@@ -138,10 +138,13 @@ class Game {
     this.enemy.forEach((enemies) => {
       if (this.ship.didCollide(enemies)) {
         this.ship.removeLife();
-        // this.enemy.Dead();
         console.log("lives", this.ship.lives);
         //Mover el jugador fuera de la pantalla
-        this.ship.posX = -20;
+        this.ship.posX = 275;
+        this.ship.posY = 325;
+        //añadir sonido de aparicion de la nave
+        //añadir efecto de reentrada de la nave
+        /* this.enemies.dead(); */
       } else {
         this.score++;
       }
@@ -151,11 +154,13 @@ class Game {
     this.stones.forEach((stonies) => {
       if (this.ship.didCollideStones(stonies)) {
         this.ship.removeLife();
-        // this.stones.Dead();
         console.log("lives", this.ship.lives);
-        console.log("¡Collides Stones funcionando!");
         //Mover el jugador fuera de la pantalla
-        this.ship.posX = -20;
+        this.ship.posX = 275;
+        this.ship.posY = 325;
+        //añadir sonido de aparicion de la nave
+        //añadir efecto de reentrada de la nave
+        /* this.stonies.dead(); */
       } else {
         this.score++;
       }
