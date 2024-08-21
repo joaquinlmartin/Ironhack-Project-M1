@@ -23,29 +23,9 @@ class Game {
   _drawShip() {
     this.ctx.drawImage(shipSprite.sprite, shipSprite.posX, shipSprite.posY, shipSprite.w, shipSprite.h, this.ship.posX, this.ship.posY, 40, 40);
   }
-  _drawStones(deg) {
+  _drawStones() {
     this.stones.forEach((stone) => {
-      this.ctx.save();
-      let randomDeg = function getRandomInt(min, max) {
-        return Math.floor(Math.random(rad) * (60 - 0)) + 0;
-      }
-      var rad = deg * Math.PI / 180;
-      this.ctx.translate(this.posX + this.width / 2, this.poxY + this.height / 2);
-      this.ctx.rotate(rad);
       this.ctx.drawImage(stonesSprite.sprite, stonesSprite.posX, stonesSprite.posY, stonesSprite.w, stonesSprite.h, stone.posX, stone.posY, 40, 40);
-      this.ctx.restore();
-      //stone.rotate();
-      // function getRandomInt(stonesSprite, stonesSprite2) {
-      //   return Math.floor(Math.random() * (stonesSprite2 - stonesSprite)) + stonesSprite;
-      // }
-      // this.ctx.drawImage(getRandomInt(stonesSprite.sprite, stonesSprite.posX, stonesSprite.posY, stonesSprite.w, stonesSprite.h, stone.posX, stone.posY, 40, 40), getRandomInt(stonesSprite2.sprite, stonesSprite2.posX, stonesSprite2.posY, stonesSprite2.w, stonesSprite2.h, stone.posX, stone.posY, 40, 40));
-
-      // this.ctx.drawImage(stonesSprite2.sprite, stonesSprite2.posX, stonesSprite2.posY, stonesSprite2.w, stonesSprite2.h, stone.posX, stone.posY, 40, 40);
-       //this.ctx.arc(160, 200, 50, 0, 2 * Math.PI);
-       //this.ctx.save();
-       //this.ctx.translate(200, 80);
-       //this.ctx.rotate((Math.PI / 180) * 360);
-      // this.ctx.translate(-200, -80);
     })
   }
   _drawEnemy() {
@@ -139,12 +119,12 @@ class Game {
       if (this.ship.didCollide(enemies)) {
         this.ship.removeLife();
         console.log("lives", this.ship.lives);
-        //Mover el jugador fuera de la pantalla
+        {//Mover el jugador fuera de la pantalla
         this.ship.posX = 275;
-        this.ship.posY = 325;
+        this.ship.posY = 325;}
         //añadir sonido de aparicion de la nave
         //añadir efecto de reentrada de la nave
-        /* this.enemies.dead(); */
+        //añadir la desaparicion del enemigo al colisionar. ej: this.enemies.dead();
       } else {
         this.score++;
       }
@@ -155,12 +135,12 @@ class Game {
       if (this.ship.didCollideStones(stonies)) {
         this.ship.removeLife();
         console.log("lives", this.ship.lives);
-        //Mover el jugador fuera de la pantalla
-        this.ship.posX = 275;
-        this.ship.posY = 325;
+        {//Mover el jugador fuera de la pantalla 
+          this.ship.posX = 275;
+          this.ship.posY = 325;}
         //añadir sonido de aparicion de la nave
         //añadir efecto de reentrada de la nave
-        /* this.stonies.dead(); */
+        //añadir la desaparicion de la piedra al colisionar. ej: this.stones.dead();
       } else {
         this.score++;
       }

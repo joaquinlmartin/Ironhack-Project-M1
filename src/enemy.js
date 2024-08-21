@@ -13,13 +13,14 @@ class Enemy {
     shoot() {
         this.shoots.posX = this.shoots.posX - this.speed + 20;
     }
-    /* dead() {
-        this.enemies.lives -= 1;
-        this.enemies.posX = -100;
-    } */
     removeLife() {
         this.lives -= 1;
-      }
+        if (lives === 0) {
+          this.Enemy.dead();
+    }}
+      dead() {
+        this.Enemy.posX = -150;
+    }
     drawShoot() {
         this.shoots.forEach((shoot) => {
           this.ctx.drawImage(shootSprite.sprite, shootSprite.posX, shootSprite.posY, shootSprite.w, shootSprite.h, shoot.posX, shoot.posY, 55, 55);

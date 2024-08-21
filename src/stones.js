@@ -1,11 +1,20 @@
 class Stones {
-    constructor(posX, posY) {
+    constructor(posX, posY, lives) {
         this.posX = posX;
         this.posY = posY;
         this.speed = 10;
-        //this.degrees = 0;
+        this.lives = lives = 1;
+        this.degrees = 1/360;
         this.startMove();
-        /* this.dead() = dead; */
+    }
+    removeLife() {
+        this.lives -= 1;
+        if (lives === 0) {
+            this.stones.dead();
+        }
+    }
+    dead() {
+        this.stones.posX = -100;
     }
     startMove() {
         setInterval(() => {
@@ -15,14 +24,4 @@ class Stones {
     move() {
         this.posX = this.posX - this.speed;
     }
-    /* dead() {
-        this.stones.posX = -100;
-    } */
-    /*rotate() {
-        this.stones.posX ?
-    }
-     advance() {
-        this.startMove();
-        this.rotate(45 * Math.PI / 180);
-     }*/
 }
