@@ -34,15 +34,6 @@ const shipSprite = {
   };
   powerupSprite.sprite.src = "./images/Box.png";
 
-  // const stonesSprite2 = {
-  //   sprite: new Image(), // Creo un nuevo objeto imagen
-  //   w: 456, // Le digo cuántos píxeles ocupa de width el personaje en el archivo
-  //   h: 456, // Le digo cuántos píxeles tiene que coger de height
-  //   posX: 1, // En qué x del archivo tiene que empezar a coger personaje
-  //   posY: 1 // En qué y del archivo tiene que empezar a coger personaje
-  // };
-  // stonesSprite2.sprite.src = "./images/e2td50i6sv3pt7vsoprb8indab-7302c0e289cd716aa1a89ad2e7dd0360.png";
-
   const shootSprite = {
     sprite: new Image(), // Creo un nuevo objeto imagen
     w: 121, // Le digo cuántos píxeles ocupa de width el personaje en el archivo

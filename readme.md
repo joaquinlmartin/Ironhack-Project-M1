@@ -12,9 +12,11 @@ Class Ship
 Class Enemy
 Class Stones
 Class Shoot
+Class Shootenemy
 Class Sounds
 Class Score
 Class Powerups
+Class Boost
 Main
 Assets
 
