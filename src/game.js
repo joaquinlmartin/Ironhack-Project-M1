@@ -1,16 +1,13 @@
 class Game {
   constructor(options, ctx) {
     this.ctx = options.ctx;
-    this.enemy = [];
+    this.ship = options.ship;
     this.stones = [];
+    this.enemy = [];
     this.powerups = [];
     this.shoots = [];
     this.boosts = [];
     this.shootsEnemy = [];
-    this.ship = options.ship;
-    this.shoot = options.shoot;
-    this.posX = options.posX;
-    this.posY = options.posY;
     this.score = 0;
     this.scoreText = new Score(ctx, 10, 10);
     this.soundGame = new Audio("./audio/Nemesis.mp3");
@@ -26,12 +23,12 @@ class Game {
   _drawStones() {
     this.stones.forEach((stone) => {
       this.ctx.drawImage(stonesSprite.sprite, stonesSprite.posX, stonesSprite.posY, stonesSprite.w, stonesSprite.h, stone.posX, stone.posY, 40, 40);
-    })
+    });
   }
   _drawEnemy() {
     this.enemy.forEach((enemy) => {
       this.ctx.drawImage(enemySprite.sprite, enemySprite.posX, enemySprite.posY, enemySprite.w, enemySprite.h, enemy.posX, enemy.posY, 40, 40);
-    })
+    });
   }
   _drawShoot() {
     this.shoots.forEach((shoot) => {
@@ -44,18 +41,17 @@ class Game {
     this.boosts.forEach((boost) => {
       this.ctx.drawImage(boostSprite.sprite, boostSprite.posX, boostSprite.posY, boostSprite.w, boostSprite.h, boost.posX, boost.posY, 200, 200);
       boost.move();
-      //boost.goAttack()
-    });
-  }
-  _drawshootEnemy() {
-    this.shootsEnemy.forEach((shootEnemy) => {
-      this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.sprite.posX, shootEnemySprite.sprite.posY, shootEnemySprite.sprite.w, shootEnemySprite.sprite.h, shootEnemy.posX, shootEnemy.posY, 55, 55);
     });
   }
   _drawPowerups() {
     this.powerups.forEach((pu) => {
       this.ctx.drawImage(powerupSprite.sprite, powerupSprite.sprite.posX, powerupSprite.sprite.posY, powerupSprite.sprite.w, powerupSprite.sprite.h, pu.posX, pu.posY, 40, 40);
-    })
+    });
+  }
+  _drawshootEnemy() {
+    this.shootsEnemy.forEach((shootEnemy) => {
+      this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.sprite.posX, shootEnemySprite.sprite.posY, shootEnemySprite.sprite.w, shootEnemySprite.sprite.h, shootEnemy.posX, shootEnemy.posY, 50, 50);
+    });
   }
   _drawScore() {
     this.ctx.beginPath();
@@ -73,21 +69,11 @@ class Game {
     }
     this.stones.push(new Stones(getRandomInt(1275, 1280), getRandomInt(20, 700)));
   }
-  _generateStonesInterval() {
-    setInterval(() => {
-      this._generateStones();
-    }, 4000);
-  }
   _generateEnemy() {
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
     }
-    this.enemy.push(new Enemy(getRandomInt(1279, 1280), getRandomInt(20, 600)));
-  }
-  _generateEnemyInterval() {
-    setInterval(() => {
-      this._generateEnemy();
-    }, 5000);
+    this.enemy.push(new Enemy(getRandomInt(1279, 1280), getRandomInt(20, 700)));
   }
   _generatePowerups() {
     function getRandomInt(min, max) {
@@ -95,22 +81,34 @@ class Game {
     }
     this.powerups.push(new Powerup(getRandomInt(1275, 1280), getRandomInt(20, 700)));
   }
+  _generateShootEnemy() {
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+    this.shootsEnemy.push(new ShootEnemy(getRandomInt(1279, 1280), getRandomInt(20, 700)));
+    //this.shootsEnemy.push(new ShootEnemy(this.enemy.posX -20, this.enemy.posY -20));
+  }
+
+  //Generate intervals
+  _generateStonesInterval() {
+    setInterval(() => {
+      this._generateStones();
+    }, 4000);
+  }
+  _generateEnemyInterval() {
+    setInterval(() => {
+      this._generateEnemy();
+    }, 5000);
+  }
   _generatePowerupsInterval() {
     setInterval(() => {
       this._generatePowerups();
     }, 3000);
   }
-  _generateShootEnemy() {
-    function getRandomInt(min, max) {
-      return Math.floor(Math.random() * (max - min)) + min;
-    }
-    this.shootsEnemy.push(new shootEnemy(getRandomInt(0, 1280), getRandomInt(20, 600)));
-    // this.shootsEnemy.push(new shootEnemy(this.enemy.posX -20, this.enemy.posY -20));
-  }
   _generateShootEnemyInterval() {
     setInterval(() => {
       this._generateShootEnemy();
-    }, 2000);
+    }, 500);
   }
 
   //Collisions
@@ -165,11 +163,11 @@ class Game {
         case 'KeyS':
           this.ship.posY += this.ship.speed;
           break;
+        case 'KeyA':
+            this.ship.posX -= this.ship.speed;
+            break;
         case 'KeyD':
           this.ship.posX += this.ship.speed;
-          break;
-        case 'KeyA':
-          this.ship.posX -= this.ship.speed;
           break;
         case 'Space':
           this.ship.posX += this.ship.speed + 20;
@@ -232,12 +230,12 @@ class Game {
   _update() {
     this._clean();
     this._drawShip();
-    this._drawPowerups();
     this._drawStones();
     this._drawEnemy();
+    this._drawPowerups();
+    this._drawshootEnemy();
     this._drawShoot();
     this._drawBoost();
-    this._drawshootEnemy();
     this._drawScore();
     this._checkCollisions();
     this._checkCollisionsStones();
@@ -270,12 +268,12 @@ class Game {
     // this.soundSplash.stop();
     this.soundGame.play();
     this._assignControlsToKeys(0);
-    this._generatePowerups();
-    this._generatePowerupsInterval();
     this._generateStones();
     this._generateStonesInterval();
     this._generateEnemy();
     this._generateEnemyInterval();
+    this._generatePowerups();
+    this._generatePowerupsInterval();
     this._generateShootEnemy();
     this._generateShootEnemyInterval();
     window.requestAnimationFrame(this._update.bind(this));

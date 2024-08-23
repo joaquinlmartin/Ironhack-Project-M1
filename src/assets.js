@@ -44,16 +44,6 @@ const shipSprite = {
   // let randomStones = Math.floor(Math.random() * this.shootSprites.length);
   shootSprite.sprite.src = "./images/Shoot Player.png";
 
-  const shootEnemySprite = {
-    sprite: new Image(), // Creo un nuevo objeto imagen
-    w: 121, // Le digo cuántos píxeles ocupa de width el personaje en el archivo
-    h: 121, // Le digo cuántos píxeles tiene que coger de height
-    posX: 1, // En qué x del archivo tiene que empezar a coger personaje
-    posY: 1 // En qué y del archivo tiene que empezar a coger personaje
-  };
-  // let randomStones = Math.floor(Math.random() * this.shootSprites.length);
-  shootEnemySprite.sprite.src = "./images/Shoot Enemy.png";
-
   const boostSprite = {
     sprite: new Image(), // Creo un nuevo objeto imagen
     w: 80, // Le digo cuántos píxeles ocupa de width el personaje en el archivo
@@ -63,6 +53,16 @@ const shipSprite = {
   };
   // let randomStones = Math.floor(Math.random() * this.shootSprites.length);
   boostSprite.sprite.src = "./images/Boost Light.png";
+
+  const shootEnemySprite = {
+    sprite: new Image(), // Creo un nuevo objeto imagen
+    w: 150, // Le digo cuántos píxeles ocupa de width el personaje en el archivo
+    h: 150, // Le digo cuántos píxeles tiene que coger de height
+    posX: 1, // En qué x del archivo tiene que empezar a coger personaje
+    posY: 1 // En qué y del archivo tiene que empezar a coger personaje
+  };
+  // let randomStones = Math.floor(Math.random() * this.shootSprites.length);
+  shootEnemySprite.sprite.src = "./images/Shoot Enemy.png";
 
   const canvasSprite = {
     sprite: new Image(), // Creo un nuevo objeto imagen
