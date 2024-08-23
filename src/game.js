@@ -32,11 +32,11 @@ class Game {
   _drawEnemy() {
     this.enemy.forEach((enemy) => {
       this.ctx.drawImage(enemySprite.sprite, enemySprite.posX, enemySprite.posY, enemySprite.w, enemySprite.h, enemy.posX, enemy.posY, 40, 40);
-      this.shootsEnemy.forEach(() => {
+      /* this.shootsEnemy.forEach((shot) => {
         this.ctx.fillStyle = "red";
-        this.ctx.fillRect(enemy.posX, enemy.posY, -10, -10);
+        this.ctx.fillRect(shot.posX, shot.posY, -10, -10);
         //this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.sprite.posX, shootEnemySprite.sprite.posY, shootEnemySprite.sprite.w, shootEnemySprite.sprite.h, shootEnemy.posX, shootEnemy.posY, 50, 50);
-      });
+      }); */
     });
   }
   _drawShoot() {
@@ -54,8 +54,8 @@ class Game {
   _drawPowerups() {
     this.powerups.forEach((pu) => {
       this.ctx.fillStyle = "gold";
-      this.ctx.fillRect(pu.posX, pu.posY, 40, 40);
-      //this.ctx.drawImage(powerupSprite.sprite, powerupSprite.sprite.posX, powerupSprite.sprite.posY, powerupSprite.sprite.w, powerupSprite.sprite.h, pu.posX, pu.posY, 40, 40);
+      this.ctx.fillRect(pu.posX, pu.posY, 10, 10);
+      //this.ctx.drawImage(powerupSprite.sprite, powerupSprite.sprite.posX, powerupSprite.sprite.posY, powerupSprite.sprite.w, powerupSprite.sprite.h, pu.posX, pu.posY, 50, 50);
     });
   }
   /* _drawshootEnemy() {
@@ -93,13 +93,13 @@ class Game {
     }
     this.powerups.push(new Powerup(getRandomInt(1275, 1280), getRandomInt(20, 700)));
   }
-  _generateShootEnemy() {
+  /* _generateShootEnemy() {
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
     }
     this.shootsEnemy.push(new ShootEnemy(getRandomInt(1279, 1280), getRandomInt(20, 700)));
     //this.shootsEnemy.push(new ShootEnemy(this.enemy.posX -20, this.enemy.posY -20));
-  }
+  } */
 
   //Generate intervals
   _generateStonesInterval() {
@@ -117,11 +117,11 @@ class Game {
       this._generatePowerups();
     }, 10000);
   }
-  _generateShootEnemyInterval() {
+  /* _generateShootEnemyInterval() {
     setInterval(() => {
       this._generateShootEnemy();
     }, 7000);
-  }
+  } */
 
   //Collisions
   _checkCollisions() {
@@ -305,8 +305,8 @@ class Game {
     this._generateEnemyInterval();
     this._generatePowerups();
     this._generatePowerupsInterval();
-    this._generateShootEnemy();
-    this._generateShootEnemyInterval();
+   /*  this._generateShootEnemy();
+    this._generateShootEnemyInterval(); */
     window.requestAnimationFrame(this._update.bind(this));
   }
 }
