@@ -14,9 +14,6 @@ class Enemy {
         if (lives === 0) {
           this.Enemy.dead();
     }}
-    dead() {
-        this.Enemy.posX = -150;
-    }
     startMove() {
         setInterval(() => {
             this.move();

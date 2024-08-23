@@ -5,15 +5,19 @@ class Game {
     this.stones = [];
     this.enemy = [];
     this.powerups = [];
+    this.shoots = options.shoots;
     this.shoots = [];
     this.boosts = [];
     this.shootsEnemy = [];
     this.score = 0;
     this.scoreText = new Score(ctx, 10, 10);
     this.soundGame = new Audio("./audio/Nemesis.mp3");
-    this.soundShoot = new Audio("./audio/Power Up Suave.mp3");
-    this.soundBoost = new Audio("./audio/Power Up Estridente.mp3");
     this.soundGameOver = new Audio("./audio/Dark Souls Death.mp3");
+    this.soundShoot = new Audio("./audio/Plasma gun fire.mp3");
+    this.soundBoost = new Audio("./audio/Elemental magic spell.mp3");
+    this.soundPowerup = new Audio("./audio/Power Up Estridente.mp3");
+    this.soundEnemyExplosion = new Audio("./audio/Ship Explosion.mp3");
+    this.soundStoneExplosion = new Audio("./audio/Rock break.mp3");
   }
 
   //Draw the figures
@@ -28,13 +32,17 @@ class Game {
   _drawEnemy() {
     this.enemy.forEach((enemy) => {
       this.ctx.drawImage(enemySprite.sprite, enemySprite.posX, enemySprite.posY, enemySprite.w, enemySprite.h, enemy.posX, enemy.posY, 40, 40);
+      this.shootsEnemy.forEach(() => {
+        this.ctx.fillStyle = "red";
+        this.ctx.fillRect(enemy.posX, enemy.posY, -10, -10);
+        //this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.sprite.posX, shootEnemySprite.sprite.posY, shootEnemySprite.sprite.w, shootEnemySprite.sprite.h, shootEnemy.posX, shootEnemy.posY, 50, 50);
+      });
     });
   }
   _drawShoot() {
     this.shoots.forEach((shoot) => {
       this.ctx.drawImage(shootSprite.sprite, shootSprite.posX, shootSprite.posY, shootSprite.w, shootSprite.h, shoot.posX, shoot.posY, 58, 58);
       shoot.move();
-      shoot.goAttack();
     });
   }
   _drawBoost() {
@@ -45,20 +53,24 @@ class Game {
   }
   _drawPowerups() {
     this.powerups.forEach((pu) => {
-      this.ctx.drawImage(powerupSprite.sprite, powerupSprite.sprite.posX, powerupSprite.sprite.posY, powerupSprite.sprite.w, powerupSprite.sprite.h, pu.posX, pu.posY, 40, 40);
+      this.ctx.fillStyle = "gold";
+      this.ctx.fillRect(pu.posX, pu.posY, 40, 40);
+      //this.ctx.drawImage(powerupSprite.sprite, powerupSprite.sprite.posX, powerupSprite.sprite.posY, powerupSprite.sprite.w, powerupSprite.sprite.h, pu.posX, pu.posY, 40, 40);
     });
   }
-  _drawshootEnemy() {
+  /* _drawshootEnemy() {
     this.shootsEnemy.forEach((shootEnemy) => {
-      this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.sprite.posX, shootEnemySprite.sprite.posY, shootEnemySprite.sprite.w, shootEnemySprite.sprite.h, shootEnemy.posX, shootEnemy.posY, 50, 50);
+      this.ctx.fillStyle= "red";
+      this.ctx.fillRect(shootEnemy.posX, shootEnemy.posY, 10, 10);
+      //this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.sprite.posX, shootEnemySprite.sprite.posY, shootEnemySprite.sprite.w, shootEnemySprite.sprite.h, shootEnemy.posX, shootEnemy.posY, 50, 50);
     });
-  }
+  } */
   _drawScore() {
     this.ctx.beginPath();
     this.ctx.font = "30px verdana";
     this.ctx.fillStyle = 'red';
     this.ctx.fillText("Score: " + this.score, this.score.posX, this.score.posY, 80, 320);
-    this.ctx.fillText(`Score: ${this.score}`+ this.score, this.score.posX, this.score.posY, 138, 1);
+    this.ctx.fillText(`Score: ${this.score}` + this.score, this.score.posX, this.score.posY, 138, 1);
     this.ctx.closePath();
   }
 
@@ -93,22 +105,22 @@ class Game {
   _generateStonesInterval() {
     setInterval(() => {
       this._generateStones();
-    }, 4000);
+    }, 6000);
   }
   _generateEnemyInterval() {
     setInterval(() => {
       this._generateEnemy();
-    }, 5000);
+    }, 7000);
   }
   _generatePowerupsInterval() {
     setInterval(() => {
       this._generatePowerups();
-    }, 3000);
+    }, 10000);
   }
   _generateShootEnemyInterval() {
     setInterval(() => {
       this._generateShootEnemy();
-    }, 500);
+    }, 7000);
   }
 
   //Collisions
@@ -118,42 +130,61 @@ class Game {
         this.ship.removeLife();
         console.log("lives", this.ship.lives);
         {//Mover el jugador fuera de la pantalla
-        this.ship.posX = 275;
-        this.ship.posY = 325;}
-        //añadir sonido de aparicion de la nave
-        //añadir efecto de reentrada de la nave
-        //añadir la desaparicion del enemigo al colisionar. ej: this.enemies.dead();
-      } else {
+          this.ship.posX = 275;
+          this.ship.posY = 325;
+        }
+        //Desaparicion del enemigo al colisionar
+        enemies.posX = -100;
+        this.soundEnemyExplosion.play();
+        //añadir explosion de destrucción nave enemiga
+      } /* if (this.shoots.didShootCollide(enemies)) {
+        this.shoots.removeLife();
+        this.shoots.posX = -100;
+        //Desaparicion del enemigo al colisionar
+        enemies.posX = -100;
+        this.soundEnemyExplosion.play();
+        //añadir explosion de destrucción nave enemiga
+      } */ else {
         this.score++;
       }
     });
-  }
-  _checkCollisionsStones() {
     this.stones.forEach((stonies) => {
       if (this.ship.didCollideStones(stonies)) {
         this.ship.removeLife();
         console.log("lives", this.ship.lives);
         {//Mover el jugador fuera de la pantalla 
           this.ship.posX = 275;
-          this.ship.posY = 325;}
-        //añadir sonido de aparicion de la nave
-        //añadir efecto de reentrada de la nave
-        //añadir la desaparicion de la piedra al colisionar. ej: this.stones.dead();
+          this.ship.posY = 325;
+        }
+        stonies.posX = -150;
+        this.soundStoneExplosion.play();
+        //añadir explosion de destrucción de la roca
       } else {
         this.score++;
       }
     });
+    this.powerups.forEach((powerupis) => {
+      if (this.ship.didPowerup(powerupis)) {
+        this.ship.addLife();
+        console.log("lives", this.ship.lives);
+        //desaparicion del powerup al colisionar.
+        powerupis.posX = -200;
+        //sonido de coger powerup
+        this.soundPowerup.play();
+      } else {
+        this.score++;
+      }
+    })
   }
-  // _checkCollisionsShoot() {
-  //   this.shoots.forEach((enemiis) => {
-  //     if (this.enemy.didShootCollide(enemiis)) {
-  //       this.enemy.Dead();
-  //       console.log("Puto colisions shoot funcionando!")
-  // Mover el disparo fuera de la pantalla
-  //           this.shoots.posX = -25;
-  //     }
-  //   });
-  // }
+  /* _checkCollisionsShoot() {
+    this.shoots.forEach((enemiis) => {
+      if (this.enemy.didShootCollide(enemiis)) {
+        this.shoots.posX = -25;
+        enemiis.posX = -150;
+        console.log("Puto colisions shoot funcionando!")
+      }
+    });
+  } */
   _assignControlsToKeys() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
@@ -164,8 +195,8 @@ class Game {
           this.ship.posY += this.ship.speed;
           break;
         case 'KeyA':
-            this.ship.posX -= this.ship.speed;
-            break;
+          this.ship.posX -= this.ship.speed;
+          break;
         case 'KeyD':
           this.ship.posX += this.ship.speed;
           break;
@@ -212,13 +243,14 @@ class Game {
   }
   _tryAgain() {
     const tryAgain = document.querySelector('#try-again');
-    tryAgain.addEventListener('click', function(){
-         document.location.reload();
-        // let gameover = document.querySelector('#gameover');
-        // gameover.classList.remove('show');
-        // gameover.classList.add('hide');
-  })}
-  _createVictory(){
+    tryAgain.addEventListener('click', function () {
+      document.location.reload();
+      // let gameover = document.querySelector('#gameover');
+      // gameover.classList.remove('show');
+      // gameover.classList.add('hide');
+    })
+  }
+  _createVictory() {
     let win = document.querySelector('#win');
     let canvas = document.querySelector('#nemesis');
     canvas.classList.remove('show');
@@ -226,37 +258,36 @@ class Game {
     win.classList.remove('hide');
     win.classList.add('show');
     createVictory();
-}
+  }
   _update() {
     this._clean();
     this._drawShip();
     this._drawStones();
     this._drawEnemy();
     this._drawPowerups();
-    this._drawshootEnemy();
+    //this._drawshootEnemy();
     this._drawShoot();
     this._drawBoost();
     this._drawScore();
     this._checkCollisions();
-    this._checkCollisionsStones();
-    // this._checkCollisionsShoot();
+    /* this._checkCollisionsShoot(); */
     this._updateGameStats();
     if (this.ship.lives === 0) {
       this.soundGame.pause();
       this._stopGame();
-      this._gameOver();
-       this._drawScore();
-       this.scoreText.score++;
-       this.scoreText.draw();
+      this._gameOver(console.log("Estás muerto"));
+      this._drawScore();
+      this.scoreText.score++;
+      this.scoreText.draw();
       return;
     }
     if (this.ship.scores === 1) {
       this.soundGame.pause();
       this._stopGame();
       this._createVictory();
-       this._drawScore();
-       this.scoreText.score++;
-       this.scoreText.draw();
+      this._drawScore();
+      this.scoreText.score++;
+      this.scoreText.draw();
       return;
     }
     window.requestAnimationFrame(this._update.bind(this));
