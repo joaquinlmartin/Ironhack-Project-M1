@@ -136,6 +136,7 @@ class Game {
         //Desaparicion del enemigo al colisionar
         enemies.posX = -100;
         this.soundEnemyExplosion.play();
+        this.score += 100;
         //añadir explosion de destrucción nave enemiga
       } /* if (this.shoots.didShootCollide(enemies)) {
         this.shoots.removeLife();
@@ -145,7 +146,7 @@ class Game {
         this.soundEnemyExplosion.play();
         //añadir explosion de destrucción nave enemiga
       } */ else {
-        this.score++;
+        //this.score++;
       }
     });
     this.stones.forEach((stonies) => {
@@ -158,9 +159,10 @@ class Game {
         }
         stonies.posX = -150;
         this.soundStoneExplosion.play();
+        this.score += 50;
         //añadir explosion de destrucción de la roca
       } else {
-        this.score++;
+        //this.score++;
       }
     });
     this.powerups.forEach((powerupis) => {
@@ -172,7 +174,7 @@ class Game {
         //sonido de coger powerup
         this.soundPowerup.play();
       } else {
-        this.score++;
+        //this.score++;
       }
     })
   }
@@ -226,10 +228,10 @@ class Game {
   }
   _updateGameStats() {
     setInterval(() => {
-      this.score += 10;
-    }, 100);
-    // this.livesElement.innerHTML = this.ship.lives;
-    // this.scoreElement.innerHTML = this.score;
+      this.score += 1;
+    }, 100000);
+    //this.livesElement.innerHTML = this.ship.lives;
+    this.scoreElement.innerHTML = this.score;
   }
   _gameOver() {
     let gameover = document.querySelector('#gameover');
@@ -281,10 +283,10 @@ class Game {
       this.scoreText.draw();
       return;
     }
-    if (this.ship.scores === 1) {
+    if (this.ship.scores === 10000) {
       this.soundGame.pause();
       this._stopGame();
-      this._createVictory();
+      this._createVictory(console.log("Bienvenido al mundo de Daniel"));
       this._drawScore();
       this.scoreText.score++;
       this.scoreText.draw();
@@ -294,8 +296,8 @@ class Game {
   }
   start() {
     // Save references to the score and lives elements
-    // this.livesElement = this.game.querySelector(".lives .value");
-    // this.scoreElement = this.gameScreen.querySelector(".score .value");
+    //this.livesElement = this.game.querySelector(".lives .value");
+    this.scoreElement = document.getElementById('scores');
     // this.soundSplash.stop();
     this.soundGame.play();
     this._assignControlsToKeys(0);

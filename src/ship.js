@@ -5,6 +5,7 @@ class Ship {
     this.posY = 325;
     this.speed = 20;
     this.size = 40;
+    this.scores = 0;
   }
   removeLife() {
     this.lives -= 1;
