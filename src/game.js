@@ -127,12 +127,12 @@ class Game {
   _checkCollisions() {
     this.enemy.forEach((enemies) => {
       if (this.ship.didCollide(enemies)) {
-        this.ship.removeLife();
+        this.ship.removeHp();
+        console.log("hp points", this.ship.hp, "/ 100");
         console.log("lives", this.ship.lives);
-        {//Mover el jugador fuera de la pantalla
-          this.ship.posX = 275;
-          this.ship.posY = 325;
-        }
+        //Mover el jugador fuera de la pantalla
+         // this.ship.posX = 275;
+         // this.ship.posY = 325;
         //Desaparicion del enemigo al colisionar
         enemies.posX = -100;
         this.soundEnemyExplosion.play();
@@ -151,12 +151,12 @@ class Game {
     });
     this.stones.forEach((stonies) => {
       if (this.ship.didCollideStones(stonies)) {
-        this.ship.removeLife();
+        this.ship.removeHp();
+        console.log("hp points", this.ship.hp, "/ 100");
         console.log("lives", this.ship.lives);
-        {//Mover el jugador fuera de la pantalla 
-          this.ship.posX = 275;
-          this.ship.posY = 325;
-        }
+        //Mover el jugador fuera de la pantalla 
+          //this.ship.posX = 275;
+          //this.ship.posY = 325;
         stonies.posX = -150;
         this.soundStoneExplosion.play();
         this.score += 50;
