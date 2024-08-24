@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
       game.classList.add('show');
       let canvas = game.querySelector('#nemesis');
       const ctx = canvas.getContext('2d');
-      const nemesisGame = new Game({ctx: ctx, ship: new Ship (10, 10, "N"),}, createGameover, createVictory);
+      const nemesisGame = new Game({ ctx: ctx, ship: new Ship(10, 10, "N"), }, createGameover, createVictory);
       nemesisGame.start();
     });
   }
@@ -23,12 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
     gameover.classList.add('show');
     tryAgain();
   }
-  
-  //Retry game
+
+  //Retry game feature
   function tryAgain() {
     const tryAgain = document.querySelector('#try-again');
-    tryAgain.addEventListener('click', function(){
-        console.log('me estan pinchando auch');
+    tryAgain.addEventListener('click', function () {
+      if (document.querySelector('#gameover').classList === 'show') {
         let gameover = document.querySelector('#gameover');
         const canvas = document.querySelector('#nemesis');
         gameover.classList.remove('show');
@@ -36,19 +36,29 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.classList.remove('hide');
         canvas.classList.add('show');
         nemesisGame();
-      })
-}
+      }
+      if (document.querySelector('#win').classList === 'show') {
+        let win = document.querySelector('#win');
+        const canvas = document.querySelector('#nemesis');
+        win.classList.remove('show');
+        win.classList.add('hide');
+        canvas.classList.remove('hide');
+        canvas.classList.add('show');
+        nemesisGame();
+      }
+    });
+  }
 
-  //Win the game
-  function createVictory(){
+  //Victory Screen
+  function createVictory() {
     let win = document.querySelector('#win');
-    let canvas = document.querySelector('#nemesis');
+    const canvas = document.querySelector('#nemesis');
     canvas.classList.remove('show');
     canvas.classList.add('hide');
     win.classList.remove('hide');
     win.classList.add('show');
-    createVictory();
-}
+    tryAgain();
+  }
 
   createSplashScreen();
   // this.soundSplash = new Audio("./audio/Rocket.mp3").play(); Funciona pero no lo dejo activo por cansino.

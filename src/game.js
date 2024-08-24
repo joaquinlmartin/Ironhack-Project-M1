@@ -5,7 +5,6 @@ class Game {
     this.stones = [];
     this.enemy = [];
     this.powerups = [];
-    this.shoots = options.shoots;
     this.shoots = [];
     this.boosts = [];
     this.shootsEnemy = [];
@@ -13,6 +12,7 @@ class Game {
     this.scoreText = new Score(ctx, 10, 10);
     this.soundGame = new Audio("./audio/Nemesis.mp3");
     this.soundGameOver = new Audio("./audio/Dark Souls Death.mp3");
+    this.soundVictory = new Audio("./audio/Final Fantasy VII Victory.mp3");
     this.soundShoot = new Audio("./audio/Plasma gun fire.mp3");
     this.soundBoost = new Audio("./audio/Elemental magic spell.mp3");
     this.soundPowerup = new Audio("./audio/Power Up Estridente.mp3");
@@ -127,7 +127,7 @@ class Game {
   _checkCollisions() {
     this.enemy.forEach((enemies) => {
       if (this.ship.didCollide(enemies)) {
-        this.ship.removeHp();
+        this.ship.removeHpExplosion();
         console.log("hp points", this.ship.hp, "/ 100");
         console.log("lives", this.ship.lives);
         //Mover el jugador fuera de la pantalla
@@ -151,7 +151,7 @@ class Game {
     });
     this.stones.forEach((stonies) => {
       if (this.ship.didCollideStones(stonies)) {
-        this.ship.removeHp();
+        this.ship.removeHpShoot();
         console.log("hp points", this.ship.hp, "/ 100");
         console.log("lives", this.ship.lives);
         //Mover el jugador fuera de la pantalla 
@@ -241,25 +241,44 @@ class Game {
     gameover.classList.remove('hide');
     gameover.classList.add('show');
     this.soundGameOver.play();
-    this._tryAgain()
+    this._tryAgain();
   }
   _tryAgain() {
     const tryAgain = document.querySelector('#try-again');
     tryAgain.addEventListener('click', function () {
       document.location.reload();
+      if (document.querySelector('#gameover').classList === 'show') {
+        let gameover = document.querySelector('#gameover');
+        const canvas = document.querySelector('#nemesis');
+        gameover.classList.remove('show');
+        gameover.classList.add('hide');
+        canvas.classList.remove('hide');
+        canvas.classList.add('show');
+        nemesisGame();
+      }
+      if (document.querySelector('#win').classList === 'show') {
+        let win = document.querySelector('#win');
+        const canvas = document.querySelector('#nemesis');
+        win.classList.remove('show');
+        win.classList.add('hide');
+        canvas.classList.remove('hide');
+        canvas.classList.add('show');
+        nemesisGame();
+      }
+    });
       // let gameover = document.querySelector('#gameover');
       // gameover.classList.remove('show');
       // gameover.classList.add('hide');
-    })
   }
   _createVictory() {
     let win = document.querySelector('#win');
-    let canvas = document.querySelector('#nemesis');
+    const canvas = document.querySelector('#nemesis');
     canvas.classList.remove('show');
     canvas.classList.add('hide');
     win.classList.remove('hide');
     win.classList.add('show');
-    createVictory();
+    this.soundVictory.play();
+    this._tryAgain();
   }
   _update() {
     this._clean();
@@ -280,16 +299,16 @@ class Game {
       this._gameOver(console.log("Estás muerto"));
       this._drawScore();
       this.scoreText.score++;
-      this.scoreText.draw();
+      //this.scoreText.draw();
       return;
     }
-    if (this.ship.scores === 10000) {
+    if (this.score >= 10000) {
       this.soundGame.pause();
       this._stopGame();
       this._createVictory(console.log("Bienvenido al mundo de Daniel"));
       this._drawScore();
       this.scoreText.score++;
-      this.scoreText.draw();
+      //this.scoreText.draw();
       return;
     }
     window.requestAnimationFrame(this._update.bind(this));

@@ -8,23 +8,32 @@ class Ship {
     this.size = 40;
     this.scores = 0;
   }
-  removeHp(){
-      /* switch (ship) {
-        case 'explosion':
-          this.hp -= 50;
-          break;
-        case 'shoot':
-          this.hp -= 50;
-          break;
-        case 'hit':
-          this.hp -= 10;
-          break;
-        default:
-          break;
-      }; */
+  removeHpExplosion(){
     this.explosion = this.hp -= 50;
-    /* this.shoot = this.hp -= 25;
-    this.hit = this.hp -= 10;  */
+    if (this.hp === 0) {
+      this.removeLife();
+      this.posX = 275;
+      this.posY = 325;
+      console.log("Has perdido una vida flipao, ojo")
+      this.hp = 100;
+    }  else {
+      console.log("Aún estás vivo jodío")
+    } 
+  }
+  removeHpShoot(){
+    this.shoot = this.hp -= 25;
+    if (this.hp === 0) {
+      this.removeLife();
+      this.posX = 275;
+      this.posY = 325;
+      console.log("Has perdido una vida flipao, ojo")
+      this.hp = 100;
+    }  else {
+      console.log("Aún estás vivo jodío")
+    } 
+  }
+  removeHpHit(){
+    this.hit = this.hp -= 10;
     if (this.hp === 0) {
       this.removeLife();
       this.posX = 275;

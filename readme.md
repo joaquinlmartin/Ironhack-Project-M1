@@ -45,6 +45,7 @@ Assets
 - SplashScreen - Presentation, instructions and start button
 - GameScreen - Game (One level) 
 - GameoverScreen - If you colision you die (start again)
+- Victory Screen - You have reached the target points to win the game!
 
 ## Links:
 

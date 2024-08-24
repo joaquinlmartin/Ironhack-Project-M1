@@ -12,7 +12,7 @@ class Enemy {
     removeLife() {
         this.lives -= 1;
         if (lives === 0) {
-          this.Enemy.dead();
+          this.posX = -100;
     }}
     startMove() {
         setInterval(() => {
