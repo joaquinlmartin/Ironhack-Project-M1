@@ -41,14 +41,16 @@ class Ship {
       console.log("Has perdido una vida flipao, ojo")
       this.hp = 100;
     }  else {
-      console.log("Aún estás vivo jodío")
+      console.log("Te han dado pero aún estás vivo, jodío")
     } 
   }
   removeLife() {
     this.lives -= 1;
+    //this.livesElement.innerHTML -= 1;
   }
   addLife(){
     this.lives += 1;
+    //this.livesElement.innerHTML += 1;
   }
   didCollide(enemy) {
     //Seleccionamos los 4 laterales del jugador

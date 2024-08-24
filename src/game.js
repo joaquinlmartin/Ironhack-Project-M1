@@ -9,7 +9,8 @@ class Game {
     this.boosts = [];
     this.shootsEnemy = [];
     this.score = 0;
-    this.scoreText = new Score(ctx, 10, 10);
+    this.lives = this.ship.lives;
+    //this.scoreText = new Score(ctx, 10, 10);
     this.soundGame = new Audio("./audio/Nemesis.mp3");
     this.soundGameOver = new Audio("./audio/Dark Souls Death.mp3");
     this.soundVictory = new Audio("./audio/Final Fantasy VII Victory.mp3");
@@ -65,14 +66,14 @@ class Game {
       //this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.sprite.posX, shootEnemySprite.sprite.posY, shootEnemySprite.sprite.w, shootEnemySprite.sprite.h, shootEnemy.posX, shootEnemy.posY, 50, 50);
     });
   } */
-  _drawScore() {
+  /* _drawScore() {
     this.ctx.beginPath();
     this.ctx.font = "30px verdana";
     this.ctx.fillStyle = 'red';
     this.ctx.fillText("Score: " + this.score, this.score.posX, this.score.posY, 80, 320);
     this.ctx.fillText(`Score: ${this.score}` + this.score, this.score.posX, this.score.posY, 138, 1);
     this.ctx.closePath();
-  }
+  } */
 
   //Generate figures
   _generateStones() {
@@ -171,6 +172,7 @@ class Game {
         console.log("lives", this.ship.lives);
         //desaparicion del powerup al colisionar.
         powerupis.posX = -200;
+        this.score += 25;
         //sonido de coger powerup
         this.soundPowerup.play();
       } else {
@@ -228,10 +230,11 @@ class Game {
   }
   _updateGameStats() {
     setInterval(() => {
-      this.score += 1;
-    }, 100000);
-    //this.livesElement.innerHTML = this.ship.lives;
-    this.scoreElement.innerHTML = this.score;
+      this.score += 0;
+      this.lives += 0;
+    }, 1000);
+      this.livesElement.innerHTML = this.lives;
+      this.scoreElement.innerHTML = this.score;
   }
   _gameOver() {
     let gameover = document.querySelector('#gameover');
@@ -289,7 +292,7 @@ class Game {
     //this._drawshootEnemy();
     this._drawShoot();
     this._drawBoost();
-    this._drawScore();
+    //this._drawScore();
     this._checkCollisions();
     /* this._checkCollisionsShoot(); */
     this._updateGameStats();
@@ -297,17 +300,17 @@ class Game {
       this.soundGame.pause();
       this._stopGame();
       this._gameOver(console.log("Estás muerto"));
-      this._drawScore();
-      this.scoreText.score++;
+      //this._drawScore();
+      //this.scoreText.score++;
       //this.scoreText.draw();
       return;
     }
-    if (this.score >= 10000) {
+    if (this.score >= 1000) {
       this.soundGame.pause();
       this._stopGame();
       this._createVictory(console.log("Bienvenido al mundo de Daniel"));
-      this._drawScore();
-      this.scoreText.score++;
+      //this._drawScore();
+      //this.scoreText.score++;
       //this.scoreText.draw();
       return;
     }
@@ -315,7 +318,7 @@ class Game {
   }
   start() {
     // Save references to the score and lives elements
-    //this.livesElement = this.game.querySelector(".lives .value");
+    this.livesElement = document.getElementById('lives');
     this.scoreElement = document.getElementById('scores');
     // this.soundSplash.stop();
     this.soundGame.play();

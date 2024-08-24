@@ -1,12 +1,12 @@
 class Sounds {
-    //Hacer que funcione
     constructor() {
-        this.cut = new Audio("./audio/Nemesis.mp3");
+        this.ctx = options.ctx;
         this.soundGame = new Audio("./audio/Nemesis.mp3");
+        this.soundStoneExplosion = new Audio("./audio/Rock break.mp3");
     }
-    playCut() {
-        this.cut.currentTime = 0;
-        this.cut.play();
+    playStones() {
+        this.soundStoneExplosion.currentTime = 0;
+        this.soundStoneExplosion.play();
     }
     playSoundGame() {
         this.soundGame.currentTime = 0;
