@@ -5,12 +5,12 @@ class Powerup {
         this.speed = speed = 15;
         this.startMove();
     }
+    move() {
+        this.posX = this.posX - this.speed;
+    }
     startMove() {
         setInterval(() => {
             this.move();
         }, 500);
-    }
-    move() {
-        this.posX = this.posX - this.speed;
     }
 }

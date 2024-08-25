@@ -61,5 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   createSplashScreen();
-  // this.soundSplash = new Audio("./audio/Rocket.mp3").play(); Funciona pero no lo dejo activo por cansino.
+  this.soundSplash = new Audio("./audio/Rocket.mp3");
+  this.soundSplash.play();
+  soundSplash.currentTime = 0;
 });

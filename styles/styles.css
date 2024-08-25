@@ -26,7 +26,7 @@ body {
   z-index: 200;
   text-align: center;
   line-height: 90vh;
-  background-image: url(/images/Space\ Splash.jpeg);
+  background-image: url(/images/SpaceSplash.jpeg);
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -83,6 +83,7 @@ body {
   justify-content: center;
   align-items: flex-end;
   position: absolute;
+  background-image: url(/images/ShipEnemy.png);
 }
 .scores {
   display: flex;
@@ -129,20 +130,16 @@ canvas#nemesis {
   width: 50%;
   transform: translate(-50%, -50%);
   color: rgb(163, 13, 25);
-  /* background-color: rgb(239, 11, 11);
-  border-style: double;
-  border: 10px solid rgb(155, 142, 6);
-  border-radius: 20px; */
 }
 #try-again {
-  /*position: absolute;*/
-  background-color:transparent;
+  position: relative;
+  background-color: transparent;
   color: rgb(231, 210, 16);
   padding: 0.25rem 0.5rem;
   font-size: 25px;
   font-weight: 70;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  cursor:crosshair;
+  cursor: crosshair;
   margin-bottom: 200px;
   animation: bounce 2s infinite;
 }

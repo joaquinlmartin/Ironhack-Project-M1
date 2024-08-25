@@ -33,11 +33,11 @@ class Game {
   _drawEnemy() {
     this.enemy.forEach((enemy) => {
       this.ctx.drawImage(enemySprite.sprite, enemySprite.posX, enemySprite.posY, enemySprite.w, enemySprite.h, enemy.posX, enemy.posY, 40, 40);
-      /* this.shootsEnemy.forEach((shot) => {
-        this.ctx.fillStyle = "red";
-        this.ctx.fillRect(shot.posX, shot.posY, -10, -10);
-        //this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.sprite.posX, shootEnemySprite.sprite.posY, shootEnemySprite.sprite.w, shootEnemySprite.sprite.h, shootEnemy.posX, shootEnemy.posY, 50, 50);
-      }); */
+      this.shootsEnemy.forEach((shot) => {
+        /* this.ctx.fillStyle = "red"; 
+        this.ctx.fillRect(shot.posX, shot.posY, -10, -10); */
+        //this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.posX, shootEnemySprite.posY, shootEnemySprite.w, shootEnemySprite.h, enemy.posX, enemy.posY, 50, 50);
+      });
     });
   }
   _drawShoot() {
@@ -54,16 +54,12 @@ class Game {
   }
   _drawPowerups() {
     this.powerups.forEach((pu) => {
-      this.ctx.fillStyle = "gold";
-      this.ctx.fillRect(pu.posX, pu.posY, 10, 10);
-      //this.ctx.drawImage(powerupSprite.sprite, powerupSprite.sprite.posX, powerupSprite.sprite.posY, powerupSprite.sprite.w, powerupSprite.sprite.h, pu.posX, pu.posY, 50, 50);
+      this.ctx.drawImage(powerupSprite.sprite, powerupSprite.posX, powerupSprite.posY, powerupSprite.w, powerupSprite.h, pu.posX, pu.posY, 40, 40);
     });
   }
   /* _drawshootEnemy() {
     this.shootsEnemy.forEach((shootEnemy) => {
-      this.ctx.fillStyle= "red";
-      this.ctx.fillRect(shootEnemy.posX, shootEnemy.posY, 10, 10);
-      //this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.sprite.posX, shootEnemySprite.sprite.posY, shootEnemySprite.sprite.w, shootEnemySprite.sprite.h, shootEnemy.posX, shootEnemy.posY, 50, 50);
+      this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.posX, shootEnemySprite.posY, shootEnemySprite.w, shootEnemySprite.h, shootEnemy.posX, shootEnemy.posY, 50, 50);
     });
   } */
   /* _drawScore() {
@@ -94,13 +90,13 @@ class Game {
     }
     this.powerups.push(new Powerup(getRandomInt(1275, 1280), getRandomInt(20, 700)));
   }
-  /* _generateShootEnemy() {
+  _generateShootEnemy() {
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
     }
     this.shootsEnemy.push(new ShootEnemy(getRandomInt(1279, 1280), getRandomInt(20, 700)));
     //this.shootsEnemy.push(new ShootEnemy(this.enemy.posX -20, this.enemy.posY -20));
-  } */
+  }
 
   //Generate intervals
   _generateStonesInterval() {
@@ -118,11 +114,11 @@ class Game {
       this._generatePowerups();
     }, 10000);
   }
-  /* _generateShootEnemyInterval() {
+  _generateShootEnemyInterval() {
     setInterval(() => {
       this._generateShootEnemy();
     }, 7000);
-  } */
+  }
 
   //Collisions
   _checkCollisions() {
@@ -219,7 +215,7 @@ class Game {
     });
   }
   _clean() {
-    this.ctx.drawImage(canvasSprite.sprite, canvasSprite.posX, canvasSprite.posY, canvasSprite.w, canvasSprite.h, 0, 0, 1280, 720);
+   this.ctx.drawImage(canvasSprite.sprite, canvasSprite.posX, canvasSprite.posY, canvasSprite.w, canvasSprite.h, 0, 0, 1280, 720);
   }
   _stopGame() {
     clearInterval(this.interval);
@@ -289,7 +285,7 @@ class Game {
     this._drawStones();
     this._drawEnemy();
     this._drawPowerups();
-    //this._drawshootEnemy();
+/*     this._drawshootEnemy(); */
     this._drawShoot();
     this._drawBoost();
     //this._drawScore();
@@ -320,7 +316,7 @@ class Game {
     // Save references to the score and lives elements
     this.livesElement = document.getElementById('lives');
     this.scoreElement = document.getElementById('scores');
-    // this.soundSplash.stop();
+    soundSplash.pause(); // soundSplash.pause() => Parece raro pero está bien, funciona, de las demás formas no.
     this.soundGame.play();
     this._assignControlsToKeys(0);
     this._generateStones();
@@ -329,8 +325,8 @@ class Game {
     this._generateEnemyInterval();
     this._generatePowerups();
     this._generatePowerupsInterval();
-   /*  this._generateShootEnemy();
-    this._generateShootEnemyInterval(); */
+    this._generateShootEnemy();
+    this._generateShootEnemyInterval();
     window.requestAnimationFrame(this._update.bind(this));
   }
 }
