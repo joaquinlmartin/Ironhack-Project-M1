@@ -2,7 +2,7 @@ class ShootEnemy {
     constructor (posX = 0, posY = 0) {
         this.posX = posX;
         this.posY = posY;
-        this.speed = 50;
+        this.speed = 112;
         this.lives = 1;
         this.startMove();
     }

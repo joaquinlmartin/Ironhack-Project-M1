@@ -6,6 +6,7 @@ class Game {
     this.enemy = [];
     this.powerups = [];
     this.shoots = [];
+    this.shoots = this.shoots;
     this.boosts = [];
     this.shootsEnemy = [];
     this.score = 0;
@@ -34,9 +35,7 @@ class Game {
     this.enemy.forEach((enemy) => {
       this.ctx.drawImage(enemySprite.sprite, enemySprite.posX, enemySprite.posY, enemySprite.w, enemySprite.h, enemy.posX, enemy.posY, 40, 40);
       this.shootsEnemy.forEach((shot) => {
-        /* this.ctx.fillStyle = "red"; 
-        this.ctx.fillRect(shot.posX, shot.posY, -10, -10); */
-        //this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.posX, shootEnemySprite.posY, shootEnemySprite.w, shootEnemySprite.h, enemy.posX, enemy.posY, 50, 50);
+      this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.posX, shootEnemySprite.posY, shootEnemySprite.w, shootEnemySprite.h, shot.posX, shot.posY, 50, 50);
       });
     });
   }
@@ -57,11 +56,6 @@ class Game {
       this.ctx.drawImage(powerupSprite.sprite, powerupSprite.posX, powerupSprite.posY, powerupSprite.w, powerupSprite.h, pu.posX, pu.posY, 40, 40);
     });
   }
-  /* _drawshootEnemy() {
-    this.shootsEnemy.forEach((shootEnemy) => {
-      this.ctx.drawImage(shootEnemySprite.sprite, shootEnemySprite.posX, shootEnemySprite.posY, shootEnemySprite.w, shootEnemySprite.h, shootEnemy.posX, shootEnemy.posY, 50, 50);
-    });
-  } */
   /* _drawScore() {
     this.ctx.beginPath();
     this.ctx.font = "30px verdana";
@@ -83,19 +77,13 @@ class Game {
       return Math.floor(Math.random() * (max - min)) + min;
     }
     this.enemy.push(new Enemy(getRandomInt(1279, 1280), getRandomInt(20, 700)));
+    this.shootsEnemy.push(new ShootEnemy(getRandomInt(1279, 1280), getRandomInt(20, 700)));
   }
   _generatePowerups() {
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
     }
     this.powerups.push(new Powerup(getRandomInt(1275, 1280), getRandomInt(20, 700)));
-  }
-  _generateShootEnemy() {
-    function getRandomInt(min, max) {
-      return Math.floor(Math.random() * (max - min)) + min;
-    }
-    this.shootsEnemy.push(new ShootEnemy(getRandomInt(1279, 1280), getRandomInt(20, 700)));
-    //this.shootsEnemy.push(new ShootEnemy(this.enemy.posX -20, this.enemy.posY -20));
   }
 
   //Generate intervals
@@ -107,17 +95,12 @@ class Game {
   _generateEnemyInterval() {
     setInterval(() => {
       this._generateEnemy();
-    }, 7000);
+    }, 5000);
   }
   _generatePowerupsInterval() {
     setInterval(() => {
       this._generatePowerups();
     }, 10000);
-  }
-  _generateShootEnemyInterval() {
-    setInterval(() => {
-      this._generateShootEnemy();
-    }, 7000);
   }
 
   //Collisions
@@ -127,9 +110,6 @@ class Game {
         this.ship.removeHpExplosion();
         console.log("hp points", this.ship.hp, "/ 100");
         console.log("lives", this.ship.lives);
-        //Mover el jugador fuera de la pantalla
-         // this.ship.posX = 275;
-         // this.ship.posY = 325;
         //Desaparicion del enemigo al colisionar
         enemies.posX = -100;
         this.soundEnemyExplosion.play();
@@ -176,15 +156,7 @@ class Game {
       }
     })
   }
-  /* _checkCollisionsShoot() {
-    this.shoots.forEach((enemiis) => {
-      if (this.enemy.didShootCollide(enemiis)) {
-        this.shoots.posX = -25;
-        enemiis.posX = -150;
-        console.log("Puto colisions shoot funcionando!")
-      }
-    });
-  } */
+
   _assignControlsToKeys() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
@@ -265,9 +237,6 @@ class Game {
         nemesisGame();
       }
     });
-      // let gameover = document.querySelector('#gameover');
-      // gameover.classList.remove('show');
-      // gameover.classList.add('hide');
   }
   _createVictory() {
     let win = document.querySelector('#win');
@@ -285,12 +254,10 @@ class Game {
     this._drawStones();
     this._drawEnemy();
     this._drawPowerups();
-/*     this._drawshootEnemy(); */
     this._drawShoot();
     this._drawBoost();
     //this._drawScore();
     this._checkCollisions();
-    /* this._checkCollisionsShoot(); */
     this._updateGameStats();
     if (this.ship.lives === 0) {
       this.soundGame.pause();
@@ -325,8 +292,6 @@ class Game {
     this._generateEnemyInterval();
     this._generatePowerups();
     this._generatePowerupsInterval();
-    this._generateShootEnemy();
-    this._generateShootEnemyInterval();
     window.requestAnimationFrame(this._update.bind(this));
   }
 }
