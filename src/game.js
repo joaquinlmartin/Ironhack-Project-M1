@@ -201,8 +201,8 @@ class Game {
       this.score += 0;
       this.lives += 0;
     }, 1000);
-      this.livesElement.innerHTML = this.lives;
       this.scoreElement.innerHTML = this.score;
+      this.livesElement.innerHTML = this.lives;
   }
   _gameOver() {
     let gameover = document.querySelector('#gameover');
