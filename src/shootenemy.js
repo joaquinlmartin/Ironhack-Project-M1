@@ -12,6 +12,6 @@ class ShootEnemy {
     startMove() {
         setInterval(() => {
             this.move();
-        }, 500);
+        }, 200);
     }
 }

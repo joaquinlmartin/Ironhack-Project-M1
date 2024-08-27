@@ -8,7 +8,7 @@ class Ship {
     this.size = 40;
     this.scores = 0;
   }
-  removeHpExplosion(){
+  removeHpExplosion() {
     this.explosion = this.hp -= 50;
     if (this.hp === 0) {
       this.removeLife();
@@ -16,11 +16,11 @@ class Ship {
       this.posY = 325;
       console.log("Has perdido una vida flipao, ojo")
       this.hp = 100;
-    }  else {
+    } else {
       console.log("Aún estás vivo jodío")
-    } 
+    }
   }
-  removeHpShoot(){
+  removeHpShoot() {
     this.shoot = this.hp -= 25;
     if (this.hp === 0) {
       this.removeLife();
@@ -28,11 +28,11 @@ class Ship {
       this.posY = 325;
       console.log("Has perdido una vida flipao, ojo")
       this.hp = 100;
-    }  else {
+    } else {
       console.log("Aún estás vivo jodío")
-    } 
+    }
   }
-  removeHpHit(){
+  removeHpHit() {
     this.hit = this.hp -= 10;
     if (this.hp === 0) {
       this.removeLife();
@@ -40,15 +40,15 @@ class Ship {
       this.posY = 325;
       console.log("Has perdido una vida flipao, ojo")
       this.hp = 100;
-    }  else {
+    } else {
       console.log("Te han dado pero aún estás vivo, jodío")
-    } 
+    }
   }
   removeLife() {
     this.lives -= 1;
     //this.livesElement.innerHTML -= 1;
   }
-  addLife(){
+  addLife() {
     this.lives += 1;
     //this.livesElement.innerHTML += 1;
   }
@@ -99,13 +99,13 @@ class Ship {
     const crossTopStone = stonesTop <= playerBottom && stonesTop >= playerTop;
 
     //Solo cuando 1 condición de verticalidad y 1 de horizontalidad se cumplen, podemos considerar que nnuestros cuadrados han  colisionado
-    if ((crossLeftStone || crossRightStone) && (crossTopStone  || crossBottomStone)) {
+    if ((crossLeftStone || crossRightStone) && (crossTopStone || crossBottomStone)) {
       return true;
     } else {
       return false;
     }
   }
-  didPowerup(powerup) {
+  didCollideShoot(shootenemy) {
     //Seleccionamos los 4 laterales del jugador
     const playerLeft = this.posX;
     const playerRight = this.posX + this.size;
@@ -113,16 +113,16 @@ class Ship {
     const playerBottom = this.posY + this.size;
 
     //Seleccionamos los 4 laterales del enemigo
-    const powerupLeft = powerup.posX;
-    const powerupRight = powerup.posX + 40;
-    const powerupTop = powerup.posY;
-    const powerupBottom = powerup.posY + 40;
+    const shootenemyLeft = shootenemy.posX;
+    const shootenemyRight = shootenemy.posX + 40;
+    const shootenemyTop = shootenemy.posY;
+    const shootenemyBottom = shootenemy.posY + 40;
 
     //Comprobamos si el enemigo ha entrado dentro del jugador por cualquiera de los 4 costados
-    const crossLeft = powerupLeft <= playerRight && powerupLeft >= playerLeft;
-    const crossRight = powerupRight >= playerLeft && powerupRight <= playerRight;
-    const crossBottom = powerupBottom >= playerTop && powerupBottom <= playerBottom;
-    const crossTop = powerupTop <= playerBottom && powerupTop >= playerTop;
+    const crossLeft = shootenemyLeft <= playerRight && shootenemyLeft >= playerLeft;
+    const crossRight = shootenemyRight >= playerLeft && shootenemyRight <= playerRight;
+    const crossBottom = shootenemyBottom >= playerTop && shootenemyBottom <= playerBottom;
+    const crossTop = shootenemyTop <= playerBottom && shootenemyTop >= playerTop;
 
     //Solo cuando 1 condición de verticalidad y 1 de horizontalidad se cumplen, podemos considerar que nnuestros cuadrados han  colisionado
     if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
@@ -131,4 +131,30 @@ class Ship {
       return false;
     }
   }
+ didPowerup(powerup) {
+  //Seleccionamos los 4 laterales del jugador
+  const playerLeft = this.posX;
+  const playerRight = this.posX + this.size;
+  const playerTop = this.posY;
+  const playerBottom = this.posY + this.size;
+
+  //Seleccionamos los 4 laterales del enemigo
+  const powerupLeft = powerup.posX;
+  const powerupRight = powerup.posX + 40;
+  const powerupTop = powerup.posY;
+  const powerupBottom = powerup.posY + 40;
+
+  //Comprobamos si el enemigo ha entrado dentro del jugador por cualquiera de los 4 costados
+  const crossLeft = powerupLeft <= playerRight && powerupLeft >= playerLeft;
+  const crossRight = powerupRight >= playerLeft && powerupRight <= playerRight;
+  const crossBottom = powerupBottom >= playerTop && powerupBottom <= playerBottom;
+  const crossTop = powerupTop <= playerBottom && powerupTop >= playerTop;
+
+  //Solo cuando 1 condición de verticalidad y 1 de horizontalidad se cumplen, podemos considerar que nnuestros cuadrados han  colisionado
+  if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
+    return true;
+  } else {
+    return false;
+  }
+}
 }

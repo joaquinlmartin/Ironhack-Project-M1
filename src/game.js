@@ -21,7 +21,6 @@ class Game {
     this.soundEnemyExplosion = new Audio("./audio/Ship Explosion.mp3");
     this.soundStoneExplosion = new Audio("./audio/Rock break.mp3");
   }
-
   //Draw the figures
   _drawShip() {
     this.ctx.drawImage(shipSprite.sprite, shipSprite.posX, shipSprite.posY, shipSprite.w, shipSprite.h, this.ship.posX, this.ship.posY, 40, 40);
@@ -64,7 +63,6 @@ class Game {
     this.ctx.fillText(`Score: ${this.score}` + this.score, this.score.posX, this.score.posY, 138, 1);
     this.ctx.closePath();
   } */
-
   //Generate figures
   _generateStones() {
     function getRandomInt(min, max) {
@@ -85,7 +83,6 @@ class Game {
     }
     this.powerups.push(new Powerup(getRandomInt(1275, 1280), getRandomInt(20, 700)));
   }
-
   //Generate intervals
   _generateStonesInterval() {
     setInterval(() => {
@@ -95,14 +92,13 @@ class Game {
   _generateEnemyInterval() {
     setInterval(() => {
       this._generateEnemy();
-    }, 5000);
+    }, 1000);
   }
   _generatePowerupsInterval() {
     setInterval(() => {
       this._generatePowerups();
     }, 10000);
   }
-
   //Collisions
   _checkCollisions() {
     this.enemy.forEach((enemies) => {
@@ -114,6 +110,10 @@ class Game {
         enemies.posX = -100;
         this.soundEnemyExplosion.play();
         this.score += 100;
+        /* if (this.ship.removeLife() === true) {
+          this.lives -= 1;
+          this.livesElement.innerHTML -= 1;
+        } */
         //añadir explosion de destrucción nave enemiga
       } /* if (this.shoots.didShootCollide(enemies)) {
         this.shoots.removeLife();
@@ -137,6 +137,30 @@ class Game {
         stonies.posX = -150;
         this.soundStoneExplosion.play();
         this.score += 50;
+        /* if (this.ship.removeLife() === true) {
+          this.lives -= 1;
+          this.livesElement.innerHTML -= 1;
+        } */
+        //añadir explosion de destrucción de la roca
+      } else {
+        //this.score++;
+      }
+    });
+    this.shootsEnemy.forEach((shooties) => {
+      if (this.ship.didCollideStones(shooties)) {
+        this.ship.removeHpHit();
+        console.log("hp points", this.ship.hp, "/ 100");
+        console.log("lives", this.ship.lives);
+        //Mover el jugador fuera de la pantalla 
+          //this.ship.posX = 275;
+          //this.ship.posY = 325;
+        shooties.posX = -100;
+        //this.soundStoneExplosion.play();
+        this.score += 10;
+        /* if (this.ship.removeLife() === true) {
+          this.lives -= 1;
+          this.livesElement.innerHTML -= 1;
+        } */
         //añadir explosion de destrucción de la roca
       } else {
         //this.score++;
@@ -156,8 +180,7 @@ class Game {
       }
     })
   }
-
-  _assignControlsToKeys() {
+ _assignControlsToKeys() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
         case 'KeyW':
@@ -218,7 +241,7 @@ class Game {
     const tryAgain = document.querySelector('#try-again');
     tryAgain.addEventListener('click', function () {
       document.location.reload();
-      if (document.querySelector('#gameover').classList === 'show') {
+      if (document.querySelector('#gameover').id === 'show') {
         let gameover = document.querySelector('#gameover');
         const canvas = document.querySelector('#nemesis');
         gameover.classList.remove('show');
@@ -227,7 +250,7 @@ class Game {
         canvas.classList.add('show');
         nemesisGame();
       }
-      if (document.querySelector('#win').classList === 'show') {
+      if (document.querySelector('#win').id === 'show') {
         let win = document.querySelector('#win');
         const canvas = document.querySelector('#nemesis');
         win.classList.remove('show');

@@ -24,31 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     tryAgain();
   }
 
-  //Retry game feature
-  function tryAgain() {
-    const tryAgain = document.querySelector('#try-again');
-    tryAgain.addEventListener('click', function () {
-      if (document.querySelector('#gameover').classList === 'show') {
-        let gameover = document.querySelector('#gameover');
-        const canvas = document.querySelector('#nemesis');
-        gameover.classList.remove('show');
-        gameover.classList.add('hide');
-        canvas.classList.remove('hide');
-        canvas.classList.add('show');
-        nemesisGame();
-      }
-      if (document.querySelector('#win').classList === 'show') {
-        let win = document.querySelector('#win');
-        const canvas = document.querySelector('#nemesis');
-        win.classList.remove('show');
-        win.classList.add('hide');
-        canvas.classList.remove('hide');
-        canvas.classList.add('show');
-        nemesisGame();
-      }
-    });
-  }
-
   //Victory Screen
   function createVictory() {
     let win = document.querySelector('#win');
@@ -60,6 +35,32 @@ document.addEventListener('DOMContentLoaded', () => {
     tryAgain();
   }
 
+  //Retry game feature
+  function tryAgain() {
+    const tryAgain = document.querySelector('#try-again');
+    tryAgain.addEventListener('click', function () {
+      if (document.querySelector('#gameover').id === 'show') {
+        let gameover = document.querySelector('#gameover');
+        const canvas = document.querySelector('#nemesis');
+        gameover.classList.remove('show');
+        gameover.classList.add('hide');
+        canvas.classList.remove('hide');
+        canvas.classList.add('show');
+        nemesisGame();
+      }
+      if (document.querySelector('#win').id === 'show') {
+        let win = document.querySelector('#win');
+        const canvas = document.querySelector('#nemesis');
+        win.classList.remove('show');
+        win.classList.add('hide');
+        canvas.classList.remove('hide');
+        canvas.classList.add('show');
+        nemesisGame();
+      }
+    });
+  }
+
+  // Invocacion de la Splash y comienzo de acciones
   createSplashScreen();
   this.soundSplash = new Audio("./audio/Rocket.mp3");
   this.soundSplash.play();

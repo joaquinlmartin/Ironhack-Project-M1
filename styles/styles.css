@@ -132,32 +132,23 @@ canvas#nemesis {
   color: rgb(163, 13, 25);
 }
 #try-again {
-  position: relative;
+  position: unset;
   background-color: transparent;
   color: rgb(231, 210, 16);
   padding: 0.25rem 0.5rem;
+  left: 200px;
   font-size: 25px;
   font-weight: 70;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   cursor: crosshair;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
   animation: bounce 2s infinite;
-}
-#try-again-vic {
-  background-color:transparent;
-  color: rgb(231, 210, 16);
-  font-size: 25px;
-  font-weight: 70;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  cursor:crosshair;
-  animation: bounce 2s infinite;
-  margin-top: 400px;
-  margin-left: 200px;
 }
 .title-victory{
-  position:absolute;
+  position:relative ;
   padding: 1rem 0rem;
   font-size: 5em;
+  right: 200px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: rgb(203, 216, 21);
   margin-bottom: 100px;
@@ -165,7 +156,7 @@ canvas#nemesis {
 #win {
   position: absolute;
   top: 50%;
-  left: 40%;
+  left: 50%;
   font-size: 2em;
   padding: 20px;
   width: 20%;
