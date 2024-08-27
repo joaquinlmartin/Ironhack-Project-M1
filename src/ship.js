@@ -12,8 +12,6 @@ class Ship {
     this.explosion = this.hp -= 50;
     if (this.hp === 0) {
       this.removeLife();
-      this.posX = 275;
-      this.posY = 325;
       console.log("Has perdido una vida flipao, ojo")
       this.hp = 100;
     } else {
@@ -24,8 +22,6 @@ class Ship {
     this.shoot = this.hp -= 25;
     if (this.hp === 0) {
       this.removeLife();
-      this.posX = 275;
-      this.posY = 325;
       console.log("Has perdido una vida flipao, ojo")
       this.hp = 100;
     } else {
@@ -36,8 +32,6 @@ class Ship {
     this.hit = this.hp -= 10;
     if (this.hp === 0) {
       this.removeLife();
-      this.posX = 275;
-      this.posY = 325;
       console.log("Has perdido una vida flipao, ojo")
       this.hp = 100;
     } else {
@@ -46,6 +40,8 @@ class Ship {
   }
   removeLife() {
     this.lives -= 1;
+    this.posX = 275;
+    this.posY = 325;
     //this.livesElement.innerHTML -= 1;
   }
   addLife() {
@@ -123,6 +119,32 @@ class Ship {
     const crossRight = shootenemyRight >= playerLeft && shootenemyRight <= playerRight;
     const crossBottom = shootenemyBottom >= playerTop && shootenemyBottom <= playerBottom;
     const crossTop = shootenemyTop <= playerBottom && shootenemyTop >= playerTop;
+
+    //Solo cuando 1 condición de verticalidad y 1 de horizontalidad se cumplen, podemos considerar que nnuestros cuadrados han  colisionado
+    if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  didCollideAsteroids(asteroid) {
+    //Seleccionamos los 4 laterales del jugador
+    const playerLeft = this.posX;
+    const playerRight = this.posX + this.size;
+    const playerTop = this.posY;
+    const playerBottom = this.posY + this.size;
+
+    //Seleccionamos los 4 laterales del enemigo
+    const asteroidLeft = asteroid.posX;
+    const asteroidRight = asteroid.posX + 22;
+    const asteroidTop = asteroid.posY;
+    const asteroidBottom = asteroid.posY + 22;
+
+    //Comprobamos si el enemigo ha entrado dentro del jugador por cualquiera de los 4 costados
+    const crossLeft = asteroidLeft <= playerRight && asteroidLeft >= playerLeft;
+    const crossRight = asteroidRight >= playerLeft && asteroidRight <= playerRight;
+    const crossBottom = asteroidBottom >= playerTop && asteroidBottom <= playerBottom;
+    const crossTop = asteroidTop <= playerBottom && asteroidTop >= playerTop;
 
     //Solo cuando 1 condición de verticalidad y 1 de horizontalidad se cumplen, podemos considerar que nnuestros cuadrados han  colisionado
     if ((crossLeft || crossRight) && (crossTop || crossBottom)) {

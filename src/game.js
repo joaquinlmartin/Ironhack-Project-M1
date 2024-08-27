@@ -89,11 +89,17 @@ class Game {
     }
     this.powerups.push(new Powerup(getRandomInt(1275, 1280), getRandomInt(20, 700)));
   }
-  _generateAsteroids() {
+  _generateAsteroidsDown() {
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
     }
-    this.asteroids.push(new Asteroid(getRandomInt(1279, 1280), getRandomInt(670, 700)));
+    this.asteroids.push(new Asteroid(getRandomInt(1279, 1280), getRandomInt(672, 697)));
+  }
+  _generateAsteroidsUp() {
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+    this.asteroids.push(new Asteroid(getRandomInt(1279, 1280), getRandomInt(-15, 10)));
   }
   //Generate intervals
   _generateStonesInterval() {
@@ -113,7 +119,8 @@ class Game {
   }
   _generateAsteroidsInterval() {
     setInterval(() => {
-      this._generateAsteroids();
+      this._generateAsteroidsDown();
+      this._generateAsteroidsUp();
     }, 100);
   }
   //Collisions
@@ -174,6 +181,24 @@ class Game {
         shooties.posX = -100;
         this.soundEnemyExplosion.play();
         this.score += 10;
+        /* if (this.ship.removeLife() === true) {
+          this.lives -= 1;
+          this.livesElement.innerHTML -= 1;
+        } */
+        //añadir explosion de destrucción de la roca
+      } else {
+        //this.score++;
+      }
+    });
+    this.asteroids.forEach((ars) => {
+      if (this.ship.didCollideAsteroids(ars)) {
+        this.ship.removeLife();
+        console.log("hp points", this.ship.hp, "/ 100");
+        console.log("lives", this.ship.lives);
+        //Mover el jugador fuera de la pantalla 
+          //this.ship.posX = 275;
+          //this.ship.posY = 325;
+        this.soundStoneExplosion.play();
         /* if (this.ship.removeLife() === true) {
           this.lives -= 1;
           this.livesElement.innerHTML -= 1;
@@ -333,7 +358,8 @@ class Game {
     this._generateEnemyInterval();
     this._generatePowerups();
     this._generatePowerupsInterval();
-    this._generateAsteroids();
+    this._generateAsteroidsDown();
+    this._generateAsteroidsUp();
     this._generateAsteroidsInterval();
     window.requestAnimationFrame(this._update.bind(this));
   }
