@@ -115,16 +115,16 @@ class Game {
           this.livesElement.innerHTML -= 1;
         } */
         //añadir explosion de destrucción nave enemiga
-      } /* if (this.shoots.didShootCollide(enemies)) {
+      }/*  if (this.shoots.didShootCollide(enemies)) {
         this.shoots.removeLife();
         this.shoots.posX = -100;
         //Desaparicion del enemigo al colisionar
         enemies.posX = -100;
         this.soundEnemyExplosion.play();
         //añadir explosion de destrucción nave enemiga
-      } */ else {
+      } else {
         //this.score++;
-      }
+      } */
     });
     this.stones.forEach((stonies) => {
       if (this.ship.didCollideStones(stonies)) {
@@ -155,7 +155,7 @@ class Game {
           //this.ship.posX = 275;
           //this.ship.posY = 325;
         shooties.posX = -100;
-        //this.soundStoneExplosion.play();
+        this.soundEnemyExplosion.play();
         this.score += 10;
         /* if (this.ship.removeLife() === true) {
           this.lives -= 1;
