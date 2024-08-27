@@ -139,7 +139,7 @@ class Game {
           this.livesElement.innerHTML -= 1;
         } */
         //añadir explosion de destrucción nave enemiga
-      }/*  if (this.shoots.didShootCollide(enemies)) {
+      }/*  if (this.ship.didShootCollide(enemies)) {
         this.shoots.removeLife();
         this.shoots.posX = -100;
         //Desaparicion del enemigo al colisionar

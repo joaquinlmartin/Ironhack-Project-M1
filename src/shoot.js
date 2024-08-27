@@ -5,6 +5,7 @@ class Shoot {
         this.posY = posY;
         this.speed = 20;
         this.size = 5;
+       /*  this.didShootCollide(); */
     }
     removeLife() {
         this.lives -= 1;
@@ -12,7 +13,7 @@ class Shoot {
     move() {
         this.posX = this.posX + this.speed;
     }
-    didShootCollide(enemy) {
+    /* didShootCollide(enemy) {
         //Seleccionamos los 4 laterales del disparo
         const shootLeft = this.posX;
         const shootRight = this.posX + this.size;
@@ -37,5 +38,5 @@ class Shoot {
         } else {
           return false;
         }
-      }
+      } */
 }

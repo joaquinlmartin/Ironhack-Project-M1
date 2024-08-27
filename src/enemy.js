@@ -5,6 +5,7 @@ class Enemy {
     /*  this.disparos = []; */
         this.speed = 50;
         this.lives = 1;
+        this.size = 50;
         this.startMove();
     }
     move() {
@@ -29,5 +30,4 @@ class Enemy {
         if (lives === 0) {
           this.posX = -100;
     }}
-    
 }
