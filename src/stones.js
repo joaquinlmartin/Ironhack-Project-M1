@@ -16,12 +16,12 @@ class Stones {
     dead() {
         this.stones.posX = -100;
     }
+    move() {
+        this.posX = this.posX - this.speed;
+    }
     startMove() {
         setInterval(() => {
             this.move();
         }, 700);
-    }
-    move() {
-        this.posX = this.posX - this.speed;
     }
 }

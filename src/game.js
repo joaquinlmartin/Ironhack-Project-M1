@@ -9,6 +9,7 @@ class Game {
     this.shoots = this.shoots;
     this.boosts = [];
     this.shootsEnemy = [];
+    this.asteroids = [];
     this.score = 0;
     this.lives = this.ship.lives;
     //this.scoreText = new Score(ctx, 10, 10);
@@ -55,6 +56,11 @@ class Game {
       this.ctx.drawImage(powerupSprite.sprite, powerupSprite.posX, powerupSprite.posY, powerupSprite.w, powerupSprite.h, pu.posX, pu.posY, 40, 40);
     });
   }
+  _drawAsteroids() {
+    this.asteroids.forEach((asteoro) => {
+      this.ctx.drawImage(asteroidSprite.sprite, asteroidSprite.posX, asteroidSprite.posY, asteroidSprite.w, asteroidSprite.h, asteoro.posX, asteoro.posY, 22, 22);
+    });
+  }
   /* _drawScore() {
     this.ctx.beginPath();
     this.ctx.font = "30px verdana";
@@ -83,6 +89,12 @@ class Game {
     }
     this.powerups.push(new Powerup(getRandomInt(1275, 1280), getRandomInt(20, 700)));
   }
+  _generateAsteroids() {
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+    this.asteroids.push(new Asteroid(getRandomInt(1279, 1280), getRandomInt(670, 700)));
+  }
   //Generate intervals
   _generateStonesInterval() {
     setInterval(() => {
@@ -98,6 +110,11 @@ class Game {
     setInterval(() => {
       this._generatePowerups();
     }, 10000);
+  }
+  _generateAsteroidsInterval() {
+    setInterval(() => {
+      this._generateAsteroids();
+    }, 100);
   }
   //Collisions
   _checkCollisions() {
@@ -279,6 +296,7 @@ class Game {
     this._drawPowerups();
     this._drawShoot();
     this._drawBoost();
+    this._drawAsteroids();
     //this._drawScore();
     this._checkCollisions();
     this._updateGameStats();
@@ -315,6 +333,8 @@ class Game {
     this._generateEnemyInterval();
     this._generatePowerups();
     this._generatePowerupsInterval();
+    this._generateAsteroids();
+    this._generateAsteroidsInterval();
     window.requestAnimationFrame(this._update.bind(this));
   }
 }
