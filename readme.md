@@ -24,7 +24,7 @@ Assets
 
 - Animations (Included)
 - Advanced Styles (Included)
-- Scores (Included)
+- Scores (Included) 
 - More Levels
 - Movement Screen effects
 
