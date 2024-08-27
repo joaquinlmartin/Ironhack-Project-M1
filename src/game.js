@@ -121,7 +121,7 @@ class Game {
     setInterval(() => {
       this._generateAsteroidsDown();
       this._generateAsteroidsUp();
-    }, 100);
+    }, 1000);
   }
   //Collisions
   _checkCollisions() {
@@ -253,6 +253,8 @@ class Game {
   }
   _clean() {
    this.ctx.drawImage(canvasSprite.sprite, canvasSprite.posX, canvasSprite.posY, canvasSprite.w, canvasSprite.h, 0, 0, 1280, 720);
+   /* this.ctx.posX = this.ctx.posX - this.speed;
+   this.speed = 200; */
   }
   _stopGame() {
     clearInterval(this.interval);
