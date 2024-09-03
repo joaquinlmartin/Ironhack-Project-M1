@@ -234,7 +234,8 @@ class Game {
     const tryAgain = document.querySelector('#try-again');
     tryAgain.addEventListener('click', function () {
       document.location.reload();
-      if (document.querySelector('#gameover').id === 'show') {
+      if (id === 'gameover') {
+        console.log("estoy en gameover")
         let gameover = document.querySelector('#gameover');
         const canvas = document.querySelector('#nemesis');
         gameover.classList.remove('show');
@@ -243,7 +244,8 @@ class Game {
         canvas.classList.add('show');
         nemesisGame();
       }
-      if (document.querySelector('#win').id === 'show') {
+      if (id === 'win') {
+        console.log("estoy en try again")
         let win = document.querySelector('#win');
         const canvas = document.querySelector('#nemesis');
         win.classList.remove('show');
