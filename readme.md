@@ -20,14 +20,6 @@ Class Boost
 Main
 Assets
 
-## Backlog:
-
-- Animations (Included)
-- Advanced Styles (Included)
-- Scores (Included) 
-- More Levels
-- Movement Screen effects
-
 ## Class Game
 
 ```
@@ -48,6 +40,25 @@ Assets
 - GameScreen - Game (One level) 
 - GameoverScreen - If you colision you die (start again)
 - Victory Screen - You have reached the target points to win the game!
+
+## Backlog:
+
+- Animations (Included)
+- Advanced Styles (Included)
+- Scores (Included) 
+- More Levels
+- Movement Screen effect
+- Enemy and Stones ship explode animations 
+
+## Errors:
+
+- Scores in Game Over Screen, Scores in Victory Screen
+- Retry button in Victory Screen
+- Stones rotation 
+- class Scores
+- drawScore
+- Lives refresh counter
+- class Sounds
 
 ## Links:
 

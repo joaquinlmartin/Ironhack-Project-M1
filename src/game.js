@@ -130,44 +130,19 @@ class Game {
         this.ship.removeHpExplosion();
         console.log("hp points", this.ship.hp, "/ 100");
         console.log("lives", this.ship.lives);
-        //Desaparicion del enemigo al colisionar
-        enemies.posX = -100;
+        enemies.posX = -100; //Desaparicion del enemigo al colisionar
         this.soundEnemyExplosion.play();
         this.score += 100;
-        /* if (this.ship.removeLife() === true) {
-          this.lives -= 1;
-          this.livesElement.innerHTML -= 1;
-        } */
-        //añadir explosion de destrucción nave enemiga
-      }/*  if (this.ship.didShootCollide(enemies)) {
-        this.shoots.removeLife();
-        this.shoots.posX = -100;
-        //Desaparicion del enemigo al colisionar
-        enemies.posX = -100;
-        this.soundEnemyExplosion.play();
-        //añadir explosion de destrucción nave enemiga
-      } else {
-        //this.score++;
-      } */
+      }
     });
     this.stones.forEach((stonies) => {
       if (this.ship.didCollideStones(stonies)) {
         this.ship.removeHpShoot();
         console.log("hp points", this.ship.hp, "/ 100");
         console.log("lives", this.ship.lives);
-        //Mover el jugador fuera de la pantalla 
-          //this.ship.posX = 275;
-          //this.ship.posY = 325;
-        stonies.posX = -150;
+        stonies.posX = -150; //desaparicion de la roca al colisionar.
         this.soundStoneExplosion.play();
         this.score += 50;
-        /* if (this.ship.removeLife() === true) {
-          this.lives -= 1;
-          this.livesElement.innerHTML -= 1;
-        } */
-        //añadir explosion de destrucción de la roca
-      } else {
-        //this.score++;
       }
     });
     this.shootsEnemy.forEach((shooties) => {
@@ -175,19 +150,9 @@ class Game {
         this.ship.removeHpHit();
         console.log("hp points", this.ship.hp, "/ 100");
         console.log("lives", this.ship.lives);
-        //Mover el jugador fuera de la pantalla 
-          //this.ship.posX = 275;
-          //this.ship.posY = 325;
-        shooties.posX = -100;
+        shooties.posX = -100; //desaparicion del disparo al colisionar.
         this.soundEnemyExplosion.play();
         this.score += 10;
-        /* if (this.ship.removeLife() === true) {
-          this.lives -= 1;
-          this.livesElement.innerHTML -= 1;
-        } */
-        //añadir explosion de destrucción de la roca
-      } else {
-        //this.score++;
       }
     });
     this.asteroids.forEach((ars) => {
@@ -195,30 +160,16 @@ class Game {
         this.ship.removeLife();
         console.log("hp points", this.ship.hp, "/ 100");
         console.log("lives", this.ship.lives);
-        //Mover el jugador fuera de la pantalla 
-          //this.ship.posX = 275;
-          //this.ship.posY = 325;
         this.soundStoneExplosion.play();
-        /* if (this.ship.removeLife() === true) {
-          this.lives -= 1;
-          this.livesElement.innerHTML -= 1;
-        } */
-        //añadir explosion de destrucción de la roca
-      } else {
-        //this.score++;
       }
     });
     this.powerups.forEach((powerupis) => {
       if (this.ship.didPowerup(powerupis)) {
         this.ship.addLife();
         console.log("lives", this.ship.lives);
-        //desaparicion del powerup al colisionar.
-        powerupis.posX = -200;
+        powerupis.posX = -200; //desaparicion del powerup al colisionar.
         this.score += 25;
-        //sonido de coger powerup
-        this.soundPowerup.play();
-      } else {
-        //this.score++;
+        this.soundPowerup.play(); //sonido de coger powerup
       }
     })
   }
@@ -253,8 +204,6 @@ class Game {
   }
   _clean() {
    this.ctx.drawImage(canvasSprite.sprite, canvasSprite.posX, canvasSprite.posY, canvasSprite.w, canvasSprite.h, 0, 0, 1280, 720);
-   /* this.ctx.posX = this.ctx.posX - this.speed;
-   this.speed = 200; */
   }
   _stopGame() {
     clearInterval(this.interval);

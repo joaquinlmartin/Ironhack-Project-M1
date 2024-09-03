@@ -42,11 +42,9 @@ class Ship {
     this.lives -= 1;
     this.posX = 275;
     this.posY = 325;
-    //this.livesElement.innerHTML -= 1;
   }
   addLife() {
     this.lives += 1;
-    //this.livesElement.innerHTML += 1;
   }
   didCollide(enemy) {
     //Seleccionamos los 4 laterales del jugador
