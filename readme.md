@@ -60,7 +60,7 @@ Assets
 - Lives refresh counter
 - class Sounds
 - shoot Colisions
-- lives at 0
+- lives to 0
 
 ## Links:
 
