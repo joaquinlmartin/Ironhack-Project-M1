@@ -17,7 +17,7 @@ Class Sounds
 Class Score
 Class Powerups
 Class Boost
-Main
+Main 
 Assets
 
 ## Class Game
